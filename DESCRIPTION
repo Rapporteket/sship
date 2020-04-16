@@ -1,13 +1,17 @@
 Package: sship
-Title: What the Package Does (One Line, Title Case)
+Title: Tool for Secure Shipment of Content
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person(given = "Are",
+           family = "Edvardsen",
+           role = c("aut"),
+           email = "biorakel@gmail.com",
+           comment = c(ORCID = "0000-0002-5210-3656"))
+Description: This package provide some tools for secure shipment. By strong
+    protection of content itself safe passage can be provided even through
+    hostile environments. Based on asymmetric cryptography no management of
+    secrets is needed to make a shipment as long as relevant public keys are
+    available.
 License: What license it uses
 Encoding: UTF-8
 LazyData: true
