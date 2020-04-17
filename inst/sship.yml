@@ -1,0 +1,7 @@
+pubkey:
+  holder:
+    github:
+      url: https://github.com
+      pid:
+        prefix:
+        suffix: .keys

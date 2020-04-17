@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: 
     person(given = "Are",
            family = "Edvardsen",
-           role = c("aut"),
+           role = c("aut", "cre"),
            email = "biorakel@gmail.com",
            comment = c(ORCID = "0000-0002-5210-3656"))
 Description: This package provide some tools for secure shipment. By strong
@@ -12,6 +12,13 @@ Description: This package provide some tools for secure shipment. By strong
     hostile environments. Based on asymmetric cryptography no management of
     secrets is needed to make a shipment as long as relevant public keys are
     available.
-License: What license it uses
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    httr,
+    openssl,
+    yaml
+Suggests: 
+    testthat
+RoxygenNote: 7.0.2
