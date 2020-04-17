@@ -1,27 +1,33 @@
 #' Encryption of shipment content
 #'
-#' Various function and helper functions to establish encrypted files.
+#' Various functions and helper functions to establish encrypted files.
 #'
-#' Encrypted files can be decrypted outside R using the OpenSSL library.
-#' Below, a bash shell (unix) example is given.
-#' Step 1: decrypt summetric key (open envelope)
+#' Encrypted files can be decrypted outside R using the OpenSSL library. Both
+#' the key and the initialization vector (iv) are binary and this method uses
+#' the key directly (and not a [hashed] passphrase). OpenSSL decryption need to
+#' be fed the key (and iv) as a string of hex digits. Methods for conversion
+#' from binary to hex may vary between systems. Below, a bash shell (unix)
+#' example is given
+#' \preformatted{}
+#' Step 1: decrypt symmetric key (open envelope) using a private key
 #' \preformatted{
-#' openssl rsautl -decrypt -inkey ~/.ssh/id_rsa -in tempkey.enc -out tempkey
+#' openssl rsautl -decrypt -inkey ~/.ssh/id_rsa -in key.enc -out key
 #' }
-#' Step 2: decrypt content by key obtained in the above step
+#' Step 2: decrypt content by key obtained in step 1, also converting key and
+#' iv to strings of hexadecimal digits
 #' \preformatted{
 #' openssl aes-256-cbc -d -in test.txt.enc -out msg \
-#' -K $(hexdump -e '32/1 "\%02x"' tempkey) -iv $(hexdump -e '16/1 "\%02x"' iv)
+#' -K $(hexdump -e '32/1 "\%02x"' key) -iv $(hexdump -e '16/1 "\%02x"' iv)
 #' }
 #'
-#' @param filename string with full y qualified path to a file
+#' @param filename string with fully qualified path to a file
 #' @param pubkey_holder string defining the provider of the public key used for
 #' encryption of the symmetric key. Currently, 'github' is the only valid
 #' option.
 #' @param pid string uniquely defining the user at 'pubkey_holder' who is also
 #' the owner of the  public key
 #'
-#' @return mosty exit satus?
+#' @return mostly exit satus?
 #' @name enc
 #' @aliases enc_filename random_key make_pubkey_url get_pubkey enc_file
 NULL
@@ -58,7 +64,6 @@ make_pubkey_url <- function(pubkey_holder = "github", pid) {
 get_pubkey <- function(pubkey_holder, pid) {
 
   url <- make_pubkey_url(pubkey_holder, pid)
-  print(url)
   cont <- httr::GET(url)
   httr::warn_for_status(cont)
 
@@ -84,30 +89,39 @@ get_pubkey <- function(pubkey_holder, pid) {
 #' @export
 enc_file <- function(filename, pubkey_holder, pid) {
 
-  tempkey <- random_key()
+  init_dir <- getwd()
+
+  key <- random_key()
   iv <- random_key(16)
   pubkey <- get_pubkey(pubkey_holder, pid)
 
-  blob <- openssl::aes_cbc_encrypt(data = filename, key = tempkey, iv = iv)
+  blob <- openssl::aes_cbc_encrypt(data = filename, key = key, iv = iv)
   attr(blob, "iv") <- NULL
-  ciphertext <- openssl::rsa_encrypt(data = tempkey, pubkey = pubkey)
+  ciphertext <- openssl::rsa_encrypt(data = key, pubkey = pubkey)
 
   # make list of shipment files
   f <- list(blob = enc_filename(filename),
-            tempkey = enc_filename(file.path(dirname(filename), "tempkey")),
+            key = enc_filename(file.path(dirname(filename), "key")),
             iv = file.path(dirname(filename), "iv"))
 
   writeBin(blob, f$blob)
-  writeBin(ciphertext, f$tempkey)
+  writeBin(ciphertext, f$key)
   writeBin(iv, f$iv)
 
   stamp <- format(Sys.time(), "%Y%m%d_%H%M%S")
-  tarfile <- paste0(basename(filename), stamp, ".tar.gz")
+  tarfile <- paste0(basename(filename), "__", stamp, ".tar.gz")
   setwd(dirname(filename))
-  tar(tarfile, files = basename(c(f$blob, f$tempkey, f$iv)),
+  tar(tarfile, files = basename(c(f$blob, f$key, f$iv)),
       compression = "gzip", tar = "tar")
 
-  tarfile
+  #clean up and move back to init dir
+  file.remove(basename(c(f$blob, f$key, f$iv)))
+  setwd(init_dir)
+
+  message(paste("Content encrypted and ready for shipment:",
+                file.path(dirname(filename), tarfile)))
+
+  invisible(tarfile)
 
 }
 

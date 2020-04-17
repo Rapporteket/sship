@@ -20,7 +20,7 @@ get_pubkey(pubkey_holder, pid)
 enc_file(filename, pubkey_holder, pid)
 }
 \arguments{
-\item{filename}{string with full y qualified path to a file}
+\item{filename}{string with fully qualified path to a file}
 
 \item{pubkey_holder}{string defining the provider of the public key used for
 encryption of the symmetric key. Currently, 'github' is the only valid
@@ -30,21 +30,27 @@ option.}
 the owner of the  public key}
 }
 \value{
-mosty exit satus?
+mostly exit satus?
 }
 \description{
-Various function and helper functions to establish encrypted files.
+Various functions and helper functions to establish encrypted files.
 }
 \details{
-Encrypted files can be decrypted outside R using the OpenSSL library.
-Below, a bash shell (unix) example is given.
-Step 1: decrypt summetric key (open envelope)
+Encrypted files can be decrypted outside R using the OpenSSL library. Both
+the key and the initialization vector (iv) are binary and this method uses
+the key directly (and not a [hashed] passphrase). OpenSSL decryption need to
+be fed the key (and iv) as a string of hex digits. Methods for conversion
+from binary to hex may vary between systems. Below, a bash shell (unix)
+example is given
+\preformatted{}
+Step 1: decrypt symmetric key (open envelope) using a private key
 \preformatted{
-openssl rsautl -decrypt -inkey ~/.ssh/id_rsa -in tempkey.enc -out tempkey
+openssl rsautl -decrypt -inkey ~/.ssh/id_rsa -in key.enc -out key
 }
-Step 2: decrypt content by key obtained in the above step
+Step 2: decrypt content by key obtained in step 1, also converting key and
+iv to strings of hexadecimal digits
 \preformatted{
 openssl aes-256-cbc -d -in test.txt.enc -out msg \
--K $(hexdump -e '32/1 "\%02x"' tempkey) -iv $(hexdump -e '16/1 "\%02x"' iv)
+-K $(hexdump -e '32/1 "\%02x"' key) -iv $(hexdump -e '16/1 "\%02x"' iv)
 }
 }
