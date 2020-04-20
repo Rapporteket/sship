@@ -20,11 +20,12 @@ decrypted file is to be written. Defaults to the current directory
 \code{"."}, \emph{e.g.} where this function is being called from.}
 }
 \value{
-Invisibly the character string file path of the encrypted file.
+Invisibly a character string providing the file path of the
+decrypted file.
 }
 \description{
-This function tries to reverse the process of \link{enc_file} and
-hence depend on the conventions used there.
+This function tries to reverse the process of \link{enc} and hence depend on
+the conventions used there.
 }
 \details{
 Some of the functions used here might be vulnerable to differences between
@@ -32,5 +33,5 @@ systems running R. Possible caveats may be the availability of the
 (un)tar-function and how binary streams/files are treated.
 }
 \seealso{
-\link{enc_file}
+\link{enc}
 }

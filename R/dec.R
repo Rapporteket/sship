@@ -1,7 +1,7 @@
 #' Unpack shipment and decrypt content
 #'
-#' This function tries to reverse the process of \link{enc_file} and
-#' hence depend on the conventions used there.
+#' This function tries to reverse the process of \link{enc} and hence depend on
+#' the conventions used there.
 #'
 #' Some of the functions used here might be vulnerable to differences between
 #' systems running R. Possible caveats may be the availability of the
@@ -17,9 +17,10 @@
 #' decrypted file is to be written. Defaults to the current directory
 #' \code{"."}, \emph{e.g.} where this function is being called from.
 #'
-#' @return Invisibly the character string file path of the encrypted file.
+#' @return Invisibly a character string providing the file path of the
+#' decrypted file.
 #'
-#' @seealso \link{enc_file}
+#' @seealso \link{enc}
 #' @export
 
 dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
@@ -54,4 +55,5 @@ dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
   message(paste("Decrypted file written to", target_file))
 
   invisible(target_file)
+
 }

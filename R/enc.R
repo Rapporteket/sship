@@ -1,6 +1,17 @@
 #' Encryption of shipment content
 #'
-#' Various functions and helper functions to establish encrypted files.
+#' Various functions and helper functions to establish encrypted files. To
+#' secure the content (any file) the Advanced Encryption Standard (AES) is
+#' applied with an ephemeral key consisting of 256 random bits. This key is
+#' only used once for encryption (and then one more time during decryption at a
+#' later stage). A random 128 bit initialization vector (iv) is also applied
+#' during encryption. There is no extra security gain in this since the key
+#' will never be re-used for encryption/decryption. So, just for good measures
+#' then :-) After the content has been encrypted the key itself is encrypted by
+#' applying a public key offered by the recipient. This key is obtained from a
+#' public provider. Currently, GitHub is the only option. The three files:
+#' encrypted content, the encrypted key and the (cleartext) iv is then bundled
+#' into a tarball ready for shipment.
 #'
 #' Encrypted files can be decrypted outside R using the OpenSSL library. Both
 #' the key and the initialization vector (iv) are binary and this method uses
@@ -16,7 +27,7 @@
 #' Step 2: decrypt content by key obtained in step 1, also converting key and
 #' iv to strings of hexadecimal digits
 #' \preformatted{
-#' openssl aes-256-cbc -d -in test.txt.enc -out msg \
+#' openssl aes-256-cbc -d -in data.csv.enc -out data.csv \
 #' -K $(hexdump -e '32/1 "\%02x"' key) -iv $(hexdump -e '16/1 "\%02x"' iv)
 #' }
 #'
@@ -27,7 +38,8 @@
 #' @param pid string uniquely defining the user at 'pubkey_holder' who is also
 #' the owner of the  public key
 #'
-#' @return mostly exit satus?
+#' @return Character string providing a filename or a key
+#' @seealso \link{dec}
 #' @name enc
 #' @aliases enc_filename random_key make_pubkey_url get_pubkey enc_file
 NULL
@@ -41,14 +53,6 @@ enc_filename <- function(filename) {
 
 }
 
-
-#' @rdname enc
-#' @export
-random_key <- function(bytes = 32) {
-
-  openssl::rand_bytes(bytes)
-
-}
 
 #' @rdname enc
 #' @export
@@ -80,20 +84,20 @@ get_pubkey <- function(pubkey_holder, pid) {
     stop("The key is not of type 'ssh-rsa'. Cannot go on!")
   }
 
-  openssl::read_pubkey(key)
+  key
 }
 
 
 #' @rdname enc
 #' @importFrom utils tar
 #' @export
-enc_file <- function(filename, pubkey_holder, pid) {
+enc <- function(filename, pubkey_holder, pid) {
 
   init_dir <- getwd()
 
-  key <- random_key()
-  iv <- random_key(16)
-  pubkey <- get_pubkey(pubkey_holder, pid)
+  key <- openssl::rand_bytes(32)
+  iv <- openssl::rand_bytes(16)
+  pubkey <- openssl::read_pubkey(get_pubkey(pubkey_holder, pid))
 
   blob <- openssl::aes_cbc_encrypt(data = filename, key = key, iv = iv)
   attr(blob, "iv") <- NULL
@@ -121,7 +125,7 @@ enc_file <- function(filename, pubkey_holder, pid) {
   message(paste("Content encrypted and ready for shipment:",
                 file.path(dirname(filename), tarfile)))
 
-  invisible(tarfile)
+  invisible(file.path(dirname(filename), tarfile))
 
 }
 
