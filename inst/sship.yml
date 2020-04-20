@@ -1,3 +1,12 @@
+network:
+  proxy:
+    http:
+    http_port:
+    https:
+    https_port:
+  smtp:
+    server: localhost
+    port: 2525
 pubkey:
   holder:
     github:
@@ -5,3 +14,30 @@ pubkey:
       pid:
         prefix:
         suffix: .keys
+vessel:
+  email:
+    sender: rapporteket@skde.no
+  ssh:
+    clients:
+      name1:
+        url:
+        user:
+        pass:
+      name2:
+        url:
+        user:
+        pass:
+  ftp:
+    clients:
+      name3:
+        url:
+        user:
+        pass:
+      name4:
+        url:
+        user:
+        pass:
+      areedv:
+        url:
+        user:
+        pass:
