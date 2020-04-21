@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "biorakel@gmail.com",
            comment = c(ORCID = "0000-0002-5210-3656"))
-Description: This package provide some tools for secure shipment. By strong
+Description: This package provide tools for secure shipment. By strong
     protection of content itself safe passage can be provided even through
     hostile environments. Based on asymmetric cryptography no management of
     secrets is needed to make a shipment as long as relevant public keys are
