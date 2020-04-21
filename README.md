@@ -2,6 +2,8 @@
 # sship
 
 <!-- badges: start -->
+[![Travis build status](https://travis-ci.org/Rapporteket/sship.svg?branch=master)](https://travis-ci.org/Rapporteket/sship)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/Rapporteket/sship?branch=master&svg=true)](https://ci.appveyor.com/project/Rapporteket/sship)
 <!-- badges: end -->
 
 This package provide tools for secure shipment. By strong protection of content itself safe passage can be provided even through hostile environments. Based on asymmetric cryptography no management of secrets is needed to make a shipment as long as relevant public keys are available.

@@ -7,3 +7,5 @@
 ^pkgdown$
 ^vignettes/ship\.Rmd$
 ^vignettes/extract\.Rmd$
+^\.travis\.yml$
+^appveyor\.yml$
