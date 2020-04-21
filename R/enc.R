@@ -89,7 +89,7 @@ get_pubkey <- function(pubkey_holder, pid) {
 
 
 #' @rdname enc
-#' @importFrom utils tar
+#' @importFrom utils tar untar
 #' @export
 enc <- function(filename, pubkey_holder, pid) {
 
