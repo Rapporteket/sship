@@ -23,3 +23,5 @@ Suggests:
     testthat,
     rmarkdown
 RoxygenNote: 7.0.2
+URL: http://github.com/Rapporteket/sship
+BugReports: http://github.com/Rapporteket/sship/issues
