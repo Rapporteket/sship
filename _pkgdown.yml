@@ -6,3 +6,13 @@ development:
 template:
   params:
     bootswatch: flatly
+
+components:
+  articles:
+    menu:
+    - text: An overwiev of sship
+      href: articles/overview.html
+    - text: Make a secure shipment
+      href: articles/ship.html
+    - text: Extract cargo from a secure shipment
+      href: articles/extract.html
