@@ -7,7 +7,7 @@
 [![Codecov test coverage](https://codecov.io/gh/rapporteket/sship/branch/master/graph/badge.svg)](https://codecov.io/gh/rapporteket/sship?branch=master)
 [![GitHub open issues](https://img.shields.io/github/issues/rapporteket/sship.svg)](https://github.com/rapporteket/sship/issues)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Doc](https://img.shields.io/badge/Doc--grey.svg)](https://mong.github.io/sship/)
+[![Doc](https://img.shields.io/badge/Doc--grey.svg)](https://rapporteket.github.io/sship/)
 <!-- badges: end -->
 
 This package provide tools for secure shipment. By strong protection of content itself safe passage can be provided even through hostile environments. Based on asymmetric cryptography no management of secrets is needed to make a shipment as long as relevant public keys are available.
