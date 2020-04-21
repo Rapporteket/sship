@@ -20,5 +20,6 @@ Imports:
     openssl,
     yaml
 Suggests: 
-    testthat
+    testthat,
+    rmarkdown
 RoxygenNote: 7.0.2

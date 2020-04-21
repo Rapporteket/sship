@@ -1,3 +1,9 @@
 ^sship\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
+^vignettes/overview\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^vignettes/ship\.Rmd$
+^vignettes/extract\.Rmd$
