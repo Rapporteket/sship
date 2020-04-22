@@ -8,6 +8,7 @@ template:
     bootswatch: flatly
 
 components:
+  home: ~
   articles:
     menu:
     - text: An overwiev of sship
