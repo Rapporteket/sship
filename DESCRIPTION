@@ -8,9 +8,9 @@ Authors@R:
            email = "biorakel@gmail.com",
            comment = c(ORCID = "0000-0002-5210-3656"))
 Description: This package provide tools for secure shipment. By strong
-    protection of content itself safe passage can be provided even through
-    hostile environments. Based on asymmetric cryptography no management of
-    secrets is needed to make a shipment as long as relevant public keys are
+    protection safe passage of any content can be provided even through
+    hostile environments. Based on asymmetric cryptography no local management
+    of secrets is needed to make a shipment as long as relevant public keys are
     available.
 License: GPL-3
 Encoding: UTF-8
