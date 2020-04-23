@@ -14,6 +14,11 @@ pubkey:
       pid:
         prefix:
         suffix: .keys
+    local:
+      url: https://localhost:4321
+      pid:
+        prefix: test
+        suffix: .keys
 vessel:
   email:
     sender: rapporteket@skde.no
