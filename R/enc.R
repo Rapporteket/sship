@@ -129,4 +129,3 @@ enc <- function(filename, pubkey_holder, pid) {
   invisible(file.path(dirname(filename), tarfile))
 
 }
-

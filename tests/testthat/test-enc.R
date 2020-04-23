@@ -12,8 +12,6 @@ s <- httpuv::startServer(conf$host, port = conf$port,
   )
 )
 
-#setwd("www")
-
 # set testvals and files
 pubkey_holder <- "local"
 pid <- "unittest"
