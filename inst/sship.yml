@@ -1,3 +1,6 @@
+file:
+  encrypt:
+    suffix: .enc
 network:
   proxy:
     http:
@@ -15,9 +18,11 @@ pubkey:
         prefix:
         suffix: .keys
     local:
-      url: https://localhost:4321
+      host: 127.0.0.1
+      port: 4321
+      url: http://127.0.0.1:4321
       pid:
-        prefix: test
+        prefix: test.
         suffix: .keys
 vessel:
   email:
