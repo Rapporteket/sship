@@ -20,7 +20,7 @@ Imports:
     openssl,
     yaml
 Suggests: 
-    testthat,
+    testthat (>= 2.1.0),
     rmarkdown
 RoxygenNote: 7.0.2
 URL: http://github.com/Rapporteket/sship
