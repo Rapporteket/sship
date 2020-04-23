@@ -50,7 +50,10 @@ sship <- function(content, recipient, pubkey_holder, vessel,
   if (!identical(declaration, "")) {
     message("Adding declareation to cargo")
     declaration <- file.path(dirname(content), declaration)
-    silent <- file.create(declaration)
+    ok <- file.create(declaration)
+    if (!all(ok)) {
+      stop("Problem creating declaration. Shipment cancelled!")
+    }
     cargo <- c(cargo, declaration)
   }
 
