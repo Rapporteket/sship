@@ -95,12 +95,71 @@
 
     
     
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sship</span>)</pre></body></html></div>
+<p>Content as provided by <em>sship</em> has to be extracted and decrypted at the recipient in order to gain access the actual content. The prerequisite is that the recipient holds the private key assosiated with the public key used for encryption. The recipient may use tools within <em>sship</em> to establish the cleartext content or any other tool that handle the <a href="https://rapporteket.github.io/sship/articles/overview.html">cryptographic algorithms applied by <em>sship</em></a>.</p>
+<div id="conventions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#conventions" class="anchor"></a>Conventions</h2>
+<p>The following conventions and assumptions are used:</p>
+<ul>
+<li>cargo of shipment is found within a compressed file named <code>[filename]__[datestamp]_[timestamp].tar.gz</code> where <code>[filename]</code> is the name of the file that was encrypted prior to shipment, <code>[datestamp]</code> is the date of shipment formatted as <em>YYYYMMDD</em> and <code>[timestamp]</code> is the time of shipment formatted as <em>HHMMSS</em>
+</li>
+<li>for the below examples the filename <code>data.csv__20200101_081500.tar.gz</code> will be used</li>
+<li>the above file exists in the current working directory</li>
+<li>the private key is represented by the file <code>~/.ssh/id_rsa</code>
+</li>
+</ul>
+</div>
+<div id="extract-and-decrypt-content-in-r" class="section level2">
+<h2 class="hasAnchor">
+<a href="#extract-and-decrypt-content-in-r" class="anchor"></a>Extract and decrypt content in R</h2>
+<p>Install the latest version of the <em>sship</em> packages from the R command prompt:</p>
+<div class="sourceCode" id="cb1"><html><body><pre class="r">remotes::install_github("Rapporteket/sship)</pre></body></html></div>
+<p>and load it into the R session:</p>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"sship"</span>)</pre></body></html></div>
+<p>Use the <code>dec</code>-function to extract and decrypt the content:</p>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/dec.html">dec</a></span>(<span class="kw">tarfile</span> <span class="kw">=</span> <span class="st">"data.csv__20200101_081500.tar.gz"</span>,
+    <span class="kw">keyfile</span> <span class="kw">=</span> <span class="st">"~/.ssh/id_rsa"</span>,
+    <span class="kw">target_dir</span> <span class="kw">=</span> <span class="st">"."</span>)</pre></body></html></div>
+<p>From the example above the file <code>data.csv</code> will be written to the current working directory. Further informas</p>
+</div>
+<div id="extract-and-decrypt-content-outside-r" class="section level2">
+<h2 class="hasAnchor">
+<a href="#extract-and-decrypt-content-outside-r" class="anchor"></a>Extract and decrypt content outside R</h2>
+<p>Extraction and decryption of content that was encrypted and packed by <em>sship</em> (in R) is perfectly possible. In the above R-function (<code><a href="../reference/dec.html">dec()</a></code>) a few things is taken care of “under the hood” and to aid a better understanding a few more things should be added to the above list of “conventions”:</p>
+<ul>
+<li>when encrypting content <em>sship</em> uses the AES block chiper in CBC mode applying a key of 256 random bits (32 bytes long)</li>
+<li>when encryption content <em>sship</em> uses an initialization vector of 128 random bits (16 bytes long)</li>
+<li>the shipment, <em>i.e.</em> the compressed tar archive file, consists of three files that given the current example will be named:
+<ul>
+<li>
+<code>data.csv.enc</code>: the encrypted data of the shipment</li>
+<li>
+<code>key.enc</code>: the encrypted key</li>
+<li>
+<code>iv</code>: the initialization vector used for encryption and decryption</li>
+</ul>
+</li>
+<li>just for the record then, names of encrypted files ends with <code>.enc</code>
+</li>
+<li>the filename of the original content (data) is represented by the first part of the archive filename (shipment) up until the double underscore (<em>__</em>), <em>e.g.</em> given the archive filename <code>data.csv__20200101_081500.tar.gz</code> the decrypted content will be established in the file <code>data.csv</code>
+</li>
+</ul>
+<p>Below is an example of how <code>data.csv__20200101_081500.tar.gz</code> can be processed from a Bash shell (unix) command propt. First, extract the archive:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="fu">tar</span> -xvzf data.csv__20200101_081500.tar.gz</a></code></pre></div>
+<p>Then, decrypt the key by using the private key:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="ex">openssl</span> rsautl -decrypt -inkey ~/.ssh/id_rsa -in key.enc -out key</a></code></pre></div>
+<p>Finally, decrypt the content to the file <code>data.csv</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="ex">openssl</span> aes-256-cbc -d -in data.csv.enc -out data.csv \</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">-K <span class="va">$(</span><span class="fu">hexdump</span> -e <span class="st">'32/1 "%02x"'</span> key<span class="va">)</span> -iv <span class="va">$(</span><span class="fu">hexdump</span> -e <span class="st">'16/1 "%02x"'</span> iv<span class="va">)</span></a></code></pre></div>
+<p>In the above example both the <code>key</code> and <code>iv</code> files are binary. When using OpenSSL for decryption these have to be presented as strings of hexadecimal digits as can be seen in the inline <em>hexdump</em> conversion in the last command. Methods for conversion from binary to hex may vary between systems.</p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
