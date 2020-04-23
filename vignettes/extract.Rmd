@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 library(sship)
 ```
 
-Content as provided by _sship_ has to be extracted and decrypted at the recipient in order to gain access the actual content. The prerequisite is that the recipient holds the private key assosiated with the public key used for encryption. The recipient may use tools within _sship_ to establish the cleartext content or any other tool that handle the [cryptographic algorithms applied by _sship_](https://rapporteket.github.io/sship/articles/overview.html).
+Content as provided by _sship_ has to be extracted and decrypted in order for the recipient to gain access the actual content. The prerequisite is that the recipient holds the private key assosiated with the public key used for encryption. The recipient may use tools within _sship_ to establish the cleartext content or any other tool that handle the [cryptographic algorithms applied by _sship_](https://rapporteket.github.io/sship/articles/overview.html).
 
 ## Conventions
 The following conventions and assumptions are used:
@@ -27,26 +27,30 @@ The following conventions and assumptions are used:
 ## Extract and decrypt content in R
 Install the latest version of the _sship_ packages from the R command prompt:
 ```r
-remotes::install_github("Rapporteket/sship)
+remotes::install_github("Rapporteket/sship")
 ```
 and load it into the R session:
 ```r
 library("sship")
 ```
-Use the ```dec```-function to extract and decrypt the content:
+Use the ```dec()```-function to extract and decrypt the content:
 ```r
 dec(tarfile = "data.csv__20200101_081500.tar.gz",
     keyfile = "~/.ssh/id_rsa",
     target_dir = ".")
 ```
-From the example above the file ```data.csv``` will be written to the current working directory. Further informas
+From the example above the file ```data.csv``` will be written to the current working directory. Please use
+```r
+?dec
+```
+at the R prompt for more information.
 
 ## Extract and decrypt content outside R
-Extraction and decryption of content that was encrypted and packed by _sship_ (in R) is perfectly possible. In the above R-function (```dec()```) a few things is taken care of "under the hood" and to aid a better understanding a few more things should be added to the above list of "conventions":
+Extraction and decryption of content that was encrypted and packed by _sship_ (in R) is perfectly possible also outside R. In the above R-function a few things is taken care of "under the hood" and to aid a better understanding more information should be added to the above list of "conventions":
 
 - when encrypting content _sship_ uses the AES block chiper in CBC mode applying a key of 256 random bits (32 bytes long)
 - when encryption content _sship_ uses an initialization vector of 128 random bits (16 bytes long)
-- the shipment, _i.e._ the compressed tar archive file, consists of three files that given the current example will be named:
+- the shipment, _i.e._ the compressed tar archive file, consists of three files that will be named (according to the current example):
   - ```data.csv.enc```: the encrypted data of the shipment
   - ```key.enc```: the encrypted key
   - ```iv```: the initialization vector used for encryption and decryption
@@ -68,4 +72,4 @@ openssl aes-256-cbc -d -in data.csv.enc -out data.csv \
 -K $(hexdump -e '32/1 "%02x"' key) -iv $(hexdump -e '16/1 "%02x"' iv)
 ```
 
-In the above example both the ```key``` and ```iv``` files are binary. When using OpenSSL for decryption these have to be presented as strings of hexadecimal digits as can be seen in the inline _hexdump_ conversion in the last command. Methods for conversion from binary to hex may vary between systems.
+In the above example both the ```key``` and ```iv``` files are binary. When using OpenSSL for decryption these have to be provided as strings of hexadecimal digits as can be seen by the use of inline _hexdump_ conversion in the last command. Methods for conversion from binary to hex may vary between systems. It might also be worth noting that here AES uses a key directly and not a (hash of some) passphrase that often will be the case elsewhere.
