@@ -49,7 +49,8 @@ NULL
 #' @export
 enc_filename <- function(filename) {
 
-  paste0(filename, ".enc")
+  suffix <- get_config()$file$encrypt$suffix
+  paste0(filename, suffix)
 
 }
 
