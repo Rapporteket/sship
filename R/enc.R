@@ -72,7 +72,7 @@ get_pubkey <- function(pubkey_holder, pid) {
   cont <- httr::GET(url)
   httr::warn_for_status(cont)
 
-  keys <- httr::content(cont)
+  keys <- httr::content(cont, as = "text")
   keys <- strsplit(keys, "\n")[[1]]
 
   if (length(keys) > 1) {
