@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 library(sship)
 ```
 
-## Two use cases cases
+## Two use cases
 1. Two colleagues working on the same project need to exchange files containing data that have to kept secret. Both benefit from keeping their workflow within R. They are not able to make a secure transfer of such files in containing
 1. A person need regular updates of secret data from a centralized data source. At the source automated R processes can be run to transfer files to that person. There is no methods available to make a secure transfer of such files in centralized
 
