@@ -1,6 +1,6 @@
 Package: sship
 Title: Tool for Secure Shipment of Content
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person(given = "Are",
            family = "Edvardsen",
@@ -10,8 +10,8 @@ Authors@R:
 Description: This package provide tools for secure shipment. By strong
     protection safe passage of any content can be provided even through
     hostile environments. Based on asymmetric cryptography no local management
-    of secrets is needed to make a shipment as long as relevant public keys are
-    available.
+    of secrets is needed to make a shipment as long as authentic public keys
+    are available.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
