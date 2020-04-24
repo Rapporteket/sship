@@ -95,14 +95,55 @@
 
     
     
-<p>This documents describes how to make secure shipments with the R package <em>sship</em>. While <em>sship</em> provides technical means of very strong protections throug encryption of digital content all still depends on proper and knowledgeable use. Therefore, please take a moment and study the next paragraph very carefully.</p>
-<p><em>sship</em> <strong><em>makes sure that a secret will only be available to the recipient by applying the recipent’s public key. When</em></strong> <em>sship</em> <strong><em>is to be used for sending a secret to a recipent one must be absouletly sure that the public key used by</em></strong> <em>sship</em> <strong><em>belongs to the intended recipient. The authenticity of the public key should be established by a combination of technical and social means. Techically, the public key should be managed (by its owner, the recipient) throug a key provider that enforces multi-factor authentication of its users. Socially, the two parties to share a secret should know of each other (personally, profesionally or similar) and establish trust both between themselves and the technology to be used ensure authenticity of the public key.</em></strong></p>
-<p>Following is an example of how the authenticity of a public key may be sufficiently established. Person or entity X needs to send a secret data file to person or entity Y and therefor need Y’s public key. A public key provider exists (<em>e.g.</em> GitHub) and within this provider X has made a dedicated group (or organization in GitHub-terms) that enforces multi-factor authentication of its members. X asks Y to apply for a membership of this group at the public key provider. X now expects a member request from Y and grants it as it arrives. Since multi-factor authentication is enforced it is unlikely that anyone else but Y may add, alter or delete Y’s public key at the provider. X can thereafter collect Y’s public key from the provider at any time and be sufficiently sure that it will be authentic.</p>
+<p>##Introduction This documents describes how to make secure shipments with the R package <em>sship</em>. While <em>sship</em> provides technical means of very strong protections throug encryption of digital content all still depends on proper and knowledgeable use. Therefore, please take a moment and study the next paragraph very carefully.</p>
+<p><em>sship</em> <strong><em>makes sure that a secret will only be available to the recipient by applying the recipent’s public key. When</em></strong> <em>sship</em> <strong><em>is to be used for sending a secret to a recipent one must be absouletly sure that the public key used by</em></strong> <em>sship</em> <strong><em>belongs to the intended recipient. The authenticity of the public key should be established by a combination of technical and social means. Techically, the public key should be managed (by its owner, the recipient) throug a key provider that enforces multi-factor authentication of its users. Socially, the two parties to share a secret should know of each other (personally, profesionally or similar) and establish trust both between themselves and the technology to be used to ensure authenticity of the public key.</em></strong></p>
+<p>Following is an example of how the authenticity of a public key may be sufficiently established. Person or entity X needs to send a secret data file to person or entity Y and therefor need Y’s public key. A public key provider exists (<em>e.g.</em> GitHub) and at this provider X has made a dedicated group (or organization in GitHub-terms) that enforces multi-factor authentication of its members. X asks Y to apply for a membership of this group at the public key provider. X now expects a member request from Y and grants it as it arrives. Since multi-factor authentication is enforced it is unlikely that anyone else but Y may add, alter or delete Y’s public key at the provider. X can thereafter collect Y’s public key from the provider at any time and be sufficiently sure that it will be authentic.</p>
+<div id="how-to" class="section level2">
+<h2 class="hasAnchor">
+<a href="#how-to" class="anchor"></a>How to</h2>
+<p>Basically, <em>sship</em> can be used for three things: encrypt files, send encrypted files and decrypt files. The latter is described in the article <a href="https://rapporteket.github.io/sship/articles/extract.html">Extract cargo from a secure shipment</a>. Encryption and sending (shipment) of files will be the subjects for the remaining part of this article.</p>
+<div id="encrypt-secure-a-file-and-send-ship-it" class="section level3">
+<h3 class="hasAnchor">
+<a href="#encrypt-secure-a-file-and-send-ship-it" class="anchor"></a>Encrypt (secure) a file and send (ship) it</h3>
+<p>Both encryption and shipment can be obtained in one operation with the R function <code><a href="../reference/ship.html">sship()</a></code>:</p>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="../reference/ship.html">sship</a></span>(<span class="no">content</span>, <span class="no">recipient</span>, <span class="no">pubkey_holder</span>, <span class="no">vessel</span>, <span class="no">declaration</span>)</pre></body></html></div>
+<p>where <code>content</code> is the path to the file to be encrypted, <code>recipient</code> is the unique user id of the recipient at the public key provider, <code>pubkey_holder</code> is a reference to a known public key provider (see <a href="#conf">Configure <em>sship</em></a> below), <code>vessel</code> is a reference to the transportation method (see also <a href="#conf">Configure <em>sship</em></a> below) and <code>declaration</code> is an optional “freight paper rubber stamp” to be assosiated with the shipment. A practical example may look something like this:</p>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/ship.html">sship</a></span>(<span class="st">"secret_data.csv"</span>, <span class="st">"myfriend"</span>, <span class="st">"github"</span>, <span class="st">"ftp"</span>, <span class="st">"pickable"</span>)</pre></body></html></div>
+<p>which will collect <em>myfriend</em>’s public key from <em>github</em> and use it in the encryption process of <em>secret_data.csv</em> before shipping it with <em>ftp</em>. Immediately after an empty file named <em>pickable</em> is shipped using the same route. <em>myfriend</em> can now check if the shipment has arrived by polling for a file named <em>pickable</em> and collect the shipment before starting the <a href="https://rapporteket.github.io/sship/articles/extract.html">process of unwrapping and decryption</a>.</p>
+</div>
+<div id="configure-sship" class="section level3">
+<h3 class="hasAnchor">
+<a href="#configure-sship" class="anchor"></a><a name="conf"></a>Configure <em>sship</em>
+</h3>
+<p>Some of the above arguments to <code><a href="../reference/ship.html">sship()</a></code> are just references to the actual values that are stored in a configuration file. <em>sship</em> comes with a default configuration but most likely this will not be sufficient. A local config can be made by calling the <code><a href="../reference/config.html">create_config()</a></code> R function found in <em>sship</em> (output also shown):</p>
+<div class="sourceCode" id="cb3"><html><body><pre class="r">create_config()
+[1] "./_sship.yml file created: fill it in"</pre></body></html></div>
+<p>In the above example of the R function <code><a href="../reference/ship.html">sship()</a></code> the references <em>github</em> and <em>ftp</em> depends on configuration for the function to obtain proper values. The reference <em>github</em> already has a working setup in the default configuration, but <em>ftp</em> has not. To accomplish this open the file <em>_sship.yml</em>, find the appropriate section and edit accordingly:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co">...</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">vessel:</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">  ftp:</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">    clients:</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">      myfriend:</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">        url: ftp://ftp.here.no/path/to/myfriend</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">        port: 21</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">        user: myfriend</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">        pass: myfriendspassword</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">...</span></a></code></pre></div>
+<p>Recipients may require multiple ways of transportation and the configuration allows for this by making additional entries for each method of transportation (<em>vessel</em>) and client.</p>
+<div id="server-mode" class="section level4">
+<h4 class="hasAnchor">
+<a href="#server-mode" class="anchor"></a>Server mode</h4>
+<p><em>ship</em> can also be applied as a tool in a centralized or server-like environment where requirements for mangement and configuration may differ from a local instance running R. Every time <em>sship</em> needs information from configuration setting it looks for it in several places. For a server setup the place to look for <em>sship</em>’s configuration can be provided by setting the environmental varaiable <em>R_SSHIP_CONFIG_PATH</em> to the directory where the configuration is to be found. Making <em>R_SSHIP_CONFIG_PATH</em> accessible in an R session, <em>sship</em> will abide by its value.</p>
+</div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
