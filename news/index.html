@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Unpack shipment and decrypt content — dec • sship</title>
+<title>Changelog • sship</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,7 @@
 
 
 
-<meta property="og:title" content="Unpack shipment and decrypt content — dec" />
-<meta property="og:description" content="This function tries to reverse the process of enc and hence depend on
-the conventions used there." />
+<meta property="og:title" content="Changelog" />
 
 
 
@@ -60,7 +58,7 @@ the conventions used there." />
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -130,60 +128,25 @@ the conventions used there." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Unpack shipment and decrypt content</h1>
-    <small class="dont-index">Source: <a href='http://github.com/Rapporteket/sship/blob/master/R/dec.R'><code>R/dec.R</code></a></small>
-    <div class="hidden name"><code>dec.Rd</code></div>
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      <small>Source: <a href='http://github.com/Rapporteket/sship/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    <p>This function tries to reverse the process of <a href='enc.html'>enc</a> and hence depend on
-the conventions used there.</p>
-    </div>
-
-    <pre class="usage"><span class='fu'>dec</span>(<span class='no'>tarfile</span>, <span class='kw'>keyfile</span> <span class='kw'>=</span> <span class='st'>"~/.ssh/id_rsa"</span>, <span class='kw'>target_dir</span> <span class='kw'>=</span> <span class='st'>"."</span>)</pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>tarfile</th>
-      <td><p>Character string providing full path to the gzip-compressd
-tarball holding the shipment payload, including encrypted files</p></td>
-    </tr>
-    <tr>
-      <th>keyfile</th>
-      <td><p>Character string providing the full path to the private RSA
-key to be used for decryption of the encrypted key that is part of the
-shipment. Default value is set to <code>~/.ssh/id_rsa</code> which is the usual
-path for unix-type operating systems.</p></td>
-    </tr>
-    <tr>
-      <th>target_dir</th>
-      <td><p>Character string providing the full path to where the
-decrypted file is to be written. Defaults to the current directory
-<code>"."</code>, <em>e.g.</em> where this function is being called from.</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Invisibly a character string providing the file path of the
-decrypted file.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Some of the functions used here might be vulnerable to differences between
-systems running R. Possible caveats may be the availability of the
-(un)tar-function and how binary streams/files are treated.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><a href='enc.html'>enc</a></p></div>
-
+    <div id="sship-0-1" class="section level1">
+<h1 class="page-header" data-toc-text="0.1">
+<a href="#sship-0-1" class="anchor"></a>sship 0.1</h1>
+<ul>
+<li>Documentation (ambitions) and most of the bare bone functions</li>
+</ul>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
 
 
