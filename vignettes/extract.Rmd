@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 library(sship)
 ```
 
-Content as provided by _sship_ has to be extracted and decrypted in order for the recipient to gain access the actual content. The prerequisite is that the recipient holds the private key assosiated with the public key used for encryption. The recipient may use tools within _sship_ to establish the cleartext content or any other tool that handle the [cryptographic algorithms applied by _sship_](https://rapporteket.github.io/sship/articles/overview.html).
+Content as provided by _sship_ has to be extracted and decrypted in order for the recipient to gain access the actual content. The prerequisite is that the recipient holds the private key associated with the public key used for encryption. The recipient may use tools within _sship_ to establish the associated content or any other tool that handle the [cryptographic algorithms applied by _sship_](https://rapporteket.github.io/sship/articles/overview.html).
 
 ## Conventions
 The following conventions and assumptions are used:

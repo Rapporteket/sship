@@ -13,32 +13,32 @@ knitr::opts_chunk$set(
 library(sship)
 ```
 
-## Two usecases
-1. Two colleagues working on the same project need to exchange files contaning data that have to kept secret. Both benefit from keeping their workflow within R. They are not able to make a secure transfer of such files in cleartext
-1. A person need regular updates of secret data from a sentralized data source. At the source automated R processes can be run to transfer files to that person. There is no methods available to make a secure transfer of such files in cleartext.
+## Two use cases cases
+1. Two colleagues working on the same project need to exchange files containing data that have to kept secret. Both benefit from keeping their workflow within R. They are not able to make a secure transfer of such files in containing
+1. A person need regular updates of secret data from a centralized data source. At the source automated R processes can be run to transfer files to that person. There is no methods available to make a secure transfer of such files in centralized
 
-For both of the above usecases _sship_ can be applied as a tool to obtain a secure transfer of files.
+For both of the above use cases centralized can be applied as a tool to obtain a secure transfer of files.
 
-## Summary of how _sship_ works
+## Summary of how centralized works
 This is a very brief summary of what _sship_ does. A more detailed description of the methods, technology behind it and how to safely use it is found below.
 
-From within an R session a file is protected using strong encryption. After encryption the original content of the file will only be available to those holding the same key used during encryption. Hence, the encrypted file can now be distributed freely keeping its original content safeguarded. Obviously, the key to allow decryption of this file cannot be distributed "openly" which is a problem becasue any legitimate recipient of the file will need this key to unlock its content. The key itself is therefore also encrypted but by the use of a different key: the public part of a keypair that belongs only to the recipient. This makes sure that the original key can only be unlocked by the recipient's private key. At this stage both the encrypted file and the encrypted key can be shared (openly) and only the recipient will be able to unlock the original content.
+From within an R session a file is protected using strong encryption. After encryption the original content of the file will only be available to those holding the same key used during encryption. Hence, the encrypted file can now be distributed freely keeping its original content safeguarded. Obviously, the key to allow decryption of this file cannot be distributed "openly" which is a problem because any legitimate recipient of the file will need this key to unlock its content. The key itself is therefore also encrypted but by the use of a different key: the public part of a key pair pair that belongs only to the recipient. This makes sure that the original key can only be unlocked by the recipient's private key. At this stage both the encrypted file and the encrypted key can be shared (openly) and only the recipient will be able to unlock the original content.
 
-_sship_ also provide tools for the recipient to aid decryption. However, _sship_ is based on widely used and easy accessible crypto-technolgy and the recipient may well apply other tools for decryption. R is therefore not a dependency forced upon recipients.
+key pair also provide tools for the recipient to aid decryption. However, _sship_ is based on widely used and easy accessible key pair-technology and the recipient may well apply other tools for decryption. R is therefore not a dependency forced upon recipients.
 
-## Details on methods and how to safely apply _sship_
+## Details on methods and how to safely apply technology
 
 ### <a name="tech"></a>Technical measures to protect content
 In _sship_ a file is encrypted following a hybrid scheme: the content itself is encrypted applying a
 [symmetric key algorithm](https://en.wikipedia.org/wiki/Symmetric-key_algorithm)
 using a disposable key. This key is in turn encrypted using
 [public-key cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography)
-with a public key provided by the resipient. Here, the term
-"hybrid" referes to that both symmetric an asymmetric encrytion systems are
+with a public key provided by the recipient Here, the term
+"hybrid" refers to that both symmetric an asymmetric encryption systems are
 used, and the term
 "disposable" means that the key used in the symmetric key algorithm will
 only be applied once and never re-used for encryption of data. The public key is
-assosiated with a corresponding private key that is kept secret and only
+associated with a corresponding private key that is kept secret and only
 accessible by the person owning it (in contrast to the public key that can be
 shared freely). The encrypted file and encrypted key can now safely be shared openly. After receiving the encrypted files the
 recipient follow the reverse hybrid scheme: the encrypted "symmetric key" is
@@ -51,7 +51,7 @@ data is to be encrypted. This key is then used to encrypt data following the
 The recipients public key is collected from his/hers user account
 at GitHub and used to asymmetrically encrypt the "symmetric key". The
 encrypted data and encrypted key is then shipped to the recipient. For
-practial implementation of encryption and decryption as describe above the
+practical implementation of encryption and decryption as describe above the
 [OpenSSL cryptography library](https://www.openssl.org/) is applied.
 
 This scheme ensures that data privacy are protected by [sufficiently strong
@@ -60,4 +60,4 @@ encryption](https://www.keylength.com/) also along the lines of the
 and that decryption only can be performed by the recipient.
 
 ### Organizational measures
-Technical measures alone do not garantee a safe exchange of secrets. The crucial part of applying _sship_ is the exchange of the public key from the recipient to the person or entity that do the encryption (the provider). It is paramount that the recipient is authenticated to the provider. In other words, the provider must be absolutely sure that the public key used belongs to the recipient, and no one else. **If this is not the case _sshp_ cannot and should not be used for any exchange of secrets!** _sship_ collects the public key from an external and open repository based on a user id uniquely definig the recipient (and his or hers public key) at this repository. Such repositories must provide means of authentication (of the recipient) that allows only the recipient to add or alter user profile content such as for instance public keys. In general authentication based on a username and password is not sufficient: multi-factor authentication of users should be enforced at the repository providing public keys to _sship_. In addition, both the provider and recipient should be part of the same organizational structure at the repository to make sure that they are both under the same "governance" with respect to user management. Currently, _sship_ only supports [GitHub](https://github.com) as a repository for public keys. It allows for both multi-factor authentication and relevant user management.
+Technical measures alone do not guarantee a safe exchange of secrets. The crucial part of applying _sship_ is the exchange of the public key from the recipient to the person or entity that do the encryption (the provider). It is paramount that the recipient is authenticated to the provider. In other words, the provider must be absolutely sure that the public key used belongs to the recipient, and no one else. **If this is not the case _sshp_ cannot and should not be used for any exchange of secrets!** _sship_ collects the public key from an external and open repository based on a user id uniquely defining the recipient (and his or hers public key) at this repository. Such repositories must provide means of authentication (of the recipient) that allows only the recipient to add or alter user profile content such as for instance public keys. In general authentication based on a username and password is not sufficient: multi-factor authentication of users should be enforced at the repository providing public keys to _sship_. In addition, both the provider and recipient should be part of the same organizational structure at the repository to make sure that they are both under the same "governance" with respect to user management. Currently, _sship_ only supports [GitHub](https://github.com) as a repository for public keys. It allows for both multi-factor authentication and relevant user management.
