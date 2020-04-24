@@ -13,8 +13,47 @@ knitr::opts_chunk$set(
 library(sship)
 ```
 
+##Introduction
 This documents describes how to make secure shipments with the R package _sship_. While _sship_ provides technical means of very strong protections throug encryption of digital content all still depends on proper and knowledgeable use. Therefore, please take a moment and study the next paragraph very carefully.
 
-_sship_ ***makes sure that a secret will only be available to the recipient by applying the recipent's public key. When*** _sship_ ***is to be used for sending a secret to a recipent one must be absouletly sure that the public key used by*** _sship_ ***belongs to the intended recipient. The authenticity of the public key should be established by a combination of technical and social means. Techically, the public key should be managed (by its owner, the recipient) throug a key provider that enforces multi-factor authentication of its users. Socially, the two parties to share a secret should know of each other (personally, profesionally or similar) and establish trust both between themselves and the technology to be used ensure authenticity of the public key.***
+_sship_ ***makes sure that a secret will only be available to the recipient by applying the recipent's public key. When*** _sship_ ***is to be used for sending a secret to a recipent one must be absouletly sure that the public key used by*** _sship_ ***belongs to the intended recipient. The authenticity of the public key should be established by a combination of technical and social means. Techically, the public key should be managed (by its owner, the recipient) throug a key provider that enforces multi-factor authentication of its users. Socially, the two parties to share a secret should know of each other (personally, profesionally or similar) and establish trust both between themselves and the technology to be used to ensure authenticity of the public key.***
 
-Following is an example of how the authenticity of a public key may be sufficiently established. Person or entity X needs to send a secret data file to person or entity Y and therefor need Y's public key. A public key provider exists (_e.g._ GitHub) and within this provider X has made a dedicated group (or organization in GitHub-terms) that enforces multi-factor authentication of its members. X asks Y to apply for a membership of this group at the public key provider. X now expects a member request from Y and grants it as it arrives. Since multi-factor authentication is enforced it is unlikely that anyone else but Y may add, alter or delete Y's public key at the provider. X can thereafter collect Y's public key from the provider at any time and be sufficiently sure that it will be authentic. 
+Following is an example of how the authenticity of a public key may be sufficiently established. Person or entity X needs to send a secret data file to person or entity Y and therefor need Y's public key. A public key provider exists (_e.g._ GitHub) and at this provider X has made a dedicated group (or organization in GitHub-terms) that enforces multi-factor authentication of its members. X asks Y to apply for a membership of this group at the public key provider. X now expects a member request from Y and grants it as it arrives. Since multi-factor authentication is enforced it is unlikely that anyone else but Y may add, alter or delete Y's public key at the provider. X can thereafter collect Y's public key from the provider at any time and be sufficiently sure that it will be authentic. 
+
+## How to
+Basically, _sship_ can be used for three things: encrypt files, send encrypted files and decrypt files. The latter is described in the article [Extract cargo from a secure shipment](https://rapporteket.github.io/sship/articles/extract.html). Encryption and sending (shipment) of files will be the subjects for the remaining part of this article.
+
+### Encrypt (secure) a file and send (ship) it
+Both encryption and shipment can be obtained in one operation with the R function ```sship()```:
+```r
+sship(content, recipient, pubkey_holder, vessel, declaration)
+```
+where ```content``` is the path to the file to be encrypted, ```recipient``` is the unique user id of the recipient at the public key provider, ```pubkey_holder``` is a reference to a known public key provider (see [Configure _sship_](#conf) below), ```vessel``` is a reference to the transportation method (see also [Configure _sship_](#conf) below) and ```declaration``` is an optional "freight paper rubber stamp" to be assosiated with the shipment. A practical example may look something like this:
+```r
+sship("secret_data.csv", "myfriend", "github", "ftp", "pickable")
+```
+which will collect _myfriend_'s public key from _github_ and use it in the encryption process of _secret_data.csv_ before shipping it with _ftp_. Immediately after an empty file named _pickable_ is shipped using the same route. _myfriend_ can now check if the shipment has arrived by polling for a file named _pickable_ and collect the shipment before starting the [process of unwrapping and decryption](https://rapporteket.github.io/sship/articles/extract.html).
+
+### <a name="conf"></a>Configure _sship_
+Some of the above arguments to ```sship()``` are just references to the actual values that are stored in a configuration file. _sship_ comes with a default configuration but most likely this will not be sufficient. A local config can be made by calling the ```create_config()``` R function found in _sship_ (output also shown):
+```r
+create_config()
+[1] "./_sship.yml file created: fill it in"
+```
+In the above example of the R function ```sship()``` the references _github_ and _ftp_ depends on configuration for the function to obtain proper values. The reference _github_ already has a working setup in the default configuration, but _ftp_ has not. To accomplish this open the file _\_sship.yml_, find the appropriate section and edit accordingly:
+```yaml
+...
+vessel:
+  ftp:
+    clients:
+      myfriend:
+        url: ftp://ftp.here.no/path/to/myfriend
+        port: 21
+        user: myfriend
+        pass: myfriendspassword
+...
+```
+Recipients may require multiple ways of transportation and the configuration allows for this by making additional entries for each method of transportation (_vessel_) and client.
+
+#### Server mode
+_ship_ can also be applied as a tool in a centralized or server-like environment where requirements for mangement and configuration may differ from a local instance running R. Every time _sship_ needs information from configuration setting it looks for it in several places. For a server setup the place to look for _sship_'s configuration can be provided by setting the environmental varaiable _R_SSHIP_CONFIG_PATH_ to the directory where the configuration is to be found. Making _R_SSHIP_CONFIG_PATH_ accessible in an R session, _sship_ will abide by its value. 
