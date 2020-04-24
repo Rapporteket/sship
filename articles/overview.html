@@ -107,9 +107,9 @@
 </ol>
 <p>For both of the above use cases centralized can be applied as a tool to obtain a secure transfer of files.</p>
 </div>
-<div id="summary-of-how-centralized-works" class="section level2">
+<div id="summary-of-how-sship-works" class="section level2">
 <h2 class="hasAnchor">
-<a href="#summary-of-how-centralized-works" class="anchor"></a>Summary of how centralized works</h2>
+<a href="#summary-of-how-sship-works" class="anchor"></a>Summary of how <em>sship</em> works</h2>
 <p>This is a very brief summary of what <em>sship</em> does. A more detailed description of the methods, technology behind it and how to safely use it is found below.</p>
 <p>From within an R session a file is protected using strong encryption. After encryption the original content of the file will only be available to those holding the same key used during encryption. Hence, the encrypted file can now be distributed freely keeping its original content safeguarded. Obviously, the key to allow decryption of this file cannot be distributed “openly” which is a problem because any legitimate recipient of the file will need this key to unlock its content. The key itself is therefore also encrypted but by the use of a different key: the public part of a key pair pair that belongs only to the recipient. This makes sure that the original key can only be unlocked by the recipient’s private key. At this stage both the encrypted file and the encrypted key can be shared (openly) and only the recipient will be able to unlock the original content.</p>
 <p>key pair also provide tools for the recipient to aid decryption. However, <em>sship</em> is based on widely used and easy accessible key pair-technology and the recipient may well apply other tools for decryption. R is therefore not a dependency forced upon recipients.</p>
