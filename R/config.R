@@ -35,10 +35,13 @@ write_config <- function(config, dir = ".", filename = "_sship.yml") {
 #' @rdname config
 #' @export
 get_config <- function(dir = ".") {
-  config_file <- paste(dir, "_sship.yml", sep = "/")
+  config_file <- file.path(dir, "_sship.yml")
   if (!file.exists(config_file)) {
-    # Use the default if _qmongr.yml does not exist
-    config_file <- system.file("sship.yml", package = "sship")
+    config_path <- Sys.getenv("R_SSHIP_CONFIG_PATH")
+    config_file <- file.path(config_path, "sship.yml")
+    if (config_path == "" | !file.exists(config_file)) {
+      config_file <- system.file("sship.yml", package = "sship")
+    }
   }
   config <- yaml::read_yaml(config_file)
   check_config(config)
