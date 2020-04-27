@@ -48,7 +48,7 @@ symmetric key is used to decrypt the file holding the original content.
 Method of encryption consists of generating a randomized 256 bit key every time
 data is to be encrypted. This key is then used to encrypt data following the
 [Advance Encryption Standard](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard).
-The recipients public key is collected from his/hers user account
+The recipients public key (that was generated using an RSA crypto system) is collected from his/hers user account
 at GitHub and used to asymmetrically encrypt the "symmetric key". The
 encrypted data and encrypted key is then shipped to the recipient. For
 practical implementation of encryption and decryption as describe above the
