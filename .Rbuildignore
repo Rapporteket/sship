@@ -9,3 +9,4 @@
 ^vignettes/extract\.Rmd$
 ^\.travis\.yml$
 ^appveyor\.yml$
+^_sship.yml$
