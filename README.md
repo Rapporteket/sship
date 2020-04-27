@@ -1,5 +1,5 @@
 
-# sship
+# sship <img src="man/figures/logo.svg" align="right" height="150" />
 
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.org/Rapporteket/sship.svg?branch=master)](https://travis-ci.org/Rapporteket/sship)
