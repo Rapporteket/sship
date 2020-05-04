@@ -47,9 +47,10 @@ immediately after the actual cargo.
 }
 \details{
 Most likely access control will be enforced before docking of the shipment
-can commence. Each vessel holds a list of clients that must contain the
-named recipient with relevant credentials. Functions used here rely on local
-configuration (\code{sship.yml}) to access such credentials.
+can commence. For each recipient a list of available vessels (transport
+methods) is defined and must include relevant credentials. Functions used
+here rely on local configuration (\code{sship.yml}) to access such
+credentials.
 }
 \seealso{
 \link{enc}
