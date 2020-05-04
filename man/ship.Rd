@@ -5,6 +5,7 @@
 \alias{sship}
 \alias{dispatch}
 \alias{dispatchable}
+\alias{make_url}
 \title{Secure cargo and make shipment (secure shipment)}
 \usage{
 sship(content, recipient, pubkey_holder, vessel, declaration = "")
@@ -12,6 +13,8 @@ sship(content, recipient, pubkey_holder, vessel, declaration = "")
 dispatch(recipient, vessel, cargo)
 
 dispatchable(recipient, vessel)
+
+make_url(recipient, vessel)
 }
 \arguments{
 \item{content}{Character string: the full path to the file to be shipped}

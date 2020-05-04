@@ -32,9 +32,10 @@ pubkey:
 recipient:
   bob:
     ftp:
-      url:
-      port:
-      user:
-      pass:
+      host: 127.0.0.1
+      port: 1021
+      path: sship
+      user: bob
+      pass: bobbob
   alice:
     email: alice@sship.no

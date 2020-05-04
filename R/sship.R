@@ -67,8 +67,20 @@ sship <- function(content, recipient, pubkey_holder, vessel,
 #' @export
 dispatch <- function(recipient, vessel, cargo) {
 
+  conf <- get_config()
+
   for (i in seq_len(length(cargo))) {
     print(paste("Shipping", cargo[i], "to", recipient, "using", vessel))
+    if (vessel == "email") {
+      print("Shipping by email not yet implemented...")
+    } else {
+      url <- make_url(recipient, vessel)
+      if (RCurl::url.exists(url)) {
+
+      } else {
+        stop(paste("Cannot reach", url, "Does it exist? Shipment Cancelled!"))
+      }
+    }
   }
 
   invisible()
@@ -93,4 +105,27 @@ dispatchable <- function(recipient, vessel) {
 
   return(TRUE)
 
+}
+
+#' @rdname ship
+#' @export
+make_url <- function(recipient, vessel) {
+
+  conf <- get_config()
+
+  if (vessel == "ftp") {
+    url <- paste0("ftp://", conf$recipient[[recipient]]$ftp$user,
+                  ":",
+                  conf$recipient[[recipient]]$ftp$pass,
+                  "@",
+                  conf$recipient[[recipient]]$ftp$host,
+                  ":",
+                  conf$recipient[[recipient]]$ftp$port,
+                  "/",
+                  conf$recipient[[recipient]]$ftp$path)
+  } else {
+    url <- character()
+  }
+
+  url
 }
