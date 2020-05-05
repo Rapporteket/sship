@@ -34,7 +34,7 @@ recipient:
     ftp:
       host: 127.0.0.1
       port: 1021
-      path: sship
+      path: test/sship
       user: bob
       pass: bobbob
   alice:
