@@ -76,9 +76,10 @@ dispatch <- function(recipient, vessel, cargo) {
     } else {
       url <- make_url(recipient, vessel)
       if (RCurl::url.exists(url)) {
-
+        RCurl::ftpUpload(cargo[i], url)
       } else {
-        stop(paste("Cannot reach", url, "Does it exist? Shipment Cancelled!"))
+        stop(paste0("Url unreachable (for ", recipient, " by ", vessel,
+                    "). Does it exist? Shipment Cancelled!"))
       }
     }
   }
@@ -92,9 +93,9 @@ dispatchable <- function(recipient, vessel) {
 
   conf <- get_config()
 
-  if (!vessel %in% names(conf$recipient)) {
-    warning(paste("The requested transport method is not available for",
-                  recipient, ". Check config."))
+  if (!vessel %in% names(conf$recipient[[recipient]])) {
+    warning(paste0("The requested transport method is not available for '",
+                  recipient, "'. Check config."))
     return(FALSE)
   }
 
@@ -114,7 +115,8 @@ make_url <- function(recipient, vessel) {
   conf <- get_config()
 
   if (vessel == "ftp") {
-    url <- paste0("ftp://", conf$recipient[[recipient]]$ftp$user,
+    url <- paste0("ftp://",
+                  conf$recipient[[recipient]]$ftp$user,
                   ":",
                   conf$recipient[[recipient]]$ftp$pass,
                   "@",
