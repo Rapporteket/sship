@@ -1,6 +1,6 @@
 Package: sship
 Title: Tool for Secure Shipment of Content
-Version: 0.2.0
+Version: 0.3.0
 Authors@R: 
     person(given = "Are",
            family = "Edvardsen",
@@ -18,11 +18,12 @@ LazyData: true
 Imports: 
     httr,
     openssl,
+    RCurl,
     yaml
 Suggests: 
     httpuv,
     rmarkdown,
     testthat (>= 2.1.0)
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 URL: http://github.com/Rapporteket/sship
 BugReports: http://github.com/Rapporteket/sship/issues

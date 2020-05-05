@@ -1,3 +1,9 @@
+# sship 0.3
+
+* adding function for making (ssh) key pairs 
+* restructuring config focusing on recipient
+* unit testing of decryption
+
 # sship 0.2
 
 * extending and correcting documentation

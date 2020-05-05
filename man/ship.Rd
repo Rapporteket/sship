@@ -5,6 +5,7 @@
 \alias{sship}
 \alias{dispatch}
 \alias{dispatchable}
+\alias{make_url}
 \title{Secure cargo and make shipment (secure shipment)}
 \usage{
 sship(content, recipient, pubkey_holder, vessel, declaration = "")
@@ -12,6 +13,8 @@ sship(content, recipient, pubkey_holder, vessel, declaration = "")
 dispatch(recipient, vessel, cargo)
 
 dispatchable(recipient, vessel)
+
+make_url(recipient, vessel)
 }
 \arguments{
 \item{content}{Character string: the full path to the file to be shipped}
@@ -47,9 +50,10 @@ immediately after the actual cargo.
 }
 \details{
 Most likely access control will be enforced before docking of the shipment
-can commence. Each vessel holds a list of clients that must contain the
-named recipient with relevant credentials. Functions used here rely on local
-configuration (\code{sship.yml}) to access such credentials.
+can commence. For each recipient a list of available vessels (transport
+methods) is defined and must include relevant credentials. Functions used
+here rely on local configuration (\code{sship.yml}) to access such
+credentials.
 }
 \seealso{
 \link{enc}

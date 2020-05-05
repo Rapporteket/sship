@@ -1,6 +1,7 @@
 file:
   encrypt:
     suffix: .enc
+
 network:
   proxy:
     http:
@@ -10,6 +11,8 @@ network:
   smtp:
     server: localhost
     port: 2525
+    sender: sship@sship.no
+
 pubkey:
   holder:
     github:
@@ -24,30 +27,15 @@ pubkey:
       pid:
         prefix: test.
         suffix: .keys
-vessel:
-  email:
-    sender: rapporteket@skde.no
-  ssh:
-    clients:
-      name1:
-        url:
-        user:
-        pass:
-      name2:
-        url:
-        user:
-        pass:
-  ftp:
-    clients:
-      name3:
-        url:
-        user:
-        pass:
-      name4:
-        url:
-        user:
-        pass:
-      areedv:
-        url:
-        user:
-        pass:
+
+# Recipients Bob and Alice only to be used for testing
+recipient:
+  bob:
+    ftp:
+      host: 127.0.0.1
+      port: 1021
+      path: test/sship
+      user: bob
+      pass: bobbob
+  alice:
+    email: alice@sship.no

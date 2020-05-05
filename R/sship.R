@@ -7,9 +7,10 @@
 #' immediately after the actual cargo.
 #'
 #' Most likely access control will be enforced before docking of the shipment
-#' can commence. Each vessel holds a list of clients that must contain the
-#' named recipient with relevant credentials. Functions used here rely on local
-#' configuration (\code{sship.yml}) to access such credentials.
+#' can commence. For each recipient a list of available vessels (transport
+#' methods) is defined and must include relevant credentials. Functions used
+#' here rely on local configuration (\code{sship.yml}) to access such
+#' credentials.
 #'
 #' @param content Character string: the full path to the file to be shipped
 #' @param recipient Character string: user name uniquely defining the recipient
@@ -59,7 +60,7 @@ sship <- function(content, recipient, pubkey_holder, vessel,
 
   dispatch(recipient, vessel, cargo)
 
-  TRUE
+  invisible()
 }
 
 #' @rdname ship
@@ -67,7 +68,18 @@ sship <- function(content, recipient, pubkey_holder, vessel,
 dispatch <- function(recipient, vessel, cargo) {
 
   for (i in seq_len(length(cargo))) {
-    print(paste("Shipping", cargo[i], "to", recipient, "using", vessel))
+    message(paste("Shipping", cargo[i], "to", recipient, "using", vessel))
+    if (vessel == "email") {
+      print("Shipping by email not yet implemented...")
+    } else {
+      url <- make_url(recipient, vessel)
+      if (RCurl::url.exists(url)) {
+        RCurl::ftpUpload(cargo[i], file.path(url, basename(cargo[i])))
+      } else {
+        stop(paste0("Url unreachable (for ", recipient, " by ", vessel,
+                    "). Does it exist? Shipment Cancelled!"))
+      }
+    }
   }
 
   invisible()
@@ -79,17 +91,41 @@ dispatchable <- function(recipient, vessel) {
 
   conf <- get_config()
 
-  if (!vessel %in% names(conf$vessel)) {
-    warning("The requested transport method is not available. Check config.")
+  if (!vessel %in% names(conf$recipient[[recipient]])) {
+    warning(paste0("The requested transport method is not available for '",
+                  recipient, "'. Check config."))
     return(FALSE)
   }
 
-  if (!recipient %in% names(conf$vessel[[vessel]]$clients)) {
-    warning(paste("Recipient is not eligible for requested transport method.",
-                  "Check config."))
+  if (!recipient %in% names(conf$recipient)) {
+    warning(paste(paste("Recipient", recipient, "is unknown. Check config.")))
     return(FALSE)
   }
 
   return(TRUE)
 
+}
+
+#' @rdname ship
+#' @export
+make_url <- function(recipient, vessel) {
+
+  conf <- get_config()
+
+  if (vessel == "ftp") {
+    url <- paste0("ftp://",
+                  conf$recipient[[recipient]]$ftp$user,
+                  ":",
+                  conf$recipient[[recipient]]$ftp$pass,
+                  "@",
+                  conf$recipient[[recipient]]$ftp$host,
+                  ":",
+                  conf$recipient[[recipient]]$ftp$port,
+                  "/",
+                  conf$recipient[[recipient]]$ftp$path)
+  } else {
+    url <- character()
+  }
+
+  url
 }
