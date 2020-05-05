@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Secure cargo and make shipment (secure shipment) — ship • sship</title>
+<title>Make private-public key pair — sship_keygen • sship</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,12 +46,10 @@
 
 
 
-<meta property="og:title" content="Secure cargo and make shipment (secure shipment) — ship" />
-<meta property="og:description" content="First, the content (a file) is encrypted and packed and then shipped to the
-recipient using the specified vessel (transportation method). If the given
-vessel is not available the function return an error. Optionally, a
-declaration can also be assosiated with the shipment and dispatched
-immediately after the actual cargo." />
+<meta property="og:title" content="Make private-public key pair — sship_keygen" />
+<meta property="og:description" content="Just for the convenience of it, make a key pair that may be used alongside
+sship. Please note that by default the private key will not be protected by
+a password." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -141,79 +139,52 @@ immediately after the actual cargo." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Secure cargo and make shipment (secure shipment)</h1>
-    <small class="dont-index">Source: <a href='http://github.com/Rapporteket/sship/blob/master/R/sship.R'><code>R/sship.R</code></a></small>
-    <div class="hidden name"><code>ship.Rd</code></div>
+    <h1>Make private-public key pair</h1>
+    <small class="dont-index">Source: <a href='http://github.com/Rapporteket/sship/blob/master/R/misc.R'><code>R/misc.R</code></a></small>
+    <div class="hidden name"><code>sship_keygen.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>First, the content (a file) is encrypted and packed and then shipped to the
-recipient using the specified vessel (transportation method). If the given
-vessel is not available the function return an error. Optionally, a
-declaration can also be assosiated with the shipment and dispatched
-immediately after the actual cargo.</p>
+    <p>Just for the convenience of it, make a key pair that may be used alongside
+sship. Please note that by default the private key will not be protected by
+a password.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sship</span>(<span class='no'>content</span>, <span class='no'>recipient</span>, <span class='no'>pubkey_holder</span>, <span class='no'>vessel</span>, <span class='kw'>declaration</span> <span class='kw'>=</span> <span class='st'>""</span>)
-
-<span class='fu'>dispatch</span>(<span class='no'>recipient</span>, <span class='no'>vessel</span>, <span class='no'>cargo</span>)
-
-<span class='fu'>dispatchable</span>(<span class='no'>recipient</span>, <span class='no'>vessel</span>)
-
-<span class='fu'>make_url</span>(<span class='no'>recipient</span>, <span class='no'>vessel</span>)</pre>
+    <pre class="usage"><span class='fu'>sship_keygen</span>(
+  <span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/normalizePath.html'>normalizePath</a></span>(<span class='st'>"~/.ssh"</span>),
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"rsa"</span>,
+  <span class='kw'>password</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>content</th>
-      <td><p>Character string: the full path to the file to be shipped</p></td>
+      <th>directory</th>
+      <td><p>Character string with path to directory where the kay pair
+will be written. Default is <code><a href='https://rdrr.io/r/base/normalizePath.html'>normalizePath("~/.ssh")</a></code></p></td>
     </tr>
     <tr>
-      <th>recipient</th>
-      <td><p>Character string: user name uniquely defining the recipient
-both in terms of the public key used for securing the content and any
-identity control upon docking. See also <em>Details</em>.</p></td>
+      <th>type</th>
+      <td><p>Character string defining the key type. Must be one of "rsa"
+(default) or "dsa". Key lengths are set to the default as defined in the
+<em>openssl</em>-package, currently 2048 and 1024, respectively</p></td>
     </tr>
     <tr>
-      <th>pubkey_holder</th>
-      <td><p>Character string: the holder of the (recipient's)
-public key. Currently, the only viable option here is 'github'.</p></td>
-    </tr>
-    <tr>
-      <th>vessel</th>
-      <td><p>Character string: means of transportation. Currently one of
-'ssh' or 'ftp'.</p></td>
-    </tr>
-    <tr>
-      <th>declaration</th>
-      <td><p>Character string: the name of an empty file to be
-assosiated with shipment of the cargo itself and dispatched immediately
-after. The most likely usecase is for the recipient to check for this file
-being present before picking up the cargo itself. Default value is <code>""</code>
-in which case no declaration will be used.</p></td>
-    </tr>
-    <tr>
-      <th>cargo</th>
-      <td><p>Character vector: all items assosiated with the current
-shipment. Used only internally.</p></td>
+      <th>password</th>
+      <td><p>Character string with password to protect the private key.
+Default value is NULL in which case the private key will not be protected
+by a password</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>TRUE if successsful</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>Nothing will be returned from this function, but a message containing
+the directory where the keys were written is provided</p>
 
-    <p>Most likely access control will be enforced before docking of the shipment
-can commence. For each recipient a list of available vessels (transport
-methods) is defined and must include relevant credentials. Functions used
-here rely on local configuration (<code>sship.yml</code>) to access such
-credentials.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><a href='enc.html'>enc</a></p></div>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>sship_keygen</span>(<span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</div><div class='output co'>#&gt; <span class='message'>Key pair written to /tmp/RtmpsS66gK</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
