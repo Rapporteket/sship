@@ -67,8 +67,6 @@ sship <- function(content, recipient, pubkey_holder, vessel,
 #' @export
 dispatch <- function(recipient, vessel, cargo) {
 
-  conf <- get_config()
-
   for (i in seq_len(length(cargo))) {
     message(paste("Shipping", cargo[i], "to", recipient, "using", vessel))
     if (vessel == "email") {
