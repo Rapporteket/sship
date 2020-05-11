@@ -37,5 +37,12 @@ recipient:
       path: test/sship
       user: bob
       pass: bobbob
+    sftp:
+      host: 127.0.0.1
+      port: 1022
+      path: test/sship
+      user: bob
+      ssh_private_keyfile: testkey
+      keypasswd: bobbob
   alice:
     email: alice@sship.no
