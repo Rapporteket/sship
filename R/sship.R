@@ -74,7 +74,7 @@ dispatch <- function(recipient, vessel, cargo) {
     } else {
       url <- make_url(recipient, vessel)
       opts <- make_opts(recipient, vessel)
-      if (RCurl::url.exists(url)) {
+      if (RCurl::url.exists(url, .opts = opts)) {
         RCurl::ftpUpload(cargo[i], file.path(url, basename(cargo[i])),
                          .opts = opts)
       } else {
