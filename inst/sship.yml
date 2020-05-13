@@ -33,9 +33,18 @@ recipient:
   bob:
     ftp:
       host: 127.0.0.1
-      port: 1021
+      port: 21
       path: test/sship
       user: bob
       pass: bobbob
+    sftp:
+      host: 127.0.0.1
+      port: 22
+      path: test/sship
+      user: bob
+      pass: bobbob
+      ssh_public_keyfile: id_rsa.pub
+      ssh_private_keyfile: id_rsa
+      keypasswd: bobbob
   alice:
     email: alice@sship.no

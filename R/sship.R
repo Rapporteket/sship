@@ -32,7 +32,7 @@
 #'
 #' @return TRUE if successsful
 #' @name ship
-#' @aliases sship dispatch dispatchable
+#' @aliases sship dispatch dispatchable make_url make_opts
 NULL
 
 
@@ -73,8 +73,10 @@ dispatch <- function(recipient, vessel, cargo) {
       print("Shipping by email not yet implemented...")
     } else {
       url <- make_url(recipient, vessel)
-      if (RCurl::url.exists(url)) {
-        RCurl::ftpUpload(cargo[i], file.path(url, basename(cargo[i])))
+      opts <- make_opts(recipient, vessel)
+      if (RCurl::url.exists(url, .opts = opts)) {
+        RCurl::ftpUpload(cargo[i], file.path(url, basename(cargo[i])),
+                         .opts = opts)
       } else {
         stop(paste0("Url unreachable (for ", recipient, " by ", vessel,
                     "). Does it exist? Shipment Cancelled!"))
@@ -112,6 +114,8 @@ make_url <- function(recipient, vessel) {
 
   conf <- get_config()
 
+  url <- character()
+
   if (vessel == "ftp") {
     url <- paste0("ftp://",
                   conf$recipient[[recipient]]$ftp$user,
@@ -123,9 +127,35 @@ make_url <- function(recipient, vessel) {
                   conf$recipient[[recipient]]$ftp$port,
                   "/",
                   conf$recipient[[recipient]]$ftp$path)
-  } else {
-    url <- character()
+  }
+
+  if (vessel == "sftp") {
+    url <- paste0("sftp://",
+           conf$recipient[[recipient]]$sftp$host,
+           ":",
+           conf$recipient[[recipient]]$sftp$port,
+           "/",
+           conf$recipient[[recipient]]$sftp$path)
   }
 
   url
+}
+
+#' @rdname ship
+#' @export
+make_opts <- function(recipient, vessel) {
+
+  if (vessel == "sftp") {
+    sftp <- get_config()$recipient[[recipient]]$sftp
+    opts <- list(
+      userpwd = paste(sftp$user, sftp$pass, sep = ":"),
+      ssh.public.keyfile = sftp$ssh_public_keyfile,
+      ssh.private.keyfile = sftp$ssh_private_keyfile,
+      keypasswd = sftp$keypasswd
+    )
+  } else {
+    opts <- list()
+  }
+
+  opts
 }

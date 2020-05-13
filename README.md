@@ -2,6 +2,7 @@
 # sship <img src="man/figures/logo.svg" align="right" height="150" />
 
 <!-- badges: start -->
+[![Version](https://img.shields.io/github/v/release/Rapporteket/sship?sort=semver)](https://github.com/Rapporteket/sship/releases)
 [![Travis build status](https://travis-ci.org/Rapporteket/sship.svg?branch=master)](https://travis-ci.org/Rapporteket/sship)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/Rapporteket/sship?branch=master&svg=true)](https://ci.appveyor.com/project/Rapporteket/sship)
 [![Codecov test coverage](https://codecov.io/gh/rapporteket/sship/branch/master/graph/badge.svg)](https://codecov.io/gh/rapporteket/sship?branch=master)
