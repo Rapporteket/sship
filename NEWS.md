@@ -1,3 +1,7 @@
+# sship 0.4
+
+* adding sftp as new shipment method with private/public key authentication
+
 # sship 0.3
 
 * adding function for making (ssh) key pairs 
