@@ -147,13 +147,14 @@ make_opts <- function(recipient, vessel) {
 
   if (vessel == "sftp") {
     sftp <- get_config()$recipient[[recipient]]$sftp
-    opts = list(
-      username = sftp$user,
+    opts <- list(
+      userpwd = paste(sftp$user, sftp$pass, sep = ":"),
+      ssh.public.keyfile = sftp$ssh_public_keyfile,
       ssh.private.keyfile = sftp$ssh_private_keyfile,
       keypasswd = sftp$keypasswd
     )
   } else {
-    opts = list()
+    opts <- list()
   }
 
   opts
