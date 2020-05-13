@@ -130,7 +130,7 @@ make_url <- function(recipient, vessel) {
   }
 
   if (vessel == "sftp") {
-    paste0("sftp://",
+    url <- paste0("sftp://",
            conf$recipient[[recipient]]$sftp$host,
            ":",
            conf$recipient[[recipient]]$sftp$port,
