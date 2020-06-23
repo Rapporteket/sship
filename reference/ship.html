@@ -84,7 +84,7 @@ immediately after the actual cargo." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -154,15 +154,15 @@ declaration can also be assosiated with the shipment and dispatched
 immediately after the actual cargo.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sship</span>(<span class='no'>content</span>, <span class='no'>recipient</span>, <span class='no'>pubkey_holder</span>, <span class='no'>vessel</span>, <span class='kw'>declaration</span> <span class='kw'>=</span> <span class='st'>""</span>)
+    <pre class="usage"><span class='fu'>sship</span>(<span class='kw'>content</span>, <span class='kw'>recipient</span>, <span class='kw'>pubkey_holder</span>, <span class='kw'>vessel</span>, declaration = <span class='st'>""</span>)
 
-<span class='fu'>dispatch</span>(<span class='no'>recipient</span>, <span class='no'>vessel</span>, <span class='no'>cargo</span>)
+<span class='fu'>dispatch</span>(<span class='kw'>recipient</span>, <span class='kw'>vessel</span>, <span class='kw'>cargo</span>)
 
-<span class='fu'>dispatchable</span>(<span class='no'>recipient</span>, <span class='no'>vessel</span>)
+<span class='fu'>dispatchable</span>(<span class='kw'>recipient</span>, <span class='kw'>vessel</span>)
 
-<span class='fu'>make_url</span>(<span class='no'>recipient</span>, <span class='no'>vessel</span>)
+<span class='fu'>make_url</span>(<span class='kw'>recipient</span>, <span class='kw'>vessel</span>)
 
-<span class='fu'>make_opts</span>(<span class='no'>recipient</span>, <span class='no'>vessel</span>)</pre>
+<span class='fu'>make_opts</span>(<span class='kw'>recipient</span>, <span class='kw'>vessel</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -214,7 +214,7 @@ here rely on local configuration (<code>sship.yml</code>) to access such
 credentials.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='enc.html'>enc</a></p></div>
+    <div class='dont-index'><p>enc</p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

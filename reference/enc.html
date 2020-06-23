@@ -91,7 +91,7 @@ into a tarball ready for shipment." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -168,13 +168,13 @@ encrypted content, the encrypted key and the (cleartext) iv is then bundled
 into a tarball ready for shipment.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>enc_filename</span>(<span class='no'>filename</span>)
+    <pre class="usage"><span class='fu'>enc_filename</span>(<span class='kw'>filename</span>)
 
-<span class='fu'>make_pubkey_url</span>(<span class='kw'>pubkey_holder</span> <span class='kw'>=</span> <span class='st'>"github"</span>, <span class='no'>pid</span>)
+<span class='fu'>make_pubkey_url</span>(pubkey_holder = <span class='st'>"github"</span>, <span class='kw'>pid</span>)
 
-<span class='fu'>get_pubkey</span>(<span class='no'>pubkey_holder</span>, <span class='no'>pid</span>)
+<span class='fu'>get_pubkey</span>(<span class='kw'>pubkey_holder</span>, <span class='kw'>pid</span>)
 
-<span class='fu'>enc</span>(<span class='no'>filename</span>, <span class='no'>pubkey_holder</span>, <span class='no'>pid</span>)</pre>
+<span class='fu'>enc</span>(<span class='kw'>filename</span>, <span class='kw'>pubkey_holder</span>, <span class='kw'>pid</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -216,7 +216,7 @@ openssl aes-256-cbc -d -in data.csv.enc -out data.csv \
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='dec.html'>dec</a></p></div>
+    <div class='dont-index'><p>dec</p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
