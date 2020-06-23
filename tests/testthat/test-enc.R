@@ -85,7 +85,6 @@ test_that("function provide warning when multiple pubkeys", {
 conf <- get_config()
 file.copy("content.csv", "tmp/content.csv")
 pk <- openssl::write_ssh(key$pubkey)
-#pubkey_filename <- conf$pubkey$holder$file$path
 local_pubkey_filepath <- file.path(dir, "tmp", conf$pubkey$holder$file$path)
 setwd("tmp/")
 writeLines(pk, local_pubkey_filepath, sep = "")
