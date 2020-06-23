@@ -1,3 +1,7 @@
+# sship 0.5
+
+* add simple use of pubkey from local file
+
 # sship 0.4
 
 * adding sftp as new shipment method with private/public key authentication
