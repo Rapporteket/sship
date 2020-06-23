@@ -81,6 +81,23 @@ test_that("function provide warning when multiple pubkeys", {
   unlink("tmp/*")
 })
 
+# test encryption with local pubfile
+conf <- get_config()
+file.copy("content.csv", "tmp/content.csv")
+pk <- openssl::write_ssh(key$pubkey)
+local_pubkey_filepath <- file.path(dir, "tmp", conf$pubkey$holder$file$path)
+setwd("tmp/")
+writeLines(pk, local_pubkey_filepath, sep = "")
+# fake config
+conf$pubkey$holder$file$path <- local_pubkey_filepath
+write_config(config = conf)
+conf <- get_config()
+test_that("encryption can be made by local pub-file", {
+  expect_invisible(enc("content.csv", pubkey_holder = "file", pid = pid))
+  setwd("../.")
+  unlink("tmp/*")
+})
+
 # clean up
 file.remove(pubkey_filepath)
 file.remove("content.csv")

@@ -68,19 +68,22 @@ make_pubkey_url <- function(pubkey_holder = "github", pid) {
 #' @export
 get_pubkey <- function(pubkey_holder, pid) {
 
-  url <- make_pubkey_url(pubkey_holder, pid)
-  cont <- httr::GET(url)
-  httr::warn_for_status(cont)
+  if (pubkey_holder == "file") {
+    key <- openssl::read_pubkey(get_config()$pubkey$holder$file$path)$ssh
+  } else {
+    url <- make_pubkey_url(pubkey_holder, pid)
+    cont <- httr::GET(url)
+    httr::warn_for_status(cont)
 
-  keys <- httr::content(cont, as = "text")
-  keys <- strsplit(keys, "\n")[[1]]
+    keys <- httr::content(cont, as = "text")
+    keys <- strsplit(keys, "\n")[[1]]
 
-  if (length(keys) > 1) {
-    warning("More than one key found. Only the first one will be used!")
+    if (length(keys) > 1) {
+      warning("More than one key found. Only the first one will be used!")
+    }
+
+    key <- keys[1]
   }
-
-  key <- keys[1]
-
   if (!grepl("ssh-rsa", key)) {
     stop("The key is not of type 'ssh-rsa'. Cannot go on!")
   }

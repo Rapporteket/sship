@@ -27,6 +27,8 @@ pubkey:
       pid:
         prefix: test.
         suffix: .keys
+    file:
+      path: testkey.pub
 
 # Recipients Bob and Alice only to be used for testing
 recipient:
