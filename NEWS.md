@@ -1,3 +1,7 @@
+# sship 0.6
+
+* news
+
 # sship 0.5
 
 * add simple use of pubkey from local file
