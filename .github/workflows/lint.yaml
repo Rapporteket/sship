@@ -1,7 +1,4 @@
 on:
-  push:
-    branches:
-      - v0.5.1
   pull_request:
     branches:
       - main
