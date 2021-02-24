@@ -10,3 +10,5 @@
 ^\.travis\.yml$
 ^appveyor\.yml$
 ^_sship.yml$
+^\.github$
+^\.lintr$

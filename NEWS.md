@@ -1,3 +1,8 @@
+# sship 0.5.1
+
+* move ci from travis to github actions
+* eternal branch renamed to 'main'
+
 # sship 0.5
 
 * add simple use of pubkey from local file
