@@ -24,6 +24,6 @@ Suggests:
     httpuv,
     rmarkdown,
     testthat (>= 2.1.0)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 URL: http://github.com/Rapporteket/sship
 BugReports: http://github.com/Rapporteket/sship/issues
