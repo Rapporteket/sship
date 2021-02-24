@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -78,7 +78,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="http://github.com/Rapporteket/sship/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -92,7 +92,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="ship_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Make a secure shipment</h1>
@@ -120,13 +120,11 @@
 <h3 class="hasAnchor">
 <a href="#encrypt-secure-a-file-and-send-ship-it" class="anchor"></a>Encrypt (secure) a file and send (ship) it</h3>
 <p>Both encryption and shipment can be obtained in one operation with the R function <code><a href="../reference/ship.html">sship()</a></code>:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="../reference/ship.html">sship</a></span>(<span class="kw">content</span>, <span class="kw">recipient</span>, <span class="kw">pubkey_holder</span>, <span class="kw">vessel</span>, <span class="kw">declaration</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/ship.html">sship</a></span><span class="op">(</span><span class="va">content</span>, <span class="va">recipient</span>, <span class="va">pubkey_holder</span>, <span class="va">vessel</span>, <span class="va">declaration</span><span class="op">)</span></code></pre></div>
 <p>where <code>content</code> is the path to the file to be encrypted, <code>recipient</code> is the unique user id of the recipient at the public key provider, <code>pubkey_holder</code> is a reference to a known public key provider (see <a href="#conf">Configure <em>sship</em></a> below), <code>vessel</code> is a reference to the transportation method (see also <a href="#conf">Configure <em>sship</em></a> below) and <code>declaration</code> is an optional “freight paper rubber stamp” to be assosiated with the shipment. A practical example may look something like this:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="../reference/ship.html">sship</a></span>(<span class="st">"secret_data.csv"</span>, <span class="st">"myfriend"</span>, <span class="st">"github"</span>, <span class="st">"ftp"</span>, <span class="st">"pickable"</span>)
-</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/ship.html">sship</a></span><span class="op">(</span><span class="st">"secret_data.csv"</span>, <span class="st">"myfriend"</span>, <span class="st">"github"</span>, <span class="st">"ftp"</span>, <span class="st">"pickable"</span><span class="op">)</span></code></pre></div>
 <p>which will collect <em>myfriend</em>’s public key from <em>github</em> and use it in the encryption process of <em>secret_data.csv</em> before shipping it with <em>ftp</em>. Immediately after an empty file named <em>pickable</em> is shipped using the same route. <em>myfriend</em> can now check if the shipment has arrived by polling for a file named <em>pickable</em> and collect the shipment before starting the <a href="https://rapporteket.github.io/sship/articles/extract.html">process of unwrapping and decryption</a>.</p>
 </div>
 <div id="configure-sship" class="section level3">
@@ -134,19 +132,19 @@
 <a href="#configure-sship" class="anchor"></a><a name="conf"></a>Configure <em>sship</em>
 </h3>
 <p>Some of the above arguments to <code><a href="../reference/ship.html">sship()</a></code> are just references to the actual values that are stored in a configuration file. <em>sship</em> comes with a default configuration but most likely this will not be sufficient. A local config can be made by calling the <code><a href="../reference/config.html">create_config()</a></code> R function found in <em>sship</em> (output also shown):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">create_config</span>()</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">[<span class="dv">1</span>] <span class="st">"./_sship.yml file created: fill it in"</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">create_config</span>()</span>
+<span id="cb3-2"><a href="#cb3-2"></a>[<span class="dv">1</span>] <span class="st">"./_sship.yml file created: fill it in"</span></span></code></pre></div>
 <p>In the above example of the R function <code><a href="../reference/ship.html">sship()</a></code> the references <em>github</em> and <em>ftp</em> depends on configuration for the function to obtain proper values. The reference <em>github</em> already has a working setup in the default configuration, but <em>ftp</em> has not. To accomplish this open the file <em>_sship.yml</em>, find the appropriate section and edit accordingly:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co">...</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">recipient:</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">  bob:</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">    ftp:</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">      host: ftp.here.no</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">      port: 21</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">      path: path/to/myfriend</span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">      user: myfriend</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">      pass: myfriendspassword</span></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">...</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">...</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">recipient:</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">  bob:</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">    ftp:</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">      host: ftp.here.no</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">      port: 21</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">      path: path/to/myfriend</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">      user: myfriend</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">      pass: myfriendspassword</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">...</span></span></code></pre></div>
 <p>A recipients may require multiple ways of transportation and the configuration allows for this by making additional entries for each method of transportation.</p>
 <div id="server-mode" class="section level4">
 <h4 class="hasAnchor">
@@ -172,7 +170,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
