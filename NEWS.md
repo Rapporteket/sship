@@ -1,3 +1,7 @@
+# sship 0.5.2
+
+* fixed file path bug in file decryption ([#18](https://github.com/Rapporteket/sship/pull/18))
+
 # sship 0.5.1
 
 * move ci from travis to github actions
