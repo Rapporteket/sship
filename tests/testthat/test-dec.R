@@ -23,17 +23,17 @@ tarfile <- enc(filename = content_file, pubkey_holder = "local", pid = pid)
 file.remove(content_file)
 
 test_that("decryption function returns invisible", {
-  expect_invisible(dec(tarfile, keyfile, dir))
+  expect_invisible(dec(tarfile, keyfile))
 })
 
 test_that("archive contains expected files", {
-  expect_true(file.exists(file.path(dir, "content.csv")))
+  expect_true(file.exists("content.csv"))
 })
 
 test_that("data is identical before (encryption) and after decryption", {
-  write.csv(iris, file = file.path(dir, "iris.csv"))
-  expected <- read.csv(file.path(dir, "iris.csv"))
-  data <- read.csv(file.path(dir, "content.csv"))
+  write.csv(iris, file = "iris.csv")
+  expected <- read.csv("iris.csv")
+  data <- read.csv("content.csv")
   expect_identical(data, expected)
 })
 
@@ -41,7 +41,7 @@ test_that("data is identical before (encryption) and after decryption", {
 file.remove(tarfile)
 file.remove(keyfile)
 file.remove(pubkey_filename)
-file.remove(file.path(dir, "iris.csv"))
-file.remove(file.path(dir, "content.csv"))
+file.remove("iris.csv")
+file.remove("content.csv")
 file.remove(file.path(dir, "www"))
 s$stop()

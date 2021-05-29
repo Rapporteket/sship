@@ -25,7 +25,12 @@
 
 dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
 
-  init_dir <- getwd()
+  # proper paths to files
+  tarfile <- normalizePath(tarfile)
+  keyfile <- normalizePath(keyfile)
+  target_dir <- normalizePath(target_dir)
+
+  init_dir <- setwd(tempdir())
 
   # by internal convention, first part of tarfile name is actual file name
   target_file <- file.path(normalizePath(target_dir),
@@ -34,22 +39,21 @@ dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
   source_file <- enc_filename(basename(target_file))
   symkey_file <- enc_filename("key")
 
-  # do the work in a temporary dir
-  setwd(tempdir())
-  untar(normalizePath(tarfile), tar = "internal")
+  untar(tarfile, tar = "internal")
 
   iv <- readBin("iv", raw(), file.info("iv")$size)
   enc_key <- readBin(symkey_file, raw(), file.info(symkey_file)$size)
   enc_msg <- readBin(source_file, raw(), file.info(source_file)$size)
 
-  prikey <- openssl::read_key(normalizePath(keyfile))
+  prikey <- openssl::read_key(keyfile)
   key <- openssl::rsa_decrypt(enc_key, prikey)
   msg <- openssl::aes_cbc_decrypt(enc_msg, key, iv)
 
-  writeBin(msg, target_file)
+  writeBin(msg, basename(target_file))
 
   # clean up and move back to initial dir
-  file.remove(c("iv", symkey_file, source_file))
+  file.copy(basename(target_file), target_file)
+  file.remove(c("iv", symkey_file, source_file, basename(target_file)))
   setwd(init_dir)
 
   message(paste("Decrypted file written to", target_file))
