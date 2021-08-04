@@ -1,3 +1,7 @@
+# sship 0.6.0
+
+* added option for encryption using a local public key ([#19](https://github.com/Rapporteket/sship/pull/19))
+
 # sship 0.5.2
 
 * fixed file path bug in file decryption ([#18](https://github.com/Rapporteket/sship/pull/18))
