@@ -37,6 +37,8 @@
 #' option.
 #' @param pid string uniquely defining the user at 'pubkey_holder' who is also
 #' the owner of the  public key
+#' @param pubkey String representing a valid public key. Default is NULL in
+#' which case the key will be obtained from \code{pukey_holder}.
 #'
 #' @return Character string providing a filename or a key
 #' @seealso \link{dec}
@@ -95,13 +97,15 @@ get_pubkey <- function(pubkey_holder, pid) {
 #' @rdname enc
 #' @importFrom utils tar untar
 #' @export
-enc <- function(filename, pubkey_holder, pid) {
+enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
 
   init_dir <- getwd()
 
   key <- openssl::rand_bytes(32)
   iv <- openssl::rand_bytes(16)
-  pubkey <- openssl::read_pubkey(get_pubkey(pubkey_holder, pid))
+  if (is.null(pubkey)) {
+    pubkey <- openssl::read_pubkey(get_pubkey(pubkey_holder, pid))
+  }
 
   blob <- openssl::aes_cbc_encrypt(data = filename, key = key, iv = iv)
   attr(blob, "iv") <- NULL

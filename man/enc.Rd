@@ -15,7 +15,7 @@ make_pubkey_url(pubkey_holder = "github", pid)
 
 get_pubkey(pubkey_holder, pid)
 
-enc(filename, pubkey_holder, pid)
+enc(filename, pubkey_holder, pid, pubkey = NULL)
 }
 \arguments{
 \item{filename}{string with fully qualified path to a file}
@@ -26,6 +26,9 @@ option.}
 
 \item{pid}{string uniquely defining the user at 'pubkey_holder' who is also
 the owner of the  public key}
+
+\item{pubkey}{String representing a valid public key. Default is NULL in
+which case the key will be obtained from \code{pukey_holder}.}
 }
 \value{
 Character string providing a filename or a key
