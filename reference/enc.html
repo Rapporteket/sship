@@ -91,7 +91,7 @@ into a tarball ready for shipment." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -174,7 +174,7 @@ into a tarball ready for shipment.</p>
 
 <span class='fu'>get_pubkey</span><span class='op'>(</span><span class='va'>pubkey_holder</span>, <span class='va'>pid</span><span class='op'>)</span>
 
-<span class='fu'>enc</span><span class='op'>(</span><span class='va'>filename</span>, <span class='va'>pubkey_holder</span>, <span class='va'>pid</span><span class='op'>)</span></pre>
+<span class='fu'>enc</span><span class='op'>(</span><span class='va'>filename</span>, <span class='va'>pubkey_holder</span>, <span class='va'>pid</span>, pubkey <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -193,6 +193,11 @@ option.</p></td>
       <th>pid</th>
       <td><p>string uniquely defining the user at 'pubkey_holder' who is also
 the owner of the  public key</p></td>
+    </tr>
+    <tr>
+      <th>pubkey</th>
+      <td><p>String representing a valid public key. Default is NULL in
+which case the key will be obtained from <code>pukey_holder</code>.</p></td>
     </tr>
     </table>
 

@@ -6,15 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Authors • sship</title>
+<title>Make calls to the github API — github_api • sship</title>
 
 <!-- favicons -->
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png" />
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png" />
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png" />
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -25,8 +25,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
-<link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script>
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -40,13 +40,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="Authors" />
+<meta property="og:title" content="Make calls to the github API — github_api" />
+<meta property="og:description" content="Make calls to the github API" />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -66,7 +67,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-authors">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -78,7 +79,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">sship</a>
+        <a class="navbar-link" href="../index.html">sship</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
@@ -86,13 +87,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -102,18 +103,18 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/overview.html">An overwiev of sship</a>
+      <a href="../articles/overview.html">An overwiev of sship</a>
     </li>
     <li>
-      <a href="articles/ship.html">Make a secure shipment</a>
+      <a href="../articles/ship.html">Make a secure shipment</a>
     </li>
     <li>
-      <a href="articles/extract.html">Extract cargo from a secure shipment</a>
+      <a href="../articles/extract.html">Extract cargo from a secure shipment</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="news/index.html">Changelog</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -134,22 +135,74 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Authors</h1>
+    <h1>Make calls to the github API</h1>
+    <small class="dont-index">Source: <a href='http://github.com/Rapporteket/sship/blob/master/R/github.R'><code>R/github.R</code></a></small>
+    <div class="hidden name"><code>github_api.Rd</code></div>
     </div>
 
-    <ul class="list-unstyled">
-      <li>
-        <p><strong>Are Edvardsen</strong>. Author, maintainer. <a href='https://orcid.org/0000-0002-5210-3656' target='orcid.widget' aria-label='ORCID'><span class='fab fa-orcid orcid' aria-hidden='true'></span></a>
-        </p>
-      </li>
-    </ul>
+    <div class="ref-description">
+    <p>Make calls to the github API</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>github_api</span><span class='op'>(</span><span class='va'>path</span>, proxy_url <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>path</th>
+      <td><p>Character string with path to the API resource</p></td>
+    </tr>
+    <tr>
+      <th>proxy_url</th>
+      <td><p>Character string defining a network proxy in the form
+host:port. Default is NULL in which case the API call will not use a proxy</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A list of class github_api containing the parsed content, API
+resource path and the response object</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>github_api</span><span class='op'>(</span><span class='st'>"repos/Rapporteket/sship/branches"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $content
+#&gt;       name                               commit.sha
+#&gt; 1 gh-pages 9a89765768e92ccf07bee5d13cf965c6032f75e5
+#&gt; 2     main efe62b500268318f0f1aa2fa760117a6d7139cfe
+#&gt; 3     v0.6 3385f45c60667559d7c9599c52b3ea62d423f7fe
+#&gt;                                                                                        commit.url
+#&gt; 1 https://api.github.com/repos/Rapporteket/sship/commits/9a89765768e92ccf07bee5d13cf965c6032f75e5
+#&gt; 2 https://api.github.com/repos/Rapporteket/sship/commits/efe62b500268318f0f1aa2fa760117a6d7139cfe
+#&gt; 3 https://api.github.com/repos/Rapporteket/sship/commits/3385f45c60667559d7c9599c52b3ea62d423f7fe
+#&gt;   protected
+#&gt; 1     FALSE
+#&gt; 2      TRUE
+#&gt; 3     FALSE
+#&gt; 
+#&gt; $path
+#&gt; [1] "repos/Rapporteket/sship/branches"
+#&gt; 
+#&gt; $response
+#&gt; Response [https://api.github.com/repos/Rapporteket/sship/branches]
+#&gt;   Date: 2021-08-04 09:55
+#&gt;   Status: 200
+#&gt;   Content-Type: application/json; charset=utf-8
+#&gt;   Size: 598 B
+#&gt; 
+#&gt; 
+#&gt; attr(,"class")
+#&gt; [1] "github_api"</div></pre>
   </div>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
+  </div>
 </div>
-
 
 
       <footer>
