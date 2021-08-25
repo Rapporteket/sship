@@ -67,6 +67,24 @@ openssl aes-256-cbc -d -in data.csv.enc -out data.csv \
 -K $(hexdump -e '32/1 "\%02x"' key) -iv $(hexdump -e '16/1 "\%02x"' iv)
 }
 }
+\examples{
+# Define temporary working directory and a secret file name
+wd <- tempdir()
+secret_file_name <- "secret.rds"
+
+# Add content to the secret file
+saveRDS(iris, file = file.path(wd, secret_file_name), ascii = TRUE)
+
+# Make a private-public key pair named "id_rsa" and "id_rsa.pub"
+sship_keygen(directory = wd)
+
+# Load public key
+pubkey <- readLines(file.path(wd, "id_rsa.pub"))
+
+# Make a secured file (ready for shipment)
+secure_secret_file <- enc(filename = file.path(wd, "secret.rds"),
+                          pubkey_holder = NULL, pubkey = pubkey)
+}
 \seealso{
 \link{dec}
 }

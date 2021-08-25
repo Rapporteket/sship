@@ -32,6 +32,27 @@ Some of the functions used here might be vulnerable to differences between
 systems running R. Possible caveats may be the availability of the
 (un)tar-function and how binary streams/files are treated.
 }
+\examples{
+# Make temporary workspace
+wd <- tempdir()
+
+# Make a private-public key pair named "id_rsa" and "id_rsa.pub"
+sship_keygen(directory = wd)
+
+# Make a secured (encrypted) file
+saveRDS(iris, file = file.path(wd, "secret.rds"), ascii = TRUE)
+pubkey <- readLines(file.path(wd, "id_rsa.pub"))
+secure_secret_file <-
+  enc(filename = file.path(wd, "secret.rds"),
+      pubkey_holder = NULL,
+      pubkey = pubkey)
+
+# Decrypt secured file using the private key
+secret_file <-
+  dec(tarfile = secure_secret_file,
+      keyfile = file.path(wd, "id_rsa"),
+      target_dir = wd)
+}
 \seealso{
 \link{enc}
 }

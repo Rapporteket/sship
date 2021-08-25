@@ -22,6 +22,26 @@
 #'
 #' @seealso \link{enc}
 #' @export
+#' @examples
+#' # Make temporary workspace
+#' wd <- tempdir()
+#'
+#' # Make a private-public key pair named "id_rsa" and "id_rsa.pub"
+#' sship_keygen(directory = wd)
+#'
+#' # Make a secured (encrypted) file
+#' saveRDS(iris, file = file.path(wd, "secret.rds"), ascii = TRUE)
+#' pubkey <- readLines(file.path(wd, "id_rsa.pub"))
+#' secure_secret_file <-
+#'   enc(filename = file.path(wd, "secret.rds"),
+#'       pubkey_holder = NULL,
+#'       pubkey = pubkey)
+#'
+#' # Decrypt secured file using the private key
+#' secret_file <-
+#'   dec(tarfile = secure_secret_file,
+#'       keyfile = file.path(wd, "id_rsa"),
+#'       target_dir = wd)
 
 dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
 

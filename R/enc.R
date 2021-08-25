@@ -45,6 +45,23 @@
 #' @seealso \link{dec}
 #' @name enc
 #' @aliases enc_filename random_key make_pubkey_url get_pubkey enc_file
+#' @examples
+#' # Define temporary working directory and a secret file name
+#' wd <- tempdir()
+#' secret_file_name <- "secret.rds"
+#'
+#' # Add content to the secret file
+#' saveRDS(iris, file = file.path(wd, secret_file_name), ascii = TRUE)
+#'
+#' # Make a private-public key pair named "id_rsa" and "id_rsa.pub"
+#' sship_keygen(directory = wd)
+#'
+#' # Load public key
+#' pubkey <- readLines(file.path(wd, "id_rsa.pub"))
+#'
+#' # Make a secured file (ready for shipment)
+#' secure_secret_file <- enc(filename = file.path(wd, "secret.rds"),
+#'                           pubkey_holder = NULL, pubkey = pubkey)
 NULL
 
 
