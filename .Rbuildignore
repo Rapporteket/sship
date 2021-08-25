@@ -12,3 +12,4 @@
 ^_sship.yml$
 ^\.github$
 ^\.lintr$
+^\cran-comments.md$
