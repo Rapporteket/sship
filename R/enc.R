@@ -38,7 +38,7 @@
 #' @param pid string uniquely defining the user at 'pubkey_holder' who is also
 #' the owner of the  public key
 #' @param pubkey String representing a valid public key. Default is NULL in
-#' which case the key will be obtained from \code{pukey_holder}.
+#' which case the key will be obtained from \code{pubkey_holder}.
 #'
 #' @return Character string providing a filename or a key
 #' @seealso \link{dec}

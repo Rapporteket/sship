@@ -28,7 +28,7 @@ option.}
 the owner of the  public key}
 
 \item{pubkey}{String representing a valid public key. Default is NULL in
-which case the key will be obtained from \code{pukey_holder}.}
+which case the key will be obtained from \code{pubkey_holder}.}
 }
 \value{
 Character string providing a filename or a key
