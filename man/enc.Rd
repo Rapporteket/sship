@@ -22,13 +22,14 @@ enc(filename, pubkey_holder, pid, pubkey = NULL)
 
 \item{pubkey_holder}{string defining the provider of the public key used for
 encryption of the symmetric key. Currently, 'github' is the only valid
-option.}
+pubkey holder. If a local pubkey is to be used (see parameter \code{pubkey},
+\code{pubkey_holder} may be set to NULL or some other value.}
 
 \item{pid}{string uniquely defining the user at 'pubkey_holder' who is also
 the owner of the  public key}
 
 \item{pubkey}{String representing a valid public key. Default is NULL in
-which case the key will be obtained from \code{pubkey_holder}.}
+which case the key will be obtained as per \code{pubkey_holder}.}
 }
 \value{
 Character string providing a filename or a key

@@ -34,11 +34,12 @@
 #' @param filename string with fully qualified path to a file
 #' @param pubkey_holder string defining the provider of the public key used for
 #' encryption of the symmetric key. Currently, 'github' is the only valid
-#' option.
+#' pubkey holder. If a local pubkey is to be used (see parameter \code{pubkey},
+#' \code{pubkey_holder} may be set to NULL or some other value.
 #' @param pid string uniquely defining the user at 'pubkey_holder' who is also
 #' the owner of the  public key
 #' @param pubkey String representing a valid public key. Default is NULL in
-#' which case the key will be obtained from \code{pubkey_holder}.
+#' which case the key will be obtained as per \code{pubkey_holder}.
 #'
 #' @return Character string providing a filename or a key
 #' @seealso \link{dec}
