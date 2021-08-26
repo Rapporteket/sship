@@ -1,3 +1,7 @@
+# sship 0.7.0
+
+* adjustments and improvements for proper release ([#20](https://github.com/Rapporteket/sship/pull/20))
+
 # sship 0.6.0
 
 * added option for encryption using a local public key ([#19](https://github.com/Rapporteket/sship/pull/19))
