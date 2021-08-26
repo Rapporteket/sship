@@ -14,8 +14,8 @@ Description: Provide peers convenient tools for exchanging files securely from
     asymmetric cryptography no management of shared secrets is needed to
     make a secure shipment as long as authentic public keys are available.
     Public keys used for secure shipments may be obtained from external
-    providers (currently, github is the only option implemented). Transportation
-    of files will require that relevant services such as ftp and smtp servers
+    providers (currently, GitHub is the only option implemented). Transportation
+    of files will require that relevant services such as FTP and SMTP servers
     are available.
 License: GPL-3
 Encoding: UTF-8
