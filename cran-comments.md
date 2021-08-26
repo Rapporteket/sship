@@ -5,10 +5,13 @@
 * Ubuntu 18.04 (on github actions), R version 4.0.5 (2021-03-31)
 * Ubuntu 20.04 (on github actions), R version 4.1.1 (2021-08-10)
 * Ubuntu 20.04 (on github actions), R Under development (unstable) (2021-08-24 r80816)
-* CRAN win-builder
+* CRAN win-builder, R version 4.1.1 (2021-08-10) and  R Under development (unstable) (2021-08-23 r80813)
 
 # R CMD check results
 There were no ERRORs and WARNINGs.
 
-There was one NOTE:
-* This is the first time this package is submitted to Cran
+There were two NOTEs:
+* New submission
+* Possibly misspelled words in DESCRIPTION:
+  github (17:27)
+  smtp (18:66)
