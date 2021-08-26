@@ -5,7 +5,7 @@
 [![Version](https://img.shields.io/github/v/release/rapporteket/sship?sort=semver)](https://github.com/rapporteket/sship/releases)
 [![R build status](https://github.com/Rapporteket/sship/workflows/R-CMD-check/badge.svg)](https://github.com/Rapporteket/sship/actions)
 [![Codecov test coverage](https://codecov.io/gh/Rapporteket/sship/branch/main/graph/badge.svg)](https://codecov.io/gh/Rapporteket/sship?branch=main)
-[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![GitHub open issues](https://img.shields.io/github/issues/rapporteket/sship.svg)](https://github.com/rapporteket/sship/issues)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Doc](https://img.shields.io/badge/Doc--grey.svg)](https://rapporteket.github.io/sship/)
