@@ -7,6 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "biorakel@gmail.com",
            comment = c(ORCID = "0000-0002-5210-3656"))
+Maintainer: Are Edvardsen <biorakel@gmail.com>
 Description: This package provides R users convenient tools for exchanging
     files securely. By file content encryption safe passage (shipment) can be
     provided even through insecure routes such as ftp and email. Based on
