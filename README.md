@@ -29,7 +29,7 @@ A shipment is secured by applying the recipient's public key. When content, reci
 ```
 sship(content, recipient, pubkey_holder, vessel, declaration)
 ```
-For the time being, the only valid provider of public keys is GitHub and the recipeint must have a corresponding user account that contains a valid RSA public key. Further, the value of _reciepient_ will also be used to get local configuration that may be needed for the shipemnt to be made. Please refere to the the article [Make a secure shipment](https://rapporteket.github.io/sship/articles/ship.html) and the _sship_ function documentation for further details.
+For the time being, the only valid provider of public keys is GitHub and the recipient must have a corresponding user account that contains a valid RSA public key. Further, the value of _recipient_ will also be used to get local configuration that may be needed for the shipment to be made. Please refer to the the article [Make a secure shipment](https://rapporteket.github.io/sship/articles/ship.html) and the _sship_ function documentation for further details.
 
 ### Extract cargo from a secure shipment
 Unwrapping and decryption can be made using the function ```dec()``` in this package by providing the path to the received tar-file and the recipient's private key. It is also possible to specify where the content is to be stored after it is unwrapped and decrypted (if not specified, content will be stored in the working directory):

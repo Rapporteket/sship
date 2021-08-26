@@ -28,7 +28,7 @@ Both encryption and shipment can be obtained in one operation with the R functio
 ```r
 sship(content, recipient, pubkey_holder, vessel, declaration)
 ```
-where ```content``` is the path to the file to be encrypted, ```recipient``` is the unique user id of the recipient at the public key provider, ```pubkey_holder``` is a reference to a known public key provider (see [Configure _sship_](#conf) below), ```vessel``` is a reference to the transportation method (see also [Configure _sship_](#conf) below) and ```declaration``` is an optional "freight paper rubber stamp" to be assosiated with the shipment. A practical example may look something like this:
+where ```content``` is the path to the file to be encrypted, ```recipient``` is the unique user id of the recipient at the public key provider, ```pubkey_holder``` is a reference to a known public key provider (see [Configure _sship_](#conf) below), ```vessel``` is a reference to the transportation method (see also [Configure _sship_](#conf) below) and ```declaration``` is an optional "freight paper rubber stamp" to be associated with the shipment. A practical example may look something like this:
 ```r
 sship("secret_data.csv", "myfriend", "github", "ftp", "pickable")
 ```
@@ -56,4 +56,4 @@ recipient:
 A recipients may require multiple ways of transportation and the configuration allows for this by making additional entries for each method of transportation.
 
 #### Server mode
-_ship_ can also be applied as a tool in a centralized or server-like environment where requirements for mangement and configuration may differ from a local instance running R. Every time _sship_ needs information from configuration setting it looks for it in several places. For a server setup the place to look for _sship_'s configuration can be provided by setting the environmental varaiable _R_SSHIP_CONFIG_PATH_ to the directory where the configuration is to be found. Making _R_SSHIP_CONFIG_PATH_ accessible in an R session, _sship_ will abide by its value. However, if a local file named ```_sship.yml``` exists in the current working directory it it will take presedence over the one defined by _R_SSHIP_CONFIG_PATH_.
+_ship_ can also be applied as a tool in a centralized or server-like environment where requirements for management and configuration may differ from a local instance running R. Every time _sship_ needs information from configuration setting it looks for it in several places. For a server setup the place to look for _sship_'s configuration can be provided by setting the environmental variable _R_SSHIP_CONFIG_PATH_ to the directory where the configuration is to be found. Making _R_SSHIP_CONFIG_PATH_ accessible in an R session, _sship_ will abide by its value. However, if a local file named ```_sship.yml``` exists in the current working directory it it will take precedence over the one defined by _R_SSHIP_CONFIG_PATH_.
