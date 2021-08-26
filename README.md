@@ -11,7 +11,7 @@
 [![Doc](https://img.shields.io/badge/Doc--grey.svg)](https://rapporteket.github.io/sship/)
 <!-- badges: end -->
 
-Provide peers convenient tools for exchanging files securely from within R. By file content encryption safe passage (shipment) can be provided even through insecure routes such as ftp and email. Based on asymmetric cryptography no management of shared secrets is needed to make a secure shipment as long as authentic public keys are available. Public keys used for secure shipments may be obtained from external providers (currently, github is the only option implemented). Transportation of files will require that relevant services such as ftp and smtp servers are available. An overview of _sship_ can be found in the article [An overwiev of sship](https://rapporteket.github.io/sship/articles/overview.html).
+Convenient tools for exchanging files securely from within R. By encrypting the content safe passage of files (shipment) can be provided by common but insecure carriers such as ftp and email. Based on asymmetric cryptography no management of shared secrets is needed to make a secure shipment as long as authentic public keys are available. Public keys used for secure shipments may also be obtained from external providers as part of the overall process. Transportation of files will require that relevant services such as ftp and email servers are available. An overview of _sship_ can be found in the article [An overwiev of sship](https://rapporteket.github.io/sship/articles/overview.html).
 
 ## Install
 

@@ -8,15 +8,14 @@ Authors@R:
            email = "biorakel@gmail.com",
            comment = c(ORCID = "0000-0002-5210-3656"))
 Maintainer: Are Edvardsen <biorakel@gmail.com>
-Description: Provide peers convenient tools for exchanging files securely from
-    within R. By file content encryption safe passage (shipment) can be
-    provided even through insecure routes such as ftp and email. Based on
-    asymmetric cryptography no management of shared secrets is needed to
-    make a secure shipment as long as authentic public keys are available.
-    Public keys used for secure shipments may be obtained from external
-    providers (currently, GitHub is the only option implemented). Transportation
-    of files will require that relevant services such as FTP and SMTP servers
-    are available.
+Description: Convenient tools for exchanging files securely from within R. By
+    encrypting the content safe passage of files (shipment) can be provided by
+    common but insecure carriers such as ftp and email. Based on asymmetric
+    cryptography no management of shared secrets is needed to make a secure
+    shipment as long as authentic public keys are available. Public keys used
+    for secure shipments may also be obtained from external providers as part of
+    the overall process. Transportation of files will require that relevant
+    services such as ftp and email servers are available.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
