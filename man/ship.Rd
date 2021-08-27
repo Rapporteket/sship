@@ -33,22 +33,22 @@ public key. Currently, the only viable option here is 'github'.}
 'ssh' or 'ftp'.}
 
 \item{declaration}{Character string: the name of an empty file to be
-assosiated with shipment of the cargo itself and dispatched immediately
+associated with shipment of the cargo itself and dispatched immediately
 after. The most likely usecase is for the recipient to check for this file
 being present before picking up the cargo itself. Default value is \code{""}
 in which case no declaration will be used.}
 
-\item{cargo}{Character vector: all items assosiated with the current
+\item{cargo}{Character vector: all items associated with the current
 shipment. Used only internally.}
 }
 \value{
-TRUE if successsful
+TRUE if successful
 }
 \description{
 First, the content (a file) is encrypted and packed and then shipped to the
 recipient using the specified vessel (transportation method). If the given
 vessel is not available the function return an error. Optionally, a
-declaration can also be assosiated with the shipment and dispatched
+declaration can also be associated with the shipment and dispatched
 immediately after the actual cargo.
 }
 \details{

@@ -29,3 +29,16 @@ A status message or list of config
 \description{
 Functions handling sship R package config
 }
+\examples{
+# Create a new config file from package default
+create_config(dir = tempdir())
+
+# Get config
+config <- get_config(system.file("sship.yml", package = "sship"))
+
+# Check if config is valid
+check_config(config)
+
+# Write config to file
+write_config(config, dir = tempdir())
+}

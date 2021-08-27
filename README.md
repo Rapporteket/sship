@@ -5,13 +5,13 @@
 [![Version](https://img.shields.io/github/v/release/rapporteket/sship?sort=semver)](https://github.com/rapporteket/sship/releases)
 [![R build status](https://github.com/Rapporteket/sship/workflows/R-CMD-check/badge.svg)](https://github.com/Rapporteket/sship/actions)
 [![Codecov test coverage](https://codecov.io/gh/Rapporteket/sship/branch/main/graph/badge.svg)](https://codecov.io/gh/Rapporteket/sship?branch=main)
-[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![GitHub open issues](https://img.shields.io/github/issues/rapporteket/sship.svg)](https://github.com/rapporteket/sship/issues)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Doc](https://img.shields.io/badge/Doc--grey.svg)](https://rapporteket.github.io/sship/)
 <!-- badges: end -->
 
-This package provide tools for secure shipment. By strong protection of content itself safe passage can be provided even through hostile environments. Based on asymmetric cryptography no management of secrets is needed to make a shipment as long as authentic public keys are available. An overview of _sship_ can be found in the article [An overwiev of sship](https://rapporteket.github.io/sship/articles/overview.html).
+Convenient tools for exchanging files securely from within R. By encrypting the content safe passage of files (shipment) can be provided by common but insecure carriers such as ftp and email. Based on asymmetric cryptography no management of shared secrets is needed to make a secure shipment as long as authentic public keys are available. Public keys used for secure shipments may also be obtained from external providers as part of the overall process. Transportation of files will require that relevant services such as ftp and email servers are available. An overview of _sship_ can be found in the article [An overwiev of sship](https://rapporteket.github.io/sship/articles/overview.html).
 
 ## Install
 
@@ -29,7 +29,7 @@ A shipment is secured by applying the recipient's public key. When content, reci
 ```
 sship(content, recipient, pubkey_holder, vessel, declaration)
 ```
-For the time being, the only valid provider of public keys is GitHub and the recipeint must have a corresponding user account that contains a valid RSA public key. Further, the value of _reciepient_ will also be used to get local configuration that may be needed for the shipemnt to be made. Please refere to the the article [Make a secure shipment](https://rapporteket.github.io/sship/articles/ship.html) and the _sship_ function documentation for further details.
+For the time being, the only valid provider of public keys is GitHub and the recipient must have a corresponding user account that contains a valid RSA public key. Further, the value of _recipient_ will also be used to get local configuration that may be needed for the shipment to be made. Please refer to the the article [Make a secure shipment](https://rapporteket.github.io/sship/articles/ship.html) and the _sship_ function documentation for further details.
 
 ### Extract cargo from a secure shipment
 Unwrapping and decryption can be made using the function ```dec()``` in this package by providing the path to the received tar-file and the recipient's private key. It is also possible to specify where the content is to be stored after it is unwrapped and decrypted (if not specified, content will be stored in the working directory):
