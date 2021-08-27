@@ -18,11 +18,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Tool for Secure Shipment of Content">
-<meta property="og:description" content="This package provide tools for secure shipment. By strong
-    protection safe passage of any content can be provided even through
-    hostile environments. Based on asymmetric cryptography no local management
-    of secrets is needed to make a shipment as long as authentic public keys
-    are available.">
+<meta property="og:description" content="Convenient tools for exchanging files securely from within R. By
+    encrypting the content safe passage of files (shipment) can be provided by
+    common but insecure carriers such as ftp and email. Based on asymmetric
+    cryptography no management of shared secrets is needed to make a secure
+    shipment as long as authentic public keys are available. Public keys used
+    for secure shipments may also be obtained from external providers as part of
+    the overall process. Transportation of files will require that relevant
+    services such as ftp and email servers are available.">
 <meta property="og:image" content="/logo.svg">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -42,7 +45,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">sship</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -81,7 +84,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="http://github.com/Rapporteket/sship/">
+  <a href="https://github.com/Rapporteket/sship/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -104,7 +107,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>This package provide tools for secure shipment. By strong protection of content itself safe passage can be provided even through hostile environments. Based on asymmetric cryptography no management of secrets is needed to make a shipment as long as authentic public keys are available. An overview of <em>sship</em> can be found in the article <a href="https://rapporteket.github.io/sship/articles/overview.html">An overwiev of sship</a>.</p>
+<p>Convenient tools for exchanging files securely from within R. By encrypting the content safe passage of files (shipment) can be provided by common but insecure carriers such as ftp and email. Based on asymmetric cryptography no management of shared secrets is needed to make a secure shipment as long as authentic public keys are available. Public keys used for secure shipments may also be obtained from external providers as part of the overall process. Transportation of files will require that relevant services such as ftp and email servers are available. An overview of <em>sship</em> can be found in the article <a href="https://rapporteket.github.io/sship/articles/overview.html">An overwiev of sship</a>.</p>
 <div id="install" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install" class="anchor"></a>Install</h2>
@@ -121,7 +124,7 @@
 <a href="#make-a-secure-shipment" class="anchor"></a>Make a secure shipment</h3>
 <p>A shipment is secured by applying the recipient’s public key. When content, recipient, provider of the recipient’s public key, method of transportation (vessel) and optionally an accompanying shipment declaration are all known the <em>sship</em> function can be applied to encrypt, wrap up and dispatch a shipment, all in one go:</p>
 <pre><code><a href="reference/ship.html">sship(content, recipient, pubkey_holder, vessel, declaration)</a></code></pre>
-<p>For the time being, the only valid provider of public keys is GitHub and the recipeint must have a corresponding user account that contains a valid RSA public key. Further, the value of <em>reciepient</em> will also be used to get local configuration that may be needed for the shipemnt to be made. Please refere to the the article <a href="https://rapporteket.github.io/sship/articles/ship.html">Make a secure shipment</a> and the <em>sship</em> function documentation for further details.</p>
+<p>For the time being, the only valid provider of public keys is GitHub and the recipient must have a corresponding user account that contains a valid RSA public key. Further, the value of <em>recipient</em> will also be used to get local configuration that may be needed for the shipment to be made. Please refer to the the article <a href="https://rapporteket.github.io/sship/articles/ship.html">Make a secure shipment</a> and the <em>sship</em> function documentation for further details.</p>
 </div>
 <div id="extract-cargo-from-a-secure-shipment" class="section level3">
 <h3 class="hasAnchor">
@@ -138,9 +141,9 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="http://github.com/Rapporteket/sship/">http://​github.com/​Rapporteket/​sship/​</a>
+<li>Browse source code at <br><a href="https://github.com/Rapporteket/sship/">https://​github.com/​Rapporteket/​sship/​</a>
 </li>
-<li>Report a bug at <br><a href="http://github.com/Rapporteket/sship/issues">http://​github.com/​Rapporteket/​sship/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/Rapporteket/sship/issues">https://​github.com/​Rapporteket/​sship/​issues</a>
 </li>
 </ul>
 </div>
@@ -164,7 +167,7 @@
 <li><a href="https://github.com/rapporteket/sship/releases"><img src="https://img.shields.io/github/v/release/rapporteket/sship?sort=semver" alt="Version"></a></li>
 <li><a href="https://github.com/Rapporteket/sship/actions"><img src="https://github.com/Rapporteket/sship/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 <li><a href="https://codecov.io/gh/Rapporteket/sship?branch=main"><img src="https://codecov.io/gh/Rapporteket/sship/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="Lifecycle: maturing"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="Lifecycle: maturing"></a></li>
 <li><a href="https://github.com/rapporteket/sship/issues"><img src="https://img.shields.io/github/issues/rapporteket/sship.svg" alt="GitHub open issues"></a></li>
 <li><a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a></li>
 <li><a href="https://rapporteket.github.io/sship/"><img src="https://img.shields.io/badge/Doc--grey.svg" alt="Doc"></a></li>

@@ -91,7 +91,7 @@ into a tarball ready for shipment." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -130,7 +130,7 @@ into a tarball ready for shipment." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="http://github.com/Rapporteket/sship/">
+  <a href="https://github.com/Rapporteket/sship/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -149,7 +149,7 @@ into a tarball ready for shipment." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Encryption of shipment content</h1>
-    <small class="dont-index">Source: <a href='http://github.com/Rapporteket/sship/blob/master/R/enc.R'><code>R/enc.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/Rapporteket/sship/blob/master/R/enc.R'><code>R/enc.R</code></a></small>
     <div class="hidden name"><code>enc.Rd</code></div>
     </div>
 
@@ -187,7 +187,8 @@ into a tarball ready for shipment.</p>
       <th>pubkey_holder</th>
       <td><p>string defining the provider of the public key used for
 encryption of the symmetric key. Currently, 'github' is the only valid
-option.</p></td>
+pubkey holder. If a local pubkey is to be used (see parameter <code>pubkey</code>,
+<code>pubkey_holder</code> may be set to NULL or some other value.</p></td>
     </tr>
     <tr>
       <th>pid</th>
@@ -197,7 +198,7 @@ the owner of the  public key</p></td>
     <tr>
       <th>pubkey</th>
       <td><p>String representing a valid public key. Default is NULL in
-which case the key will be obtained from <code>pukey_holder</code>.</p></td>
+which case the key will be obtained as per <code>pubkey_holder</code>.</p></td>
     </tr>
     </table>
 
@@ -223,6 +224,24 @@ openssl aes-256-cbc -d -in data.csv.enc -out data.csv \
 
     <div class='dont-index'><p><a href='dec.html'>dec</a></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># Define temporary working directory and a secret file name</span>
+<span class='va'>wd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>secret_file_name</span> <span class='op'>&lt;-</span> <span class='st'>"secret.rds"</span>
+
+<span class='co'># Add content to the secret file</span>
+<span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>saveRDS</a></span><span class='op'>(</span><span class='va'>iris</span>, file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>wd</span>, <span class='va'>secret_file_name</span><span class='op'>)</span>, ascii <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='co'># Make a private-public key pair named "id_rsa" and "id_rsa.pub"</span>
+<span class='fu'><a href='sship_keygen.html'>sship_keygen</a></span><span class='op'>(</span>directory <span class='op'>=</span> <span class='va'>wd</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Key pair written to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpAoc0CA</span></div><div class='input'>
+<span class='co'># Load public key</span>
+<span class='va'>pubkey</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>wd</span>, <span class='st'>"id_rsa.pub"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='co'># Make a secured file (ready for shipment)</span>
+<span class='va'>secure_secret_file</span> <span class='op'>&lt;-</span> <span class='fu'>enc</span><span class='op'>(</span>filename <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>wd</span>, <span class='st'>"secret.rds"</span><span class='op'>)</span>,
+                          pubkey_holder <span class='op'>=</span> <span class='cn'>NULL</span>, pubkey <span class='op'>=</span> <span class='va'>pubkey</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Content encrypted and ready for shipment: /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpAoc0CA/secret.rds__20210827_102938.tar.gz</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

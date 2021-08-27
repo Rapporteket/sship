@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -77,7 +77,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="http://github.com/Rapporteket/sship/">
+  <a href="https://github.com/Rapporteket/sship/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -98,7 +98,7 @@
       <h1 data-toc-skip>Make a secure shipment</h1>
             
       
-      <small class="dont-index">Source: <a href="http://github.com/Rapporteket/sship/blob/master/vignettes/ship.Rmd"><code>vignettes/ship.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Rapporteket/sship/blob/master/vignettes/ship.Rmd"><code>vignettes/ship.Rmd</code></a></small>
       <div class="hidden name"><code>ship.Rmd</code></div>
 
     </div>
@@ -122,7 +122,7 @@
 <p>Both encryption and shipment can be obtained in one operation with the R function <code><a href="../reference/ship.html">sship()</a></code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ship.html">sship</a></span><span class="op">(</span><span class="va">content</span>, <span class="va">recipient</span>, <span class="va">pubkey_holder</span>, <span class="va">vessel</span>, <span class="va">declaration</span><span class="op">)</span></code></pre></div>
-<p>where <code>content</code> is the path to the file to be encrypted, <code>recipient</code> is the unique user id of the recipient at the public key provider, <code>pubkey_holder</code> is a reference to a known public key provider (see <a href="#conf">Configure <em>sship</em></a> below), <code>vessel</code> is a reference to the transportation method (see also <a href="#conf">Configure <em>sship</em></a> below) and <code>declaration</code> is an optional “freight paper rubber stamp” to be assosiated with the shipment. A practical example may look something like this:</p>
+<p>where <code>content</code> is the path to the file to be encrypted, <code>recipient</code> is the unique user id of the recipient at the public key provider, <code>pubkey_holder</code> is a reference to a known public key provider (see <a href="#conf">Configure <em>sship</em></a> below), <code>vessel</code> is a reference to the transportation method (see also <a href="#conf">Configure <em>sship</em></a> below) and <code>declaration</code> is an optional “freight paper rubber stamp” to be associated with the shipment. A practical example may look something like this:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ship.html">sship</a></span><span class="op">(</span><span class="st">"secret_data.csv"</span>, <span class="st">"myfriend"</span>, <span class="st">"github"</span>, <span class="st">"ftp"</span>, <span class="st">"pickable"</span><span class="op">)</span></code></pre></div>
 <p>which will collect <em>myfriend</em>’s public key from <em>github</em> and use it in the encryption process of <em>secret_data.csv</em> before shipping it with <em>ftp</em>. Immediately after an empty file named <em>pickable</em> is shipped using the same route. <em>myfriend</em> can now check if the shipment has arrived by polling for a file named <em>pickable</em> and collect the shipment before starting the <a href="https://rapporteket.github.io/sship/articles/extract.html">process of unwrapping and decryption</a>.</p>
@@ -149,7 +149,7 @@
 <div id="server-mode" class="section level4">
 <h4 class="hasAnchor">
 <a href="#server-mode" class="anchor"></a>Server mode</h4>
-<p><em>ship</em> can also be applied as a tool in a centralized or server-like environment where requirements for mangement and configuration may differ from a local instance running R. Every time <em>sship</em> needs information from configuration setting it looks for it in several places. For a server setup the place to look for <em>sship</em>’s configuration can be provided by setting the environmental varaiable <em>R_SSHIP_CONFIG_PATH</em> to the directory where the configuration is to be found. Making <em>R_SSHIP_CONFIG_PATH</em> accessible in an R session, <em>sship</em> will abide by its value. However, if a local file named <code>_sship.yml</code> exists in the current working directory it it will take presedence over the one defined by <em>R_SSHIP_CONFIG_PATH</em>.</p>
+<p><em>ship</em> can also be applied as a tool in a centralized or server-like environment where requirements for management and configuration may differ from a local instance running R. Every time <em>sship</em> needs information from configuration setting it looks for it in several places. For a server setup the place to look for <em>sship</em>’s configuration can be provided by setting the environmental variable <em>R_SSHIP_CONFIG_PATH</em> to the directory where the configuration is to be found. Making <em>R_SSHIP_CONFIG_PATH</em> accessible in an R session, <em>sship</em> will abide by its value. However, if a local file named <code>_sship.yml</code> exists in the current working directory it it will take precedence over the one defined by <em>R_SSHIP_CONFIG_PATH</em>.</p>
 </div>
 </div>
 </div>

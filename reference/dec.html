@@ -81,7 +81,7 @@ the conventions used there." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -120,7 +120,7 @@ the conventions used there." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="http://github.com/Rapporteket/sship/">
+  <a href="https://github.com/Rapporteket/sship/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -139,7 +139,7 @@ the conventions used there." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Unpack shipment and decrypt content</h1>
-    <small class="dont-index">Source: <a href='http://github.com/Rapporteket/sship/blob/master/R/dec.R'><code>R/dec.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/Rapporteket/sship/blob/master/R/dec.R'><code>R/dec.R</code></a></small>
     <div class="hidden name"><code>dec.Rd</code></div>
     </div>
 
@@ -155,7 +155,7 @@ the conventions used there.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tarfile</th>
-      <td><p>Character string providing full path to the gzip-compressd
+      <td><p>Character string providing full path to the gzip-compressed
 tarball holding the shipment payload, including encrypted files</p></td>
     </tr>
     <tr>
@@ -163,7 +163,7 @@ tarball holding the shipment payload, including encrypted files</p></td>
       <td><p>Character string providing the full path to the private RSA
 key to be used for decryption of the encrypted key that is part of the
 shipment. Default value is set to <code>~/.ssh/id_rsa</code> which is the usual
-path for unix-type operating systems.</p></td>
+path for unix type operating systems.</p></td>
     </tr>
     <tr>
       <th>target_dir</th>
@@ -186,6 +186,27 @@ systems running R. Possible caveats may be the availability of the
 
     <div class='dont-index'><p><a href='enc.html'>enc</a></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># Make temporary workspace</span>
+<span class='va'>wd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='co'># Make a private-public key pair named "id_rsa" and "id_rsa.pub"</span>
+<span class='fu'><a href='sship_keygen.html'>sship_keygen</a></span><span class='op'>(</span>directory <span class='op'>=</span> <span class='va'>wd</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Key pair written to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpAoc0CA</span></div><div class='input'>
+<span class='co'># Make a secured (encrypted) file</span>
+<span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>saveRDS</a></span><span class='op'>(</span><span class='va'>iris</span>, file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>wd</span>, <span class='st'>"secret.rds"</span><span class='op'>)</span>, ascii <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>pubkey</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>wd</span>, <span class='st'>"id_rsa.pub"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>secure_secret_file</span> <span class='op'>&lt;-</span>
+  <span class='fu'><a href='enc.html'>enc</a></span><span class='op'>(</span>filename <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>wd</span>, <span class='st'>"secret.rds"</span><span class='op'>)</span>,
+      pubkey_holder <span class='op'>=</span> <span class='cn'>NULL</span>,
+      pubkey <span class='op'>=</span> <span class='va'>pubkey</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Content encrypted and ready for shipment: /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpAoc0CA/secret.rds__20210827_102938.tar.gz</span></div><div class='input'>
+<span class='co'># Decrypt secured file using the private key</span>
+<span class='va'>secret_file</span> <span class='op'>&lt;-</span>
+  <span class='fu'>dec</span><span class='op'>(</span>tarfile <span class='op'>=</span> <span class='va'>secure_secret_file</span>,
+      keyfile <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>wd</span>, <span class='st'>"id_rsa"</span><span class='op'>)</span>,
+      target_dir <span class='op'>=</span> <span class='va'>wd</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Decrypted file written to /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpAoc0CA/secret.rds</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

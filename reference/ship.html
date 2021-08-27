@@ -50,7 +50,7 @@
 <meta property="og:description" content="First, the content (a file) is encrypted and packed and then shipped to the
 recipient using the specified vessel (transportation method). If the given
 vessel is not available the function return an error. Optionally, a
-declaration can also be assosiated with the shipment and dispatched
+declaration can also be associated with the shipment and dispatched
 immediately after the actual cargo." />
 <meta property="og:image" content="/logo.svg" />
 
@@ -84,7 +84,7 @@ immediately after the actual cargo." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -123,7 +123,7 @@ immediately after the actual cargo." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="http://github.com/Rapporteket/sship/">
+  <a href="https://github.com/Rapporteket/sship/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -142,7 +142,7 @@ immediately after the actual cargo." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Secure cargo and make shipment (secure shipment)</h1>
-    <small class="dont-index">Source: <a href='http://github.com/Rapporteket/sship/blob/master/R/sship.R'><code>R/sship.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/Rapporteket/sship/blob/master/R/sship.R'><code>R/sship.R</code></a></small>
     <div class="hidden name"><code>ship.Rd</code></div>
     </div>
 
@@ -150,7 +150,7 @@ immediately after the actual cargo." />
     <p>First, the content (a file) is encrypted and packed and then shipped to the
 recipient using the specified vessel (transportation method). If the given
 vessel is not available the function return an error. Optionally, a
-declaration can also be assosiated with the shipment and dispatched
+declaration can also be associated with the shipment and dispatched
 immediately after the actual cargo.</p>
     </div>
 
@@ -190,21 +190,21 @@ public key. Currently, the only viable option here is 'github'.</p></td>
     <tr>
       <th>declaration</th>
       <td><p>Character string: the name of an empty file to be
-assosiated with shipment of the cargo itself and dispatched immediately
+associated with shipment of the cargo itself and dispatched immediately
 after. The most likely usecase is for the recipient to check for this file
 being present before picking up the cargo itself. Default value is <code>""</code>
 in which case no declaration will be used.</p></td>
     </tr>
     <tr>
       <th>cargo</th>
-      <td><p>Character vector: all items assosiated with the current
+      <td><p>Character vector: all items associated with the current
 shipment. Used only internally.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>TRUE if successsful</p>
+    <p>TRUE if successful</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Most likely access control will be enforced before docking of the shipment
