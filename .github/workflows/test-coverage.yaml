@@ -19,6 +19,11 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
 
       - uses: r-lib/actions/setup-pandoc@v1
+      
+      - name: Install unmet sys deps
+        run: |
+          sudo apt update
+          sudo apt install -y --no-install-recommends libcurl4-openssl-dev libgit2-dev
 
       - name: Query dependencies
         run: |
