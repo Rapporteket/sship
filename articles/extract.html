@@ -143,7 +143,7 @@
 <a href="#extract-and-decrypt-content-outside-r" class="anchor"></a>Extract and decrypt content outside R</h2>
 <p>Extraction and decryption of content that was encrypted and packed by <em>sship</em> (in R) is perfectly possible also outside R. In the above R-function a few things is taken care of “under the hood” and to aid a better understanding more information should be added to the above list of “conventions”:</p>
 <ul>
-<li>when encrypting content <em>sship</em> uses the AES block chiper in CBC mode applying a key of 256 random bits (32 bytes long)</li>
+<li>when encrypting content <em>sship</em> uses the AES block cipher in CBC mode applying a key of 256 random bits (32 bytes long)</li>
 <li>when encryption content <em>sship</em> uses an initialization vector of 128 random bits (16 bytes long)</li>
 <li>the shipment, <em>i.e.</em> the compressed tar archive file, consists of three files that will be named (according to the current example):
 <ul>
@@ -160,7 +160,7 @@
 <li>the filename of the original content (data) is represented by the first part of the archive filename (shipment) up until the double underscore (<em>__</em>), <em>e.g.</em> given the archive filename <code>data.csv__20200101_081500.tar.gz</code> the decrypted content will be established in the file <code>data.csv</code>
 </li>
 </ul>
-<p>Below is an example of how <code>data.csv__20200101_081500.tar.gz</code> can be processed from a Bash shell (unix) command propt. First, extract the archive:</p>
+<p>Below is an example of how <code>data.csv__20200101_081500.tar.gz</code> can be processed from a Bash shell (unix) command prompt. First, extract the archive:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">tar</span> -xvzf data.csv__20200101_081500.tar.gz</span></code></pre></div>
 <p>Then, decrypt the key by using the private key:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">openssl</span> rsautl -decrypt -inkey ~/.ssh/id_rsa -in key.enc -out key</span></code></pre></div>

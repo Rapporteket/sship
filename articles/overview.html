@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>An overwiev of sship • sship</title>
+<title>An overview of sship • sship</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="An overwiev of sship">
+<script src="../pkgdown.js"></script><meta property="og:title" content="An overview of sship">
 <meta property="og:description" content="sship">
 <meta property="og:image" content="/logo.svg">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -95,7 +95,7 @@
       </header><script src="overview_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>An overwiev of sship</h1>
+      <h1 data-toc-skip>An overview of sship</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/Rapporteket/sship/blob/master/vignettes/overview.Rmd"><code>vignettes/overview.Rmd</code></a></small>
@@ -135,7 +135,7 @@
 <div id="organizational-measures" class="section level3">
 <h3 class="hasAnchor">
 <a href="#organizational-measures" class="anchor"></a>Organizational measures</h3>
-<p>Technical measures alone do not guarantee a safe exchange of secrets. The crucial part of applying <em>sship</em> is the exchange of the public key from the recipient to the person or entity that do the encryption (the provider). It is paramount that the recipient is authenticated to the provider. In other words, the provider must be absolutely sure that the public key used belongs to the recipient, and no one else. <strong>If this is not the case <em>sshp</em> cannot and should not be used for any exchange of secrets!</strong> <em>sship</em> collects the public key from an external and open repository based on a user id uniquely defining the recipient (and his or hers public key) at this repository. Such repositories must provide means of authentication (of the recipient) that allows only the recipient to add or alter user profile content such as for instance public keys. In general authentication based on a username and password is not sufficient: multi-factor authentication of users should be enforced at the repository providing public keys to <em>sship</em>. In addition, both the provider and recipient should be part of the same organizational structure at the repository to make sure that they are both under the same “governance” with respect to user management. Currently, <em>sship</em> only supports <a href="https://github.com">GitHub</a> as a repository for public keys. It allows for both multi-factor authentication and relevant user management.</p>
+<p>Technical measures alone do not guarantee a safe exchange of secrets. The crucial part of applying <em>sship</em> is the exchange of the public key from the recipient to the person or entity that do the encryption (the provider). It is paramount that the recipient is authenticated to the provider. In other words, the provider must be absolutely sure that the public key used belongs to the recipient, and no one else. <strong>If this is not the case <em>sship</em> cannot and should not be used for any exchange of secrets!</strong> <em>sship</em> collects the public key from an external and open repository based on a user id uniquely defining the recipient (and his or hers public key) at this repository. Such repositories must provide means of authentication (of the recipient) that allows only the recipient to add or alter user profile content such as for instance public keys. In general authentication based on a username and password is not sufficient: multi-factor authentication of users should be enforced at the repository providing public keys to <em>sship</em>. In addition, both the provider and recipient should be part of the same organizational structure at the repository to make sure that they are both under the same “governance” with respect to user management. Currently, <em>sship</em> only supports <a href="https://github.com">GitHub</a> as a repository for public keys. It allows for both multi-factor authentication and relevant user management.</p>
 </div>
 </div>
   </div>
