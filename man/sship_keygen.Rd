@@ -11,7 +11,7 @@ sship_keygen(
 )
 }
 \arguments{
-\item{directory}{Character string with path to directory where the kay pair
+\item{directory}{Character string with path to directory where the key pair
 will be written. Default is \code{normalizePath("~/.ssh")}}
 
 \item{type}{Character string defining the key type. Must be one of "rsa"

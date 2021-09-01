@@ -48,7 +48,7 @@ at the R prompt for more information.
 ## Extract and decrypt content outside R
 Extraction and decryption of content that was encrypted and packed by _sship_ (in R) is perfectly possible also outside R. In the above R-function a few things is taken care of "under the hood" and to aid a better understanding more information should be added to the above list of "conventions":
 
-- when encrypting content _sship_ uses the AES block chiper in CBC mode applying a key of 256 random bits (32 bytes long)
+- when encrypting content _sship_ uses the AES block cipher in CBC mode applying a key of 256 random bits (32 bytes long)
 - when encryption content _sship_ uses an initialization vector of 128 random bits (16 bytes long)
 - the shipment, _i.e._ the compressed tar archive file, consists of three files that will be named (according to the current example):
   - ```data.csv.enc```: the encrypted data of the shipment
@@ -57,7 +57,7 @@ Extraction and decryption of content that was encrypted and packed by _sship_ (i
 - just for the record then, names of encrypted files ends with ```.enc```
 - the filename of the original content (data) is represented by the first part of the archive filename (shipment) up until the double underscore (_\_\__), _e.g._ given the archive filename ```data.csv__20200101_081500.tar.gz``` the decrypted content will be established in the file ```data.csv```
 
-Below is an example of how ```data.csv__20200101_081500.tar.gz``` can be processed from a Bash shell (unix) command propt.
+Below is an example of how ```data.csv__20200101_081500.tar.gz``` can be processed from a Bash shell (unix) command prompt.
 First, extract the archive:
 ```bash
 tar -xvzf data.csv__20200101_081500.tar.gz

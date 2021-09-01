@@ -4,7 +4,7 @@
 #' sship. Please note that by default the private key will not be protected by
 #' a password.
 #'
-#' @param directory Character string with path to directory where the kay pair
+#' @param directory Character string with path to directory where the key pair
 #' will be written. Default is \code{normalizePath("~/.ssh")}
 #' @param type Character string defining the key type. Must be one of "rsa"
 #' (default) or "dsa". Key lengths are set to the default as defined in the

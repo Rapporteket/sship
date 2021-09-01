@@ -11,7 +11,7 @@
 [![Doc](https://img.shields.io/badge/Doc--grey.svg)](https://rapporteket.github.io/sship/)
 <!-- badges: end -->
 
-Convenient tools for exchanging files securely from within R. By encrypting the content safe passage of files (shipment) can be provided by common but insecure carriers such as ftp and email. Based on asymmetric cryptography no management of shared secrets is needed to make a secure shipment as long as authentic public keys are available. Public keys used for secure shipments may also be obtained from external providers as part of the overall process. Transportation of files will require that relevant services such as ftp and email servers are available. An overview of _sship_ can be found in the article [An overwiev of sship](https://rapporteket.github.io/sship/articles/overview.html).
+Convenient tools for exchanging files securely from within R. By encrypting the content safe passage of files (shipment) can be provided by common but insecure carriers such as ftp and email. Based on asymmetric cryptography no management of shared secrets is needed to make a secure shipment as long as authentic public keys are available. Public keys used for secure shipments may also be obtained from external providers as part of the overall process. Transportation of files will require that relevant services such as ftp and email servers are available. An overview of _sship_ can be found in the article [An overview of sship](https://rapporteket.github.io/sship/articles/overview.html).
 
 ## Install
 
@@ -22,7 +22,7 @@ remotes::install_github("Rapporteket/sship")
 ```
 
 ## Use
-The main purpose of _sship_ is to enable sending a file securely to a recipient. This is done by first encrypting the file, wrap it up toghether with necessary documents before sending it off. Means of transportation may vary but could for instance be by plain file transfer or as an e-mail attachment. As a convenience to the recipient _sship_ also contains tools for unwrapping and decryption.
+The main purpose of _sship_ is to enable sending a file securely to a recipient. This is done by first encrypting the file, wrap it up together with necessary documents before sending it off. Means of transportation may vary but could for instance be by plain file transfer or as an e-mail attachment. As a convenience to the recipient _sship_ also contains tools for unwrapping and decryption.
 
 ### Make a secure shipment
 A shipment is secured by applying the recipient's public key. When content, recipient, provider of the recipient's public key, method of transportation (vessel) and optionally an accompanying shipment declaration are all known the _sship_ function can be applied to encrypt, wrap up and dispatch a shipment, all in one go:
