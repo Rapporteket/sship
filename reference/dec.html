@@ -192,7 +192,7 @@ systems running R. Possible caveats may be the availability of the
 
 <span class='co'># Make a private-public key pair named "id_rsa" and "id_rsa.pub"</span>
 <span class='fu'><a href='sship_keygen.html'>sship_keygen</a></span><span class='op'>(</span>directory <span class='op'>=</span> <span class='va'>wd</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Key pair written to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpemxWTC</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>Key pair written to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmphlMTDp</span></div><div class='input'>
 <span class='co'># Make a secured (encrypted) file</span>
 <span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>saveRDS</a></span><span class='op'>(</span><span class='va'>iris</span>, file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>wd</span>, <span class='st'>"secret.rds"</span><span class='op'>)</span>, ascii <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='va'>pubkey</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>wd</span>, <span class='st'>"id_rsa.pub"</span><span class='op'>)</span><span class='op'>)</span>
@@ -200,13 +200,13 @@ systems running R. Possible caveats may be the availability of the
   <span class='fu'><a href='enc.html'>enc</a></span><span class='op'>(</span>filename <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>wd</span>, <span class='st'>"secret.rds"</span><span class='op'>)</span>,
       pubkey_holder <span class='op'>=</span> <span class='cn'>NULL</span>,
       pubkey <span class='op'>=</span> <span class='va'>pubkey</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Content encrypted and ready for shipment: /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpemxWTC/secret.rds__20210901_123643.tar.gz</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>Content encrypted and ready for shipment: /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmphlMTDp/secret.rds__20210901_132734.tar.gz</span></div><div class='input'>
 <span class='co'># Decrypt secured file using the private key</span>
 <span class='va'>secret_file</span> <span class='op'>&lt;-</span>
   <span class='fu'>dec</span><span class='op'>(</span>tarfile <span class='op'>=</span> <span class='va'>secure_secret_file</span>,
       keyfile <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>wd</span>, <span class='st'>"id_rsa"</span><span class='op'>)</span>,
       target_dir <span class='op'>=</span> <span class='va'>wd</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Decrypted file written to /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpemxWTC/secret.rds</span></div></pre>
+</div><div class='output co'>#&gt; <span class='message'>Decrypted file written to /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmphlMTDp/secret.rds</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
