@@ -13,3 +13,4 @@
 ^\.github$
 ^\.lintr$
 ^cran-comments.md$
+^CRAN-RELEASE$
