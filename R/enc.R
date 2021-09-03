@@ -145,7 +145,7 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
   tar(tarfile, files = basename(c(f$blob, f$key, f$iv)),
       compression = "gzip", tar = "tar")
 
-  #clean up and move back to init dir
+  #clean up
   file.remove(basename(c(f$blob, f$key, f$iv)))
 
   message(paste("Content encrypted and ready for shipment:",
