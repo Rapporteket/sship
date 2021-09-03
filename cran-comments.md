@@ -1,3 +1,9 @@
+# Resubmission
+This is a resubmission. Thanks for the comments and accordingly I have:
+
+* Altered the use of setwd() in functions enc() and dec() to ensure that the user working directory stay unaltered on function exit.
+* Removed the use of setwd() in tests (i.e. tests/testthat/test-enc.R) altogether.
+
 # Test environments
 * Microsoft Windows Server 2019 (on github actions), R version 4.1.1 (2021-08-10)
 * macOS Catalina 10.15.7 (on github actions), R version 4.1.1 (2021-08-10)
@@ -11,4 +17,5 @@
 There were no ERRORs and WARNINGs.
 
 There were one NOTE:
+
 * New submission
