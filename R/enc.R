@@ -118,6 +118,7 @@ get_pubkey <- function(pubkey_holder, pid) {
 enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
 
   init_dir <- getwd()
+  on.exit(setwd(init_dir))
 
   key <- openssl::rand_bytes(32)
   iv <- openssl::rand_bytes(16)
@@ -146,7 +147,6 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
 
   #clean up and move back to init dir
   file.remove(basename(c(f$blob, f$key, f$iv)))
-  setwd(init_dir)
 
   message(paste("Content encrypted and ready for shipment:",
                 file.path(dirname(filename), tarfile)))

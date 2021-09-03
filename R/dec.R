@@ -50,7 +50,9 @@ dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
   keyfile <- normalizePath(keyfile)
   target_dir <- normalizePath(target_dir)
 
-  init_dir <- setwd(tempdir())
+  init_dir <- getwd()
+  on.exit(setwd(init_dir))
+  setwd(tempdir())
 
   # by internal convention, first part of tarfile name is actual file name
   target_file <- file.path(normalizePath(target_dir),
@@ -74,7 +76,6 @@ dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
   # clean up and move back to initial dir
   file.copy(basename(target_file), target_file)
   file.remove(c("iv", symkey_file, source_file, basename(target_file)))
-  setwd(init_dir)
 
   message(paste("Decrypted file written to", target_file))
 
