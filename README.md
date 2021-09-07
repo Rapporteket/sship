@@ -3,6 +3,7 @@
 
 <!-- badges: start -->
 [![Version](https://img.shields.io/github/v/release/rapporteket/sship?sort=semver)](https://github.com/rapporteket/sship/releases)
+[![CRAN status](https://www.r-pkg.org/badges/version/sship)](https://CRAN.R-project.org/package=sship)
 [![R build status](https://github.com/Rapporteket/sship/workflows/R-CMD-check/badge.svg)](https://github.com/Rapporteket/sship/actions)
 [![Codecov test coverage](https://codecov.io/gh/Rapporteket/sship/branch/main/graph/badge.svg)](https://codecov.io/gh/Rapporteket/sship?branch=main)
 [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
@@ -14,10 +15,18 @@
 Convenient tools for exchanging files securely from within R. By encrypting the content safe passage of files (shipment) can be provided by common but insecure carriers such as ftp and email. Based on asymmetric cryptography no management of shared secrets is needed to make a secure shipment as long as authentic public keys are available. Public keys used for secure shipments may also be obtained from external providers as part of the overall process. Transportation of files will require that relevant services such as ftp and email servers are available. An overview of _sship_ can be found in the article [An overview of sship](https://rapporteket.github.io/sship/articles/overview.html).
 
 ## Install
+Install _sship_ from CRAN:
+```r
+install.packages("sship")
+```
 
-You can install the latest version of sship from [GitHub](https://github.com) with:
-
+You can install the latest release from [GitHub](https://github.com) with:
 ``` r
+remotes::install_github("Rapporteket/sship@*release")
+```
+
+In case you want the latest development version of _sship_ use:
+```
 remotes::install_github("Rapporteket/sship")
 ```
 
