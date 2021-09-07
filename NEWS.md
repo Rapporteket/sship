@@ -1,6 +1,7 @@
 # sship 0.7.0
 
 * adjustments and improvements for proper release ([#20](https://github.com/Rapporteket/sship/pull/20))
+* fixed possible function tampering of users environment ([#21](https://github.com/Rapporteket/sship/pull/21))
 
 # sship 0.6.0
 
