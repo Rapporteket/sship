@@ -1,3 +1,7 @@
+# sship 0.7.1
+
+* fixed error making file archive on Solaris: now using R internal implementation of tar() ([#23](https://github.com/Rapporteket/sship/pull/23))
+
 # sship 0.7.0
 
 * adjustments and improvements for proper release ([#20](https://github.com/Rapporteket/sship/pull/20))
