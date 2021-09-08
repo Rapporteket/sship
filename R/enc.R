@@ -143,7 +143,7 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
   tarfile <- paste0(basename(filename), "__", stamp, ".tar.gz")
   setwd(dirname(filename))
   tar(tarfile, files = basename(c(f$blob, f$key, f$iv)),
-      compression = "gzip", tar = "tar")
+      compression = "gzip", tar = "internal")
 
   #clean up
   file.remove(basename(c(f$blob, f$key, f$iv)))
