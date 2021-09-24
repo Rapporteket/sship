@@ -142,8 +142,9 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
   stamp <- format(Sys.time(), "%Y%m%d_%H%M%S")
   tarfile <- paste0(basename(filename), "__", stamp, ".tar.gz")
   setwd(dirname(filename))
-  tar(tarfile, files = basename(c(f$blob, f$key, f$iv)),
+  msg <- tar(tarfile, files = basename(c(f$blob, f$key, f$iv)),
       compression = "gzip", tar = "internal")
+  message(paste("sship tar says:", msg))
 
   #clean up
   file.remove(basename(c(f$blob, f$key, f$iv)))
