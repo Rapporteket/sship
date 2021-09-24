@@ -136,7 +136,7 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
             key = enc_filename(file.path(dirname(filename), "key")),
             iv = file.path(dirname(filename), "iv"),
             tarfile = file.path(dirname(filename),
-                                paste0(basename(filename), "__", stamp, ".tar.gz")) 
+                                paste0(basename(filename), "__", stamp, ".tar.gz")))
 
   writeBin(blob, f$blob)
   writeBin(ciphertext, f$key)
