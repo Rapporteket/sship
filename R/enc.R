@@ -144,7 +144,7 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
 
   #tarfile <- paste0(basename(filename), "__", stamp, ".tar.gz")
   setwd(dirname(filename))
-  message(paste("Current directory is:", getwd())
+  message(paste("Current directory is:", getwd()))
   message("File sizes:")
   message(paste0("  ", f$blob, ": ", file.size(f$blob)))
   message(paste0("  ", f$key, ": ", file.size(f$key)))
