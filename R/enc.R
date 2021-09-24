@@ -148,16 +148,8 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
 
   tarfile <- paste0(basename(filename), "__", stamp, ".tar.gz")
   setwd(wd)
-  message(paste("Current directory is:", getwd()))
 
-  message("File sizes:")
-  message(paste0("  ", f$blob, ": ", file.size(f$blob)))
-  message(paste0("  ", f$key, ": ", file.size(f$key)))
-  message(paste0("  ", f$iv, ": ", file.size(f$iv)))
-  msg <- tar(tarfile = tarfile, compression = "gzip", tar = "internal")
-
-  message(paste("sship tar says:", msg))
-  message(paste(tarfile, "size:", file.size(tarfile)))
+  tar(tarfile = tarfile, compression = "gzip", tar = "internal")
 
   # take hold of tar archive before cleanup
   file.copy(tarfile, f$tarfile)

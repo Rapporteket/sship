@@ -1,3 +1,7 @@
+# sship 0.7.2
+
+* effort circumventing problem in older versions of R archiving single files using internal implementation of tar() ([#24](https://github.com/Rapporteket/sship/pull/24)) 
+
 # sship 0.7.1
 
 * fixed error making file archive on Solaris: now using R internal implementation of tar() ([#23](https://github.com/Rapporteket/sship/pull/23))
