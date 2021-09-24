@@ -131,32 +131,32 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
   ciphertext <- openssl::rsa_encrypt(data = key, pubkey = pubkey)
 
   # make list of shipment files
+  stamp <- format(Sys.time(), "%Y%m%d_%H%M%S")
   f <- list(blob = enc_filename(filename),
             key = enc_filename(file.path(dirname(filename), "key")),
-            iv = file.path(dirname(filename), "iv"))
+            iv = file.path(dirname(filename), "iv"),
+            tarfile = file.path(dirname(filename), "__", stamp, ".tar.gz"))
 
   writeBin(blob, f$blob)
   writeBin(ciphertext, f$key)
   writeBin(iv, f$iv)
 
-  stamp <- format(Sys.time(), "%Y%m%d_%H%M%S")
-  tarfile <- paste0(basename(filename), "__", stamp, ".tar.gz")
-  setwd(dirname(filename))
+  #tarfile <- paste0(basename(filename), "__", stamp, ".tar.gz")
+  #setwd(dirname(filename))
   message("File sizes:")
   message(paste0("  ", f$blob, ": ", file.size(f$blob)))
   message(paste0("  ", f$key, ": ", file.size(f$key)))
   message(paste0("  ", f$iv, ": ", file.size(f$iv)))
-  msg <- tar(tarfile, files = basename(c(f$blob, f$key, f$iv)),
+  msg <- tar(tarfile, files = c(f$blob, f$key, f$iv),
       compression = "gzip", tar = "internal")
   message(paste("sship tar says:", msg))
   message(paste(tarfile, "size:", file.size(tarfile)))
 
   #clean up
-  file.remove(basename(c(f$blob, f$key, f$iv)))
+  file.remove(c(f$blob, f$key, f$iv))
 
-  message(paste("Content encrypted and ready for shipment:",
-                file.path(dirname(filename), tarfile)))
+  message(paste("Content encrypted and ready for shipment:", tarfile))
 
-  invisible(file.path(dirname(filename), tarfile))
+  invisible(tarfile)
 
 }
