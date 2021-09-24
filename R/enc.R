@@ -149,7 +149,9 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
   message(paste0("  ", f$blob, ": ", file.size(f$blob)))
   message(paste0("  ", f$key, ": ", file.size(f$key)))
   message(paste0("  ", f$iv, ": ", file.size(f$iv)))
-  msg <- tar(tarfile = f$tarfile, compression = "gzip", tar = "internal")
+  msg <- tar(tarfile = f$tarfile,
+             files = normalizePath(c(f$blob, f$key, f$iv)),
+             compression = "gzip", tar = "internal")
   message(paste("sship tar says:", msg))
   message(paste(f$tarfile, "size:", file.size(f$tarfile)))
 
