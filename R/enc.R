@@ -149,6 +149,7 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
   msg <- tar(tarfile, files = basename(c(f$blob, f$key, f$iv)),
       compression = "gzip", tar = "internal")
   message(paste("sship tar says:", msg))
+  message(paste(tarfile, "size:", file.size(tarfile)))
 
   #clean up
   file.remove(basename(c(f$blob, f$key, f$iv)))
