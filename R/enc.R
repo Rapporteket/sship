@@ -130,27 +130,37 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
   attr(blob, "iv") <- NULL
   ciphertext <- openssl::rsa_encrypt(data = key, pubkey = pubkey)
 
+  # for tar (on old R versions) we need a dedicated, pristine work directory
+  wd <- file.path(tempdir(), "sship")
+  dir.create(wd)
+
   # make list of shipment files
-  f <- list(blob = enc_filename(filename),
-            key = enc_filename(file.path(dirname(filename), "key")),
-            iv = file.path(dirname(filename), "iv"))
+  stamp <- format(Sys.time(), "%Y%m%d_%H%M%S")
+  f <- list(blob = enc_filename(file.path(wd, basename(filename))),
+            key = enc_filename(file.path(wd, "key")),
+            iv = file.path(wd, "iv"),
+            tarfile = file.path(dirname(filename),
+                                paste0(basename(filename), "__", stamp, ".tar.gz")))
 
   writeBin(blob, f$blob)
   writeBin(ciphertext, f$key)
   writeBin(iv, f$iv)
 
-  stamp <- format(Sys.time(), "%Y%m%d_%H%M%S")
   tarfile <- paste0(basename(filename), "__", stamp, ".tar.gz")
-  setwd(dirname(filename))
-  tar(tarfile, files = basename(c(f$blob, f$key, f$iv)),
-      compression = "gzip", tar = "internal")
+  setwd(wd)
 
-  #clean up
-  file.remove(basename(c(f$blob, f$key, f$iv)))
+  tar(tarfile = tarfile, compression = "gzip", tar = "internal")
 
-  message(paste("Content encrypted and ready for shipment:",
-                file.path(dirname(filename), tarfile)))
+  # take hold of tar archive before cleanup
+  file.copy(tarfile, f$tarfile)
+  # clean up
+  setwd(init_dir)
+  unlink(file.path(wd, "*"))
+  unlink(wd)
+  file.remove(wd)
 
-  invisible(file.path(dirname(filename), tarfile))
+  message(paste("Content encrypted and ready for shipment:", f$tarfile))
+
+  invisible(f$tarfile)
 
 }
