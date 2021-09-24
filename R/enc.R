@@ -147,16 +147,16 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
   message(paste0("  ", f$blob, ": ", file.size(f$blob)))
   message(paste0("  ", f$key, ": ", file.size(f$key)))
   message(paste0("  ", f$iv, ": ", file.size(f$iv)))
-  msg <- tar(tarfile, files = c(f$blob, f$key, f$iv),
+  msg <- tar(f$tarfile, files = c(f$blob, f$key, f$iv),
       compression = "gzip", tar = "internal")
   message(paste("sship tar says:", msg))
-  message(paste(tarfile, "size:", file.size(tarfile)))
+  message(paste(f$tarfile, "size:", file.size(f$tarfile)))
 
   #clean up
   file.remove(c(f$blob, f$key, f$iv))
 
-  message(paste("Content encrypted and ready for shipment:", tarfile))
+  message(paste("Content encrypted and ready for shipment:", f$tarfile))
 
-  invisible(tarfile)
+  invisible(f$tarfile)
 
 }
