@@ -39,7 +39,7 @@ sship_keygen <- function(directory = normalizePath("~/.ssh"), type = "rsa",
   openssl::write_pem(key, keyfile, password = password)
   openssl::write_ssh(key$pubkey, pubkeyfile)
 
-  message(paste("Key pair written to", directory))
+  message(paste("sship: Key pair written to", directory))
 
   invisible()
 }

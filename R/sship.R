@@ -49,11 +49,11 @@ sship <- function(content, recipient, pubkey_holder, vessel,
                pid = recipient)
 
   if (!identical(declaration, "")) {
-    message("Adding declareation to cargo")
+    message("sship: Adding declareation to cargo")
     declaration <- file.path(dirname(content), declaration)
     ok <- file.create(declaration)
     if (!all(ok)) {
-      stop("Problem creating declaration. Shipment cancelled!")
+      stop("sship: Problem creating declaration. Shipment cancelled!")
     }
     cargo <- c(cargo, declaration)
   }
@@ -68,9 +68,11 @@ sship <- function(content, recipient, pubkey_holder, vessel,
 dispatch <- function(recipient, vessel, cargo) {
 
   for (i in seq_len(length(cargo))) {
-    message(paste("Shipping", cargo[i], "to", recipient, "using", vessel))
+    message(
+      paste("sship: Shipping", cargo[i], "to", recipient, "using", vessel)
+    )
     if (vessel == "email") {
-      print("Shipping by email not yet implemented...")
+      message("sship: Shipping by email not yet implemented...")
     } else {
       url <- make_url(recipient, vessel)
       opts <- make_opts(recipient, vessel)
@@ -78,7 +80,7 @@ dispatch <- function(recipient, vessel, cargo) {
         RCurl::ftpUpload(cargo[i], file.path(url, basename(cargo[i])),
                          .opts = opts)
       } else {
-        stop(paste0("Url unreachable (for ", recipient, " by ", vessel,
+        stop(paste0("sship: Url unreachable (for ", recipient, " by ", vessel,
                     "). Does it exist? Shipment Cancelled!"))
       }
     }

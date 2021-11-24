@@ -77,7 +77,7 @@ dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
   file.copy(basename(target_file), target_file)
   file.remove(c("iv", symkey_file, source_file, basename(target_file)))
 
-  message(paste("Decrypted file written to", target_file))
+  message(paste("sship: Decrypted file written to", target_file))
 
   invisible(target_file)
 
