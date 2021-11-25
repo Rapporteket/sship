@@ -45,7 +45,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">sship</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
       </span>
     </div>
 
@@ -118,7 +118,7 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"Rapporteket/sship@*release"</span><span class="op">)</span></code></pre></div>
 <p>In case you want the latest development version of <em>sship</em> use:</p>
-<pre><code><a href="https://remotes.r-lib.org/reference/install_github.html">remotes::install_github("Rapporteket/sship")</a></code></pre>
+<pre><code>remotes::install_github("Rapporteket/sship")</code></pre>
 </div>
 <div id="use" class="section level2">
 <h2 class="hasAnchor">
@@ -128,14 +128,14 @@
 <h3 class="hasAnchor">
 <a href="#make-a-secure-shipment" class="anchor"></a>Make a secure shipment</h3>
 <p>A shipment is secured by applying the recipient’s public key. When content, recipient, provider of the recipient’s public key, method of transportation (vessel) and optionally an accompanying shipment declaration are all known the <em>sship</em> function can be applied to encrypt, wrap up and dispatch a shipment, all in one go:</p>
-<pre><code><a href="reference/ship.html">sship(content, recipient, pubkey_holder, vessel, declaration)</a></code></pre>
+<pre><code>sship(content, recipient, pubkey_holder, vessel, declaration)</code></pre>
 <p>For the time being, the only valid provider of public keys is GitHub and the recipient must have a corresponding user account that contains a valid RSA public key. Further, the value of <em>recipient</em> will also be used to get local configuration that may be needed for the shipment to be made. Please refer to the the article <a href="https://rapporteket.github.io/sship/articles/ship.html">Make a secure shipment</a> and the <em>sship</em> function documentation for further details.</p>
 </div>
 <div id="extract-cargo-from-a-secure-shipment" class="section level3">
 <h3 class="hasAnchor">
 <a href="#extract-cargo-from-a-secure-shipment" class="anchor"></a>Extract cargo from a secure shipment</h3>
 <p>Unwrapping and decryption can be made using the function <code><a href="reference/dec.html">dec()</a></code> in this package by providing the path to the received tar-file and the recipient’s private key. It is also possible to specify where the content is to be stored after it is unwrapped and decrypted (if not specified, content will be stored in the working directory):</p>
-<pre><code><a href="reference/dec.html">dec(tarfile, keyfile, target_dir)</a></code></pre>
+<pre><code>dec(tarfile, keyfile, target_dir)</code></pre>
 <p>For further details including a description of how the content of a secure shipment can be extracted without R please see the article <a href="https://rapporteket.github.io/sship/articles/extract.html">Extract cargo from a secure shipment</a>.</p>
 </div>
 </div>
@@ -174,7 +174,7 @@
 <li><a href="https://github.com/rapporteket/sship/releases"><img src="https://img.shields.io/github/v/release/rapporteket/sship?sort=semver" alt="Version"></a></li>
 <li><a href="https://CRAN.R-project.org/package=sship"><img src="https://www.r-pkg.org/badges/version/sship" alt="CRAN status"></a></li>
 <li><a href="https://github.com/Rapporteket/sship/actions"><img src="https://github.com/Rapporteket/sship/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/gh/Rapporteket/sship?branch=main"><img src="https://codecov.io/gh/Rapporteket/sship/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://app.codecov.io/gh/Rapporteket/sship?branch=main"><img src="https://app.codecov.io/gh/Rapporteket/sship/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="Lifecycle: maturing"></a></li>
 <li><a href="https://github.com/rapporteket/sship/issues"><img src="https://img.shields.io/github/issues/rapporteket/sship.svg" alt="GitHub open issues"></a></li>
 <li><a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a></li>
