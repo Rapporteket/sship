@@ -140,7 +140,8 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
             key = enc_filename(file.path(wd, "key")),
             iv = file.path(wd, "iv"),
             tarfile = file.path(dirname(filename),
-                                paste0(basename(filename), "__", stamp, ".tar.gz")))
+                                paste0(basename(filename), "__",
+                                       stamp, ".tar.gz")))
 
   writeBin(blob, f$blob)
   writeBin(ciphertext, f$key)
@@ -159,7 +160,7 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
   unlink(wd)
   file.remove(wd)
 
-  message(paste("Content encrypted and ready for shipment:", f$tarfile))
+  message(paste("sship: Content encrypted and ready for shipment:", f$tarfile))
 
   invisible(f$tarfile)
 

@@ -1,3 +1,7 @@
+# sship 0.7.3
+
+* messages from functions now explicit on their origin (sship) ([#25](https://github.com/Rapporteket/sship/pull/25))
+
 # sship 0.7.2
 
 * effort circumventing problem in older versions of R archiving single files using internal implementation of tar() ([#24](https://github.com/Rapporteket/sship/pull/24)) 
