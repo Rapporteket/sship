@@ -25,6 +25,7 @@ Imports:
     RCurl,
     yaml
 Suggests: 
+    httptest,
     httpuv,
     rmarkdown,
     testthat (>= 2.1.0)
