@@ -1,3 +1,7 @@
+# sship 0.7.4
+
+* mocking tests calling the github api ([#26](https://github.com/Rapporteket/sship/pull/26))
+
 # sship 0.7.3
 
 * messages from functions now explicit on their origin (sship) ([#25](https://github.com/Rapporteket/sship/pull/25))
