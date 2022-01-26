@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,18 +40,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -77,7 +73,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/Rapporteket/sship/">
+  <a href="https://github.com/Rapporteket/sship/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -98,44 +94,44 @@
       <h1 data-toc-skip>An overview of sship</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Rapporteket/sship/blob/master/vignettes/overview.Rmd"><code>vignettes/overview.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Rapporteket/sship/blob/HEAD/vignettes/overview.Rmd" class="external-link"><code>vignettes/overview.Rmd</code></a></small>
       <div class="hidden name"><code>overview.Rmd</code></div>
 
     </div>
 
     
     
-<div id="two-use-cases" class="section level2">
-<h2 class="hasAnchor">
-<a href="#two-use-cases" class="anchor"></a>Two use cases</h2>
+<div class="section level2">
+<h2 id="two-use-cases">Two use cases<a class="anchor" aria-label="anchor" href="#two-use-cases"></a>
+</h2>
 <ol style="list-style-type: decimal">
 <li>Two colleagues working on the same project need to exchange files containing data that have to kept secret. Both benefit from keeping their workflow within R. They are not able to make a secure transfer of such files in cleartext</li>
 <li>A person need regular updates of secret data from a centralized data source. At the source automated R processes can be run to transfer files to that person. There is no methods available to make a secure transfer of such files in cleartext</li>
 </ol>
 <p>For both of the above use cases <em>sship</em> can be applied as a tool to obtain a secure transfer of files.</p>
 </div>
-<div id="summary-of-how-sship-works" class="section level2">
-<h2 class="hasAnchor">
-<a href="#summary-of-how-sship-works" class="anchor"></a>Summary of how <em>sship</em> works</h2>
+<div class="section level2">
+<h2 id="summary-of-how-sship-works">Summary of how <em>sship</em> works<a class="anchor" aria-label="anchor" href="#summary-of-how-sship-works"></a>
+</h2>
 <p>This is a very brief summary of what <em>sship</em> does. A more detailed description of the methods, technology behind it and how to safely use it is found below.</p>
 <p>From within an R session a file is protected using strong encryption. After encryption the original content of the file will only be available to those holding the same key used during encryption. Hence, the encrypted file can now be distributed freely keeping its original content safeguarded. Obviously, the key to allow decryption of this file cannot be distributed “openly” which is a problem because any legitimate recipient of the file will need this key to unlock its content. The key itself is therefore also encrypted but by the use of a different key: the public part of a key pair that belongs only to the recipient. This makes sure that the original key can only be unlocked by the recipient’s private key. At this stage both the encrypted file and the encrypted key can be shared (openly) and only the recipient will be able to unlock the original content.</p>
 <p><em>sship</em> also provide tools for the recipient to aid decryption. However, <em>sship</em> is based on widely used and easy accessible key crypto-technology and the recipient may well apply other tools for decryption. R is therefore not a dependency forced upon recipients.</p>
 </div>
-<div id="details-on-methods-and-how-to-safely-apply-sship" class="section level2">
-<h2 class="hasAnchor">
-<a href="#details-on-methods-and-how-to-safely-apply-sship" class="anchor"></a>Details on methods and how to safely apply <em>sship</em>
+<div class="section level2">
+<h2 id="details-on-methods-and-how-to-safely-apply-sship">Details on methods and how to safely apply <em>sship</em><a class="anchor" aria-label="anchor" href="#details-on-methods-and-how-to-safely-apply-sship"></a>
 </h2>
-<div id="technical-measures-to-protect-content" class="section level3">
-<h3 class="hasAnchor">
-<a href="#technical-measures-to-protect-content" class="anchor"></a><a name="tech"></a>Technical measures to protect content</h3>
-<p>In <em>sship</em> a file is encrypted following a hybrid scheme: the content itself is encrypted applying a <a href="https://en.wikipedia.org/wiki/Symmetric-key_algorithm">symmetric key algorithm</a> using a disposable key. This key is in turn encrypted using <a href="https://en.wikipedia.org/wiki/Public-key_cryptography">public-key cryptography</a> with a public key provided by the recipient Here, the term “hybrid” refers to that both symmetric an asymmetric encryption systems are used, and the term “disposable” means that the key used in the symmetric key algorithm will only be applied once and never re-used for encryption of data. The public key is associated with a corresponding private key that is kept secret and only accessible by the person owning it (in contrast to the public key that can be shared freely). The encrypted file and encrypted key can now safely be shared openly. After receiving the encrypted files the recipient follow the reverse hybrid scheme: the encrypted “symmetric key” is decrypted applying the recipients private key and then the decrypted symmetric key is used to decrypt the file holding the original content.</p>
-<p>Method of encryption consists of generating a randomized 256 bit key every time data is to be encrypted. This key is then used to encrypt data following the <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">Advance Encryption Standard</a>. The recipients public key (that was generated using an RSA crypto system) is collected from his/hers user account at GitHub and used to asymmetrically encrypt the “symmetric key”. The encrypted data and encrypted key is then shipped to the recipient. For practical implementation of encryption and decryption as describe above the <a href="https://www.openssl.org/">OpenSSL cryptography library</a> is applied.</p>
-<p>This scheme ensures that data privacy are protected by <a href="https://www.keylength.com/">sufficiently strong encryption</a> also along the lines of the <a href="https://www.nsm.stat.no/globalassets/dokumenter/veiledninger/systemteknisk-sikkerhet/nsm-cryptographic-recommendations-juli19.pdf">recommendations by the Norwegian National Security Authority</a> and that decryption only can be performed by the recipient.</p>
+<div class="section level3">
+<h3 id="technical-measures-to-protect-content">
+<a name="tech"></a>Technical measures to protect content<a class="anchor" aria-label="anchor" href="#technical-measures-to-protect-content"></a>
+</h3>
+<p>In <em>sship</em> a file is encrypted following a hybrid scheme: the content itself is encrypted applying a <a href="https://en.wikipedia.org/wiki/Symmetric-key_algorithm" class="external-link">symmetric key algorithm</a> using a disposable key. This key is in turn encrypted using <a href="https://en.wikipedia.org/wiki/Public-key_cryptography" class="external-link">public-key cryptography</a> with a public key provided by the recipient Here, the term “hybrid” refers to that both symmetric an asymmetric encryption systems are used, and the term “disposable” means that the key used in the symmetric key algorithm will only be applied once and never re-used for encryption of data. The public key is associated with a corresponding private key that is kept secret and only accessible by the person owning it (in contrast to the public key that can be shared freely). The encrypted file and encrypted key can now safely be shared openly. After receiving the encrypted files the recipient follow the reverse hybrid scheme: the encrypted “symmetric key” is decrypted applying the recipients private key and then the decrypted symmetric key is used to decrypt the file holding the original content.</p>
+<p>Method of encryption consists of generating a randomized 256 bit key every time data is to be encrypted. This key is then used to encrypt data following the <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard" class="external-link">Advance Encryption Standard</a>. The recipients public key (that was generated using an RSA crypto system) is collected from his/hers user account at GitHub and used to asymmetrically encrypt the “symmetric key”. The encrypted data and encrypted key is then shipped to the recipient. For practical implementation of encryption and decryption as describe above the <a href="https://www.openssl.org/" class="external-link">OpenSSL cryptography library</a> is applied.</p>
+<p>This scheme ensures that data privacy are protected by <a href="https://www.keylength.com/" class="external-link">sufficiently strong encryption</a> also along the lines of the <a href="https://www.nsm.stat.no/globalassets/dokumenter/veiledninger/systemteknisk-sikkerhet/nsm-cryptographic-recommendations-juli19.pdf" class="external-link">recommendations by the Norwegian National Security Authority</a> and that decryption only can be performed by the recipient.</p>
 </div>
-<div id="organizational-measures" class="section level3">
-<h3 class="hasAnchor">
-<a href="#organizational-measures" class="anchor"></a>Organizational measures</h3>
-<p>Technical measures alone do not guarantee a safe exchange of secrets. The crucial part of applying <em>sship</em> is the exchange of the public key from the recipient to the person or entity that do the encryption (the provider). It is paramount that the recipient is authenticated to the provider. In other words, the provider must be absolutely sure that the public key used belongs to the recipient, and no one else. <strong>If this is not the case <em>sship</em> cannot and should not be used for any exchange of secrets!</strong> <em>sship</em> collects the public key from an external and open repository based on a user id uniquely defining the recipient (and his or hers public key) at this repository. Such repositories must provide means of authentication (of the recipient) that allows only the recipient to add or alter user profile content such as for instance public keys. In general authentication based on a username and password is not sufficient: multi-factor authentication of users should be enforced at the repository providing public keys to <em>sship</em>. In addition, both the provider and recipient should be part of the same organizational structure at the repository to make sure that they are both under the same “governance” with respect to user management. Currently, <em>sship</em> only supports <a href="https://github.com">GitHub</a> as a repository for public keys. It allows for both multi-factor authentication and relevant user management.</p>
+<div class="section level3">
+<h3 id="organizational-measures">Organizational measures<a class="anchor" aria-label="anchor" href="#organizational-measures"></a>
+</h3>
+<p>Technical measures alone do not guarantee a safe exchange of secrets. The crucial part of applying <em>sship</em> is the exchange of the public key from the recipient to the person or entity that do the encryption (the provider). It is paramount that the recipient is authenticated to the provider. In other words, the provider must be absolutely sure that the public key used belongs to the recipient, and no one else. <strong>If this is not the case <em>sship</em> cannot and should not be used for any exchange of secrets!</strong> <em>sship</em> collects the public key from an external and open repository based on a user id uniquely defining the recipient (and his or hers public key) at this repository. Such repositories must provide means of authentication (of the recipient) that allows only the recipient to add or alter user profile content such as for instance public keys. In general authentication based on a username and password is not sufficient: multi-factor authentication of users should be enforced at the repository providing public keys to <em>sship</em>. In addition, both the provider and recipient should be part of the same organizational structure at the repository to make sure that they are both under the same “governance” with respect to user management. Currently, <em>sship</em> only supports <a href="https://github.com" class="external-link">GitHub</a> as a repository for public keys. It allows for both multi-factor authentication and relevant user management.</p>
 </div>
 </div>
   </div>
@@ -151,11 +147,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Are Edvardsen.</p>
+  <p></p>
+<p>Developed by Are Edvardsen.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -163,6 +161,8 @@
 
   
 
+
+  
 
   </body>
 </html>
