@@ -105,30 +105,8 @@ API rate limits.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## Get all branches of a repository. If the api rate limit is exceeded this</span></span>
 <span class="r-in"><span class="co">## function will return NULL and an informative message</span></span>
 <span class="r-in"><span class="fu">gh</span><span class="op">(</span><span class="st">"repos/Rapporteket/sship/branches"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       name                               commit.sha</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 gh-pages f4c545ff57c5fc6d76deb8b769af978d1f12c9db</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     main 95824e4f4b0e909c007ec093de1483b5e0beb8f5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                        commit.url</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 https://api.github.com/repos/Rapporteket/sship/commits/f4c545ff57c5fc6d76deb8b769af978d1f12c9db</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 https://api.github.com/repos/Rapporteket/sship/commits/95824e4f4b0e909c007ec093de1483b5e0beb8f5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   protected</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $path</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "repos/Rapporteket/sship/branches"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $response</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Response [https://api.github.com/repos/Rapporteket/sship/branches]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Date: 2022-01-28 13:14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Status: 200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Content-Type: application/json; charset=utf-8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Size: 400 B</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "github_api"</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> API rate limit is exceeded! You may have to wait until your limit is reset at 14:07:08 GMT or set env var GITHUB_PAT to your github personal access token to increase your limit.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">## helper functions that will normally not be used</span></span>
 <span class="r-in"><span class="fu">github_api</span><span class="op">(</span><span class="st">"/rate_limit"</span><span class="op">)</span></span>
@@ -139,13 +117,13 @@ API rate limits.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 60</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$remaining</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643376210</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643378828</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$used</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 60</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$resource</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "core"</span>
@@ -159,7 +137,7 @@ API rate limits.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643379298</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643379477</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$used</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
@@ -176,7 +154,7 @@ API rate limits.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643379298</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643379477</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$used</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
@@ -193,7 +171,7 @@ API rate limits.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643375758</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643375937</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$used</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
@@ -208,13 +186,13 @@ API rate limits.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 60</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$remaining</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643376210</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643378828</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$used</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 60</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$resource</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "core"</span>
@@ -226,11 +204,11 @@ API rate limits.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $response</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Response [https://api.github.com/rate_limit]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Date: 2022-01-28 13:14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Date: 2022-01-28 13:17</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Status: 200</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Content-Type: application/json; charset=utf-8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Size: 467 B</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"resources":{"core":{"limit":60,"remaining":40,"reset":1643376210,"used":20,...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Size: 465 B</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"resources":{"core":{"limit":60,"remaining":0,"reset":1643378828,"used":60,"...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "github_api"</span>
@@ -242,13 +220,13 @@ API rate limits.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 60</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$remaining</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643376210</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643378828</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$used</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 60</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$resource</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "core"</span>
@@ -262,7 +240,7 @@ API rate limits.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643379298</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643379477</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$used</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
@@ -279,7 +257,7 @@ API rate limits.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643379298</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643379477</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$used</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
@@ -296,7 +274,7 @@ API rate limits.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643375758</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643375937</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$used</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
@@ -311,13 +289,13 @@ API rate limits.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 60</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$remaining</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643376210</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1643378828</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$used</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 60</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$resource</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "core"</span>
@@ -329,11 +307,11 @@ API rate limits.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $response</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Response [https://api.github.com/rate_limit]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Date: 2022-01-28 13:14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Date: 2022-01-28 13:17</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Status: 200</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Content-Type: application/json; charset=utf-8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Size: 467 B</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"resources":{"core":{"limit":60,"remaining":40,"reset":1643376210,"used":20,...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Size: 465 B</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"resources":{"core":{"limit":60,"remaining":0,"reset":1643378828,"used":60,"...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "github_api"</span>
