@@ -1,6 +1,7 @@
 # sship 0.7.4
 
 * mocking tests calling the github api ([#26](https://github.com/Rapporteket/sship/pull/26))
+* gracefully exit api calls with an informative message when limit is exceeded ([#27](https://github.com/Rapporteket/sship/pull/27))
 
 # sship 0.7.3
 
