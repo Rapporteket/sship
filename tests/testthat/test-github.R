@@ -9,6 +9,11 @@ with_mock_dir("gh_api_response", {
       "github_api"
     )
   })
+
+  test_that("github_api provides an error when response is not json", {
+    expect_error(github_api("/zen"))
+  })
+
   test_that("github_api fun provides an error for none existing endpoint", {
     expect_error(github_api("none/existent/endpoint"), regexp = "404")
   })

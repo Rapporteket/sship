@@ -8,6 +8,14 @@
         "protected": false
     },
     {
+        "name": "graceful-api-limit",
+        "commit": {
+            "sha": "1a61e8563c0955a82cbbfd5ecc724d403be6a53d",
+            "url": "https://api.github.com/repos/Rapporteket/sship/commits/1a61e8563c0955a82cbbfd5ecc724d403be6a53d"
+        },
+        "protected": false
+    },
+    {
         "name": "main",
         "commit": {
             "sha": "460f4a0cb0d2b2f01918727909946054228c398f",
