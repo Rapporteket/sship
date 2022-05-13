@@ -9,3 +9,11 @@ test_that("a dsa key pair can be made", {
 test_that("an rsa key pair can be made", {
   expect_message(sship_keygen(directory = tempdir()))
 })
+
+test_that("existing keys will not be overwritten by default", {
+  expect_error(sship_keygen(directory = tempdir()))
+})
+
+test_that("existing files can be overwritten by force", {
+  expect_message(sship_keygen(directory = tempdir(), overwrite_existing = TRUE))
+})

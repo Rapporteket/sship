@@ -7,7 +7,8 @@
 sship_keygen(
   directory = normalizePath("~/.ssh"),
   type = "rsa",
-  password = NULL
+  password = NULL,
+  overwrite_existing = FALSE
 )
 }
 \arguments{
@@ -21,6 +22,9 @@ will be written. Default is \code{normalizePath("~/.ssh")}}
 \item{password}{Character string with password to protect the private key.
 Default value is NULL in which case the private key will not be protected
 by a password}
+
+\item{overwrite_existing}{Logical whether existing key files with the similar
+names should be overwritten. Set to FALSE by default.}
 }
 \value{
 Nothing will be returned from this function, but a message containing
@@ -32,5 +36,5 @@ sship. Please note that by default the private key will not be protected by
 a password.
 }
 \examples{
-sship_keygen(directory = tempdir())
+sship_keygen(directory = tempdir(), overwrite_existing = TRUE)
 }
