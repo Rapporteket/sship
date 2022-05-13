@@ -25,14 +25,30 @@
 keygen <- function(directory = normalizePath("~/.ssh"), type = "rsa",
                          password = NULL, overwrite_existing = FALSE) {
 
-  stopifnot(type %in% c("rsa", "dsa"))
-
-  if (type == "dsa") {
-    key <- openssl::dsa_keygen()
-  }
+  stopifnot(type %in% c("rsa", "dsa", "ecdsa", "x25519", "ed25519"))
 
   if (type == "rsa") {
     key <- openssl::rsa_keygen()
+  }
+
+  if (type == "dsa") {
+    warning("Only RSA keys allow a fully functional sship.")
+    key <- openssl::dsa_keygen()
+  }
+
+  if (type == "ecdsa") {
+    warning("Only RSA keys allow a fully functional sship.")
+    key <- openssl::ec_keygen()
+  }
+
+  if (type == "x25519") {
+    warning("Only RSA keys allow a fully functional sship.")
+    key <- openssl::x25519_keygen()
+  }
+
+  if (type == "ed25519") {
+    warning("Only RSA keys allow a fully functional sship.")
+    key <- openssl::ed25519_keygen()
   }
 
   keyfile <- file.path(directory, paste0("id_", type))
