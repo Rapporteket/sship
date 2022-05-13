@@ -99,16 +99,22 @@ get_pubkey <- function(pubkey_holder, pid) {
     keys <- strsplit(keys, "\n")[[1]]
 
     if (length(keys) > 1) {
-      warning("More than one key found. Only the first one will be used!")
+      warning("More than one key found. Only the first key will be used!")
     }
 
-    key <- keys[1]
+    ind <- vector()
+    for (i in 1:seq_len(length(keys))) {
+      key <- openssl::read_pubkey(keys[i])
+      ind[i] <- (attributes(key)$class[2] == "rsa")
+    }
+    keys <- keys[ind]
+
   }
-  if (!grepl("ssh-rsa", key)) {
-    stop("The key is not of type 'ssh-rsa'. Cannot go on!")
+  if (length(keys) < 1) {
+    stop("No RSA public key found. Cannot go on!")
   }
 
-  key
+  keys[1]
 }
 
 
