@@ -37,7 +37,7 @@ systems running R. Possible caveats may be the availability of the
 wd <- tempdir()
 
 # Make a private-public key pair named "id_rsa" and "id_rsa.pub"
-sship_keygen(directory = wd)
+keygen(directory = wd, type = "rsa", overwrite_existing = TRUE)
 
 # Make a secured (encrypted) file
 saveRDS(iris, file = file.path(wd, "secret.rds"), ascii = TRUE)

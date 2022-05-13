@@ -54,7 +54,7 @@
 #' saveRDS(iris, file = file.path(wd, secret_file_name), ascii = TRUE)
 #'
 #' # Make a private-public key pair named "id_rsa" and "id_rsa.pub"
-#' sship_keygen(directory = wd, type = "rsa", overwrite_existing = TRUE)
+#' keygen(directory = wd, type = "rsa", overwrite_existing = TRUE)
 #'
 #' # Load public key
 #' pubkey <- readLines(file.path(wd, "id_rsa.pub"))

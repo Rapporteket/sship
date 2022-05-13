@@ -20,9 +20,9 @@
 #' @export
 #'
 #' @examples
-#' sship_keygen(directory = tempdir(), overwrite_existing = TRUE)
+#' keygen(directory = tempdir(), overwrite_existing = TRUE)
 
-sship_keygen <- function(directory = normalizePath("~/.ssh"), type = "rsa",
+keygen <- function(directory = normalizePath("~/.ssh"), type = "rsa",
                          password = NULL, overwrite_existing = FALSE) {
 
   stopifnot(type %in% c("rsa", "dsa"))
