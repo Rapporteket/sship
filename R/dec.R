@@ -45,6 +45,8 @@
 
 dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
 
+  stopifnot(attributes(openssl::read_key(keyfile))$class[2] == "rsa")
+
   # proper paths to files
   tarfile <- normalizePath(tarfile)
   keyfile <- normalizePath(keyfile)
