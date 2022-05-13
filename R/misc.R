@@ -12,6 +12,8 @@
 #' @param password Character string with password to protect the private key.
 #' Default value is NULL in which case the private key will not be protected
 #' by a password
+#' @param overwrite_existing Logical whether existing key files with the similar
+#' names should be overwritten. Set to FALSE by default.
 #'
 #' @return Nothing will be returned from this function, but a message containing
 #' the directory where the keys were written is provided
@@ -21,7 +23,7 @@
 #' sship_keygen(directory = tempdir())
 
 sship_keygen <- function(directory = normalizePath("~/.ssh"), type = "rsa",
-                         password = NULL) {
+                         password = NULL, overwrite_existing = FALSE) {
 
   stopifnot(type %in% c("rsa", "dsa"))
 
@@ -35,6 +37,12 @@ sship_keygen <- function(directory = normalizePath("~/.ssh"), type = "rsa",
 
   keyfile <- file.path(directory, paste0("id_", type))
   pubkeyfile <- file.path(directory, paste0("id_", type, ".pub"))
+
+  if (any(file.exists(keyfile, pubkeyfile)) && !overwrite_existing) {
+    stop(paste("Key files exists! If you really want to overwrite existing",
+               "files please set the function argument 'overwrite_existing'",
+               "to TRUE. Terminating."))
+  }
 
   openssl::write_pem(key, keyfile, password = password)
   openssl::write_ssh(key$pubkey, pubkeyfile)
