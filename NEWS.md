@@ -1,3 +1,9 @@
+# sship 0.8.0
+
+* provide existing key files with some protection from being overwritten by the `keygen()` function ([#29](https://github.com/Rapporteket/sship/issues/29))
+* extend the types of asymmetric keys that can be created by the `keygen()` function
+* clarify the need for RSA type keys to fully utilize functions within this package
+
 # sship 0.7.4
 
 * mocking tests calling the github api ([#26](https://github.com/Rapporteket/sship/pull/26))
