@@ -99,15 +99,12 @@ get_pubkey <- function(pubkey_holder, pid) {
     keys <- strsplit(keys, "\n")[[1]]
 
     if (length(keys) > 1) {
-      warning("More than one key found. Only the first key will be used!")
+      warning(
+        "More than one key found. Only the first viable key will be used!"
+      )
     }
 
-    ind <- vector()
-    for (i in 1:seq_len(length(keys))) {
-      key <- openssl::read_pubkey(keys[i])
-      ind[i] <- (attributes(key)$class[2] == "rsa")
-    }
-    keys <- keys[ind]
+    keys <- pubkey_filter(keys, "rsa")
 
   }
   if (length(keys) < 1) {
