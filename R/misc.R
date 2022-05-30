@@ -5,10 +5,11 @@
 #' a password.
 #'
 #' @param directory Character string with path to directory where the key pair
-#' will be written. Default is \code{normalizePath("~/.ssh")}
-#' @param type Character string defining the key type. Must be one of "rsa"
-#' (default) or "dsa". Key lengths are set to the default as defined in the
-#' \emph{openssl}-package, currently 2048 and 1024, respectively
+#' will be written. Default is "~/.ssh".
+#' @param type Character string defining the key type. Must be one of
+#' \code{c("rsa", "dsa", "ecdsa", "x25519", "ed25529")}. Key lengths are set to
+#' the default as defined in the \emph{openssl}-package. If the key-pair is to
+#' be used with this package make sure that type is set to "rsa".
 #' @param password Character string with password to protect the private key.
 #' Default value is NULL in which case the private key will not be protected
 #' by a password
@@ -34,23 +35,23 @@ keygen <- function(directory = "~/.ssh", type = "rsa",
   }
 
   if (type == "dsa") {
-    warning("Only RSA keys allow a fully functional sship.")
     key <- openssl::dsa_keygen()
   }
 
   if (type == "ecdsa") {
-    warning("Only RSA keys allow a fully functional sship.")
     key <- openssl::ec_keygen()
   }
 
   if (type == "x25519") {
-    warning("Only RSA keys allow a fully functional sship.")
     key <- openssl::x25519_keygen()
   }
 
   if (type == "ed25519") {
-    warning("Only RSA keys allow a fully functional sship.")
     key <- openssl::ed25519_keygen()
+  }
+
+  if (type != "rsa") {
+    warning("Only RSA keys allow a fully functional sship.")
   }
 
   keyfile <- file.path(directory, paste0("id_", type))
@@ -58,7 +59,7 @@ keygen <- function(directory = "~/.ssh", type = "rsa",
 
   if (any(file.exists(keyfile, pubkeyfile)) && !overwrite_existing) {
     stop(paste("Key files exists! If you really want to overwrite existing",
-               "files please set the function argument 'overwrite_existing'",
+               "files, please set the function argument 'overwrite_existing'",
                "to TRUE. Terminating."))
   }
 

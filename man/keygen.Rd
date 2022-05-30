@@ -5,7 +5,7 @@
 \title{Make private-public key pair}
 \usage{
 keygen(
-  directory = normalizePath("~/.ssh"),
+  directory = "~/.ssh",
   type = "rsa",
   password = NULL,
   overwrite_existing = FALSE
@@ -13,11 +13,12 @@ keygen(
 }
 \arguments{
 \item{directory}{Character string with path to directory where the key pair
-will be written. Default is \code{normalizePath("~/.ssh")}}
+will be written. Default is "~/.ssh".}
 
-\item{type}{Character string defining the key type. Must be one of "rsa"
-(default) or "dsa". Key lengths are set to the default as defined in the
-\emph{openssl}-package, currently 2048 and 1024, respectively}
+\item{type}{Character string defining the key type. Must be one of
+\code{c("rsa", "dsa", "ecdsa", "x25519", "ed25529")}. Key lengths are set to
+the default as defined in the \emph{openssl}-package. If the key-pair is to
+be used with this package make sure that type is set to "rsa".}
 
 \item{password}{Character string with password to protect the private key.
 Default value is NULL in which case the private key will not be protected
