@@ -22,8 +22,10 @@
 #' @examples
 #' keygen(directory = tempdir(), overwrite_existing = TRUE)
 
-keygen <- function(directory = normalizePath("~/.ssh"), type = "rsa",
+keygen <- function(directory = "~/.ssh", type = "rsa",
                          password = NULL, overwrite_existing = FALSE) {
+
+  directory <- normalizePath(directory)
 
   stopifnot(type %in% c("rsa", "dsa", "ecdsa", "x25519", "ed25519"))
 
@@ -93,8 +95,8 @@ keygen <- function(directory = normalizePath("~/.ssh"), type = "rsa",
 
 pubkey_filter <- function(keys, type) {
 
-  pass <- function(x, y) attributes(openssl::read_pubkey(x))$class[2] == y
+  pass <- function(key, type) inherits(openssl::read_pubkey(key), type)
 
-  keys[vapply(keys, pass, logical(length = 1), y = type)]
+  keys[vapply(keys, pass, logical(length = 1), type = type)]
 }
 

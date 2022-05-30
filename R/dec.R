@@ -45,12 +45,12 @@
 
 dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
 
-  stopifnot(attributes(openssl::read_key(keyfile))$class[2] == "rsa")
-
-  # proper paths to files
   tarfile <- normalizePath(tarfile)
   keyfile <- normalizePath(keyfile)
   target_dir <- normalizePath(target_dir)
+
+  prikey <- openssl::read_key(keyfile)
+  stopifnot(inherits(prikey, "rsa"))
 
   init_dir <- getwd()
   on.exit(setwd(init_dir))
@@ -69,7 +69,6 @@ dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
   enc_key <- readBin(symkey_file, raw(), file.info(symkey_file)$size)
   enc_msg <- readBin(source_file, raw(), file.info(source_file)$size)
 
-  prikey <- openssl::read_key(keyfile)
   key <- openssl::rsa_decrypt(enc_key, prikey)
   msg <- openssl::aes_cbc_decrypt(enc_msg, key, iv)
 
