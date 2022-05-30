@@ -30,25 +30,13 @@ keygen <- function(directory = "~/.ssh", type = "rsa",
 
   stopifnot(type %in% c("rsa", "dsa", "ecdsa", "x25519", "ed25519"))
 
-  if (type == "rsa") {
-    key <- openssl::rsa_keygen()
-  }
-
-  if (type == "dsa") {
-    key <- openssl::dsa_keygen()
-  }
-
-  if (type == "ecdsa") {
-    key <- openssl::ec_keygen()
-  }
-
-  if (type == "x25519") {
-    key <- openssl::x25519_keygen()
-  }
-
-  if (type == "ed25519") {
-    key <- openssl::ed25519_keygen()
-  }
+  key <- switch (type,
+    rsa = openssl::rsa_keygen(),
+    dsa = openssl::dsa_keygen(),
+    ecdsa = openssl::ec_keygen(),
+    x25519 = openssl::x25519_keygen(),
+    ed25519 = openssl::ed25519_keygen()
+  )
 
   if (type != "rsa") {
     warning("Only RSA keys allow a fully functional sship.")
