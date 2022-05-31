@@ -106,12 +106,14 @@ get_pubkey <- function(pubkey_holder, pid) {
 
     keys <- pubkey_filter(keys, "rsa")
 
-  }
-  if (length(keys) < 1) {
-    stop("No RSA public key found. Cannot go on!")
+    if (length(keys) < 1) {
+      stop("No RSA public key found. Cannot go on!")
+    }
+
+    key <- keys[1]
   }
 
-  keys[1]
+  key
 }
 
 
