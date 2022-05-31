@@ -1,12 +1,16 @@
-defaultW <- getOption("warn")
-
 test_that("keygen returns error when type not known", {
   expect_error(keygen(directory = tempdir(), type = "abc"))
 })
 
 test_that("an rsa key pair can be made", {
   expect_message(keygen(directory = tempdir()))
+  expect_warning(
+    keygen(directory = tempdir(), type = "rsa", overwrite_existing = TRUE),
+    regexp = NA
+  )
 })
+
+defaultW <- getOption("warn")
 
 test_that("a dsa key pair can be made", {
   expect_warning(
