@@ -30,7 +30,7 @@ keygen <- function(directory = "~/.ssh", type = "rsa",
 
   stopifnot(type %in% c("rsa", "dsa", "ecdsa", "x25519", "ed25519"))
 
-  key <- switch (type,
+  key <- switch(type,
     rsa = openssl::rsa_keygen(),
     dsa = openssl::dsa_keygen(),
     ecdsa = openssl::ec_keygen(),
@@ -88,4 +88,3 @@ pubkey_filter <- function(keys, type) {
 
   keys[vapply(keys, pass, logical(length = 1), type = type)]
 }
-
