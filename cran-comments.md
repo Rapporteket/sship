@@ -14,6 +14,3 @@
 There were no ERRORs, WARNINGs or NOTEs.
 
 ## Comments
-As agreed to by CRAN maintainers this submission is to replace a previously cancelled submission.
-
-In this version calls to the github api from package functions terminates with an informative message rather than an error should the api request limit be exceeded. 
