@@ -1,16 +1,14 @@
 ## Test environments
 
-* Windows Server x64 (build 17763) (on github actions), R version 4.1.2 (2021-11-01)
-* macOS Big Sur 10.16 (on github actions), R version 4.1.2 (2021-11-01)
+* Windows Server x64 (build 20348) (on github actions), R version 4.2.1 (2022-06-23 ucrt)
+* macOS Big Sur 10.16 (on github actions), R version 4.2.1 (2022-06-23)
 * Ubuntu 18.04.6 LTS (on github actions), R version 3.6.3 (2020-02-29)
-* Ubuntu 18.04.6 LTS (on github actions), R version 4.0.5 (2021-03-31)
-* Ubuntu 20.04.3 LTS (on github actions), R version 4.1.2 (2021-11-01)
-* Ubuntu 20.04.3 LTS (on github actions), R Under development (unstable) (2022-01-26 r81569)
-* CRAN win-builder (x86_64-w64-mingw32), R version 4.1.2 (2021-11-01) and R Under development (unstable) (2022-01-27 r81578 ucrt)
-* i386-pc-solaris2.10 (32-bit) (on R-hub builder), R version 4.1.2 (2021-11-01)
-* aarch64-apple-darwin20 (64-bit), macOS 11.6 Big Sur (on R-hub builder), R version 4.1.2 (2021-11-01)
+* Ubuntu 18.04.6 LTS (on github actions), R version 4.1.3 (2022-03-10)
+* Ubuntu 20.04.4 LTS (on github actions), R version 4.2.1 (2022-06-23)
+* Ubuntu 20.04.4 LTS (on github actions), R Under development (unstable) (2022-07-26 r82626)
+* CRAN win-builder (x86_64-w64-mingw32), R version 4.2.1 (2022-06-23 ucrt)
+* CRAN win-builder (x86_64-w64-mingw32), R Under development (unstable) (2022-08-02 r82660 ucrt)
+* aarch64-apple-darwin20 (64-bit), macOS 11.6 Big Sur (on R-hub builder), R version 4.1.3 (2022-03-10)
 
 ## R CMD check results
 There were no ERRORs, WARNINGs or NOTEs.
-
-## Comments
