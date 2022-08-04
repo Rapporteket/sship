@@ -47,7 +47,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">sship</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -57,7 +57,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -101,19 +101,18 @@
 <div class="page-header"><h1 id="sship-">sship <img src="reference/figures/logo.svg" align="right" height="150"><a class="anchor" aria-label="anchor" href="#sship-"></a>
 </h1></div>
 <!-- badges: start -->
-
 <p>Convenient tools for exchanging files securely from within R. By encrypting the content safe passage of files (shipment) can be provided by common but insecure carriers such as ftp and email. Based on asymmetric cryptography no management of shared secrets is needed to make a secure shipment as long as authentic public keys are available. Public keys used for secure shipments may also be obtained from external providers as part of the overall process. Transportation of files will require that relevant services such as ftp and email servers are available. An overview of <em>sship</em> can be found in the article <a href="https://rapporteket.github.io/sship/articles/overview.html" class="external-link">An overview of sship</a>.</p>
 <div class="section level2">
 <h2 id="install">Install<a class="anchor" aria-label="anchor" href="#install"></a>
 </h2>
 <p>Install <em>sship</em> from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"sship"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"sship"</span><span class="op">)</span></span></code></pre></div>
 <p>You can install the latest release from <a href="https://github.com" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Rapporteket/sship@*release"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Rapporteket/sship@*release"</span><span class="op">)</span></span></code></pre></div>
 <p>In case you want the latest development version of <em>sship</em> use:</p>
-<pre><code><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Rapporteket/sship"</span><span class="op">)</span></code></pre>
+<pre><code><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Rapporteket/sship"</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="use">Use<a class="anchor" aria-label="anchor" href="#use"></a>
@@ -123,14 +122,14 @@
 <h3 id="make-a-secure-shipment">Make a secure shipment<a class="anchor" aria-label="anchor" href="#make-a-secure-shipment"></a>
 </h3>
 <p>A shipment is secured by applying the recipient’s public key. When content, recipient, provider of the recipient’s public key, method of transportation (vessel) and optionally an accompanying shipment declaration are all known the <em>sship</em> function can be applied to encrypt, wrap up and dispatch a shipment, all in one go:</p>
-<pre><code><span class="fu"><a href="reference/ship.html">sship</a></span><span class="op">(</span><span class="va">content</span>, <span class="va">recipient</span>, <span class="va">pubkey_holder</span>, <span class="va">vessel</span>, <span class="va">declaration</span><span class="op">)</span></code></pre>
+<pre><code><span><span class="fu"><a href="reference/ship.html">sship</a></span><span class="op">(</span><span class="va">content</span>, <span class="va">recipient</span>, <span class="va">pubkey_holder</span>, <span class="va">vessel</span>, <span class="va">declaration</span><span class="op">)</span></span></code></pre>
 <p>For the time being, the only valid provider of public keys is GitHub and the recipient must have a corresponding user account that contains a valid RSA public key. Further, the value of <em>recipient</em> will also be used to get local configuration that may be needed for the shipment to be made. Please refer to the the article <a href="https://rapporteket.github.io/sship/articles/ship.html" class="external-link">Make a secure shipment</a> and the <em>sship</em> function documentation for further details.</p>
 </div>
 <div class="section level3">
 <h3 id="extract-cargo-from-a-secure-shipment">Extract cargo from a secure shipment<a class="anchor" aria-label="anchor" href="#extract-cargo-from-a-secure-shipment"></a>
 </h3>
 <p>Unwrapping and decryption can be made using the function <code><a href="reference/dec.html">dec()</a></code> in this package by providing the path to the received tar-file and the recipient’s private key. It is also possible to specify where the content is to be stored after it is unwrapped and decrypted (if not specified, content will be stored in the working directory):</p>
-<pre><code><span class="fu"><a href="reference/dec.html">dec</a></span><span class="op">(</span><span class="va">tarfile</span>, <span class="va">keyfile</span>, <span class="va">target_dir</span><span class="op">)</span></code></pre>
+<pre><code><span><span class="fu"><a href="reference/dec.html">dec</a></span><span class="op">(</span><span class="va">tarfile</span>, <span class="va">keyfile</span>, <span class="va">target_dir</span><span class="op">)</span></span></code></pre>
 <p>For further details including a description of how the content of a secure shipment can be extracted without R please see the article <a href="https://rapporteket.github.io/sship/articles/extract.html" class="external-link">Extract cargo from a secure shipment</a>.</p>
 </div>
 </div>
@@ -170,19 +169,7 @@
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/rapporteket/sship/releases" class="external-link"><img src="https://img.shields.io/github/v/release/rapporteket/sship?sort=semver" alt="Version"></a></li>
-<li><a href="https://CRAN.R-project.org/package=sship" class="external-link"><img src="https://www.r-pkg.org/badges/version/sship" alt="CRAN status"></a></li>
-<li><a href="https://github.com/Rapporteket/sship/actions" class="external-link"><img src="https://github.com/Rapporteket/sship/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://app.codecov.io/gh/Rapporteket/sship?branch=main" class="external-link"><img src="https://app.codecov.io/gh/Rapporteket/sship/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="Lifecycle: maturing"></a></li>
-<li><a href="https://github.com/rapporteket/sship/issues" class="external-link"><img src="https://img.shields.io/github/issues/rapporteket/sship.svg" alt="GitHub open issues"></a></li>
-<li><a href="https://www.gnu.org/licenses/gpl-3.0" class="external-link"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a></li>
-<li><a href="https://rapporteket.github.io/sship/" class="external-link"><img src="https://img.shields.io/badge/Doc--grey.svg" alt="Doc"></a></li>
-</ul>
-</div>
+
 
   </div>
 </div>
@@ -195,7 +182,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

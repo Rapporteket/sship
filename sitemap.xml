@@ -43,9 +43,12 @@
     <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/ship.html</loc>
+    <loc>/reference/keygen.html</loc>
   </url>
   <url>
-    <loc>/reference/sship_keygen.html</loc>
+    <loc>/reference/pubkey_filter.html</loc>
+  </url>
+  <url>
+    <loc>/reference/ship.html</loc>
   </url>
 </urlset>

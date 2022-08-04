@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -50,7 +50,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -88,7 +88,7 @@
 
       
 
-      </header><script src="extract_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Extract cargo from a secure shipment</h1>
@@ -120,18 +120,18 @@
 </h2>
 <p>Install the latest version of the <em>sship</em> packages from the R command prompt:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Rapporteket/sship"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Rapporteket/sship"</span><span class="op">)</span></span></code></pre></div>
 <p>and load it into the R session:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/Rapporteket/sship" class="external-link">"sship"</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/Rapporteket/sship" class="external-link">"sship"</a></span><span class="op">)</span></span></code></pre></div>
 <p>Use the <code><a href="../reference/dec.html">dec()</a></code>-function to extract and decrypt the content:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/dec.html">dec</a></span><span class="op">(</span>tarfile <span class="op">=</span> <span class="st">"data.csv__20200101_081500.tar.gz"</span>,
-    keyfile <span class="op">=</span> <span class="st">"~/.ssh/id_rsa"</span>,
-    target_dir <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/dec.html">dec</a></span><span class="op">(</span>tarfile <span class="op">=</span> <span class="st">"data.csv__20200101_081500.tar.gz"</span>,</span>
+<span>    keyfile <span class="op">=</span> <span class="st">"~/.ssh/id_rsa"</span>,</span>
+<span>    target_dir <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span></code></pre></div>
 <p>From the example above the file <code>data.csv</code> will be written to the current working directory. Please use</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">?</span><span class="va">dec</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">dec</span></span></code></pre></div>
 <p>at the R prompt for more information.</p>
 </div>
 <div class="section level2">
@@ -157,12 +157,12 @@
 </li>
 </ul>
 <p>Below is an example of how <code>data.csv__20200101_081500.tar.gz</code> can be processed from a Bash shell (unix) command prompt. First, extract the archive:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">tar</span> -xvzf data.csv__20200101_081500.tar.gz</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xvzf</span> data.csv__20200101_081500.tar.gz</span></code></pre></div>
 <p>Then, decrypt the key by using the private key:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">openssl</span> rsautl -decrypt -inkey ~/.ssh/id_rsa -in key.enc -out key</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">openssl</span> rsautl <span class="at">-decrypt</span> <span class="at">-inkey</span> ~/.ssh/id_rsa <span class="at">-in</span> key.enc <span class="at">-out</span> key</span></code></pre></div>
 <p>Finally, decrypt the content to the file <code>data.csv</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">openssl</span> aes-256-cbc -d -in data.csv.enc -out data.csv \</span>
-<span id="cb7-2"><a href="#cb7-2"></a>-K <span class="va">$(</span><span class="fu">hexdump</span> -e <span class="st">'32/1 "%02x"'</span> key<span class="va">)</span> -iv <span class="va">$(</span><span class="fu">hexdump</span> -e <span class="st">'16/1 "%02x"'</span> iv<span class="va">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">openssl</span> aes-256-cbc <span class="at">-d</span> <span class="at">-in</span> data.csv.enc <span class="at">-out</span> data.csv <span class="dt">\</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>-K <span class="va">$(</span><span class="fu">hexdump</span> <span class="at">-e</span> <span class="st">'32/1 "%02x"'</span> key<span class="va">)</span> <span class="at">-iv</span> <span class="va">$(</span><span class="fu">hexdump</span> <span class="at">-e</span> <span class="st">'16/1 "%02x"'</span> iv<span class="va">)</span></span></code></pre></div>
 <p>In the above example both the <code>key</code> and <code>iv</code> files are binary. When using OpenSSL for decryption these have to be provided as strings of hexadecimal digits as can be seen by the use of inline <em>hexdump</em> conversion in the last command. Methods for conversion from binary to hex may vary between systems. It might also be worth noting that here AES uses a key directly and not a (hash of some) passphrase that often will be the case elsewhere.</p>
 </div>
   </div>
@@ -184,7 +184,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

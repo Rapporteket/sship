@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -64,22 +64,25 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.7.4" id="sship-074">sship 0.7.4<a class="anchor" aria-label="anchor" href="#sship-074"></a></h2>
+<h2 class="page-header" data-toc-text="0.8.0" id="sship-080">sship 0.8.0<a class="anchor" aria-label="anchor" href="#sship-080"></a></h2>
+<ul><li>provide existing key files with some protection from being overwritten by the <code><a href="../reference/keygen.html">keygen()</a></code> function (<a href="https://github.com/Rapporteket/sship/issues/29" class="external-link">#29</a>)</li>
+<li>extend the types of asymmetric keys that can be created by the <code><a href="../reference/keygen.html">keygen()</a></code> function</li>
+<li>clarify the need for RSA type keys to fully utilize functions within this package</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.7.4" id="sship-074">sship 0.7.4<small>2022-01-31</small><a class="anchor" aria-label="anchor" href="#sship-074"></a></h2>
 <ul><li>mocking tests calling the github api (<a href="https://github.com/Rapporteket/sship/pull/26" class="external-link">#26</a>)</li>
 <li>gracefully exit api calls with an informative message when limit is exceeded (<a href="https://github.com/Rapporteket/sship/pull/27" class="external-link">#27</a>)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.7.3" id="sship-073">sship 0.7.3<small>2021-11-25</small><a class="anchor" aria-label="anchor" href="#sship-073"></a></h2>
-<ul><li>messages from functions now explicit on their origin (sship) (<a href="https://github.com/Rapporteket/sship/pull/25" class="external-link">#25</a>)</li>
-</ul></div>
+<ul><li>messages from functions now explicit on their origin (sship) (<a href="https://github.com/Rapporteket/sship/pull/25" class="external-link">#25</a>)</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.7.2" id="sship-072">sship 0.7.2<a class="anchor" aria-label="anchor" href="#sship-072"></a></h2>
-<ul><li>effort circumventing problem in older versions of R archiving single files using internal implementation of tar() (<a href="https://github.com/Rapporteket/sship/pull/24" class="external-link">#24</a>)</li>
-</ul></div>
+<ul><li>effort circumventing problem in older versions of R archiving single files using internal implementation of tar() (<a href="https://github.com/Rapporteket/sship/pull/24" class="external-link">#24</a>)</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.7.1" id="sship-071">sship 0.7.1<small>2021-09-08</small><a class="anchor" aria-label="anchor" href="#sship-071"></a></h2>
-<ul><li>fixed error making file archive on Solaris: now using R internal implementation of tar() (<a href="https://github.com/Rapporteket/sship/pull/23" class="external-link">#23</a>)</li>
-</ul></div>
+<ul><li>fixed error making file archive on Solaris: now using R internal implementation of tar() (<a href="https://github.com/Rapporteket/sship/pull/23" class="external-link">#23</a>)</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.7.0" id="sship-070">sship 0.7.0<small>2021-09-07</small><a class="anchor" aria-label="anchor" href="#sship-070"></a></h2>
 <ul><li>adjustments and improvements for proper release (<a href="https://github.com/Rapporteket/sship/pull/20" class="external-link">#20</a>)</li>
@@ -87,12 +90,10 @@
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.6.0" id="sship-060">sship 0.6.0<a class="anchor" aria-label="anchor" href="#sship-060"></a></h2>
-<ul><li>added option for encryption using a local public key (<a href="https://github.com/Rapporteket/sship/pull/19" class="external-link">#19</a>)</li>
-</ul></div>
+<ul><li>added option for encryption using a local public key (<a href="https://github.com/Rapporteket/sship/pull/19" class="external-link">#19</a>)</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.2" id="sship-052">sship 0.5.2<a class="anchor" aria-label="anchor" href="#sship-052"></a></h2>
-<ul><li>fixed file path bug in file decryption (<a href="https://github.com/Rapporteket/sship/pull/18" class="external-link">#18</a>)</li>
-</ul></div>
+<ul><li>fixed file path bug in file decryption (<a href="https://github.com/Rapporteket/sship/pull/18" class="external-link">#18</a>)</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.1" id="sship-051">sship 0.5.1<a class="anchor" aria-label="anchor" href="#sship-051"></a></h2>
 <ul><li>move ci from travis to github actions</li>
@@ -100,12 +101,10 @@
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5" id="sship-05">sship 0.5<a class="anchor" aria-label="anchor" href="#sship-05"></a></h2>
-<ul><li>add simple use of pubkey from local file</li>
-</ul></div>
+<ul><li>add simple use of pubkey from local file</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.4" id="sship-04">sship 0.4<a class="anchor" aria-label="anchor" href="#sship-04"></a></h2>
-<ul><li>adding sftp as new shipment method with private/public key authentication</li>
-</ul></div>
+<ul><li>adding sftp as new shipment method with private/public key authentication</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.3" id="sship-03">sship 0.3<a class="anchor" aria-label="anchor" href="#sship-03"></a></h2>
 <ul><li>adding function for making (ssh) key pairs</li>
@@ -120,8 +119,7 @@
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1" id="sship-01">sship 0.1<a class="anchor" aria-label="anchor" href="#sship-01"></a></h2>
-<ul><li>Documentation (ambitions) and most of the bare bone functions</li>
-</ul></div>
+<ul><li>Documentation (ambitions) and most of the bare bone functions</li></ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -136,7 +134,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
