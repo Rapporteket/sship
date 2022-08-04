@@ -22,7 +22,7 @@
 #' 'ssh' or 'ftp'.
 #' @param declaration Character string: the name of an empty file to be
 #' associated with shipment of the cargo itself and dispatched immediately
-#' after. The most likely usecase is for the recipient to check for this file
+#' after. The most likely use case is for the recipient to check for this file
 #' being present before picking up the cargo itself. Default value is \code{""}
 #' in which case no declaration will be used.
 #' @param cargo Character vector: all items associated with the current

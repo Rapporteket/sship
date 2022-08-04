@@ -8,28 +8,31 @@
 #' (un)tar-function and how binary streams/files are treated.
 #'
 #' @param tarfile Character string providing full path to the gzip-compressed
-#' tarball holding the shipment payload, including encrypted files
+#'   tarball holding the shipment payload, including encrypted files.
 #' @param keyfile Character string providing the full path to the private RSA
-#' key to be used for decryption of the encrypted key that is part of the
-#' shipment. Default value is set to \code{~/.ssh/id_rsa} which is the usual
-#' path for unix type operating systems.
+#'   key to be used for decryption of the encrypted key that is part of the
+#'   shipment. Default value is set to \code{~/.ssh/id_rsa} which is the usual
+#'   path for unix type operating systems.
 #' @param target_dir Character string providing the full path to where the
-#' decrypted file is to be written. Defaults to the current directory
-#' \code{"."}, \emph{e.g.} where this function is being called from.
+#'   decrypted file is to be written. Defaults to the current directory
+#'   \code{"."}, \emph{e.g.} where this function is being called from.
 #'
 #' @return Invisibly a character string providing the file path of the
-#' decrypted file.
+#'   decrypted file.
 #'
 #' @seealso \link{enc}
 #' @export
 #' @examples
-#' # Make temporary workspace
+#' # Please note that these examples will write files to a local temporary
+#' # directory.
+#'
+#' ## Make temporary workspace
 #' wd <- tempdir()
 #'
-#' # Make a private-public key pair named "id_rsa" and "id_rsa.pub"
-#' sship_keygen(directory = wd)
+#' ## Make a private-public key pair named "id_rsa" and "id_rsa.pub"
+#' keygen(directory = wd, type = "rsa", overwrite_existing = TRUE)
 #'
-#' # Make a secured (encrypted) file
+#' ## Make a secured (encrypted) file
 #' saveRDS(iris, file = file.path(wd, "secret.rds"), ascii = TRUE)
 #' pubkey <- readLines(file.path(wd, "id_rsa.pub"))
 #' secure_secret_file <-
@@ -37,7 +40,7 @@
 #'       pubkey_holder = NULL,
 #'       pubkey = pubkey)
 #'
-#' # Decrypt secured file using the private key
+#' ## Decrypt secured file using the private key
 #' secret_file <-
 #'   dec(tarfile = secure_secret_file,
 #'       keyfile = file.path(wd, "id_rsa"),
@@ -45,10 +48,12 @@
 
 dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
 
-  # proper paths to files
   tarfile <- normalizePath(tarfile)
   keyfile <- normalizePath(keyfile)
   target_dir <- normalizePath(target_dir)
+
+  prikey <- openssl::read_key(keyfile)
+  stopifnot(inherits(prikey, "rsa"))
 
   init_dir <- getwd()
   on.exit(setwd(init_dir))
@@ -67,7 +72,6 @@ dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
   enc_key <- readBin(symkey_file, raw(), file.info(symkey_file)$size)
   enc_msg <- readBin(source_file, raw(), file.info(source_file)$size)
 
-  prikey <- openssl::read_key(keyfile)
   key <- openssl::rsa_decrypt(enc_key, prikey)
   msg <- openssl::aes_cbc_decrypt(enc_msg, key, iv)
 

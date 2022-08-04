@@ -22,6 +22,13 @@ s <- httpuv::startServer(conf$host, port = conf$port,
 tarfile <- enc(filename = content_file, pubkey_holder = "local", pid = pid)
 file.remove(content_file)
 
+test_that("decryptions errors when private key is not type rsa", {
+  expect_error(dec(tarfile, openssl::dsa_keygen()))
+  expect_error(dec(tarfile, openssl::ec_keygen()))
+  expect_error(dec(tarfile, openssl::x25519_keygen()))
+  expect_error(dec(tarfile, openssl::ed25529_keygen()))
+})
+
 test_that("decryption function returns invisible", {
   expect_invisible(dec(tarfile, keyfile))
 })

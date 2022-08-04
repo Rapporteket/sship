@@ -8,7 +8,7 @@ dec(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".")
 }
 \arguments{
 \item{tarfile}{Character string providing full path to the gzip-compressed
-tarball holding the shipment payload, including encrypted files}
+tarball holding the shipment payload, including encrypted files.}
 
 \item{keyfile}{Character string providing the full path to the private RSA
 key to be used for decryption of the encrypted key that is part of the
@@ -21,7 +21,7 @@ decrypted file is to be written. Defaults to the current directory
 }
 \value{
 Invisibly a character string providing the file path of the
-decrypted file.
+  decrypted file.
 }
 \description{
 This function tries to reverse the process of \link{enc} and hence depend on
@@ -33,13 +33,16 @@ systems running R. Possible caveats may be the availability of the
 (un)tar-function and how binary streams/files are treated.
 }
 \examples{
-# Make temporary workspace
+# Please note that these examples will write files to a local temporary
+# directory.
+
+## Make temporary workspace
 wd <- tempdir()
 
-# Make a private-public key pair named "id_rsa" and "id_rsa.pub"
-sship_keygen(directory = wd)
+## Make a private-public key pair named "id_rsa" and "id_rsa.pub"
+keygen(directory = wd, type = "rsa", overwrite_existing = TRUE)
 
-# Make a secured (encrypted) file
+## Make a secured (encrypted) file
 saveRDS(iris, file = file.path(wd, "secret.rds"), ascii = TRUE)
 pubkey <- readLines(file.path(wd, "id_rsa.pub"))
 secure_secret_file <-
@@ -47,7 +50,7 @@ secure_secret_file <-
       pubkey_holder = NULL,
       pubkey = pubkey)
 
-# Decrypt secured file using the private key
+## Decrypt secured file using the private key
 secret_file <-
   dec(tarfile = secure_secret_file,
       keyfile = file.path(wd, "id_rsa"),

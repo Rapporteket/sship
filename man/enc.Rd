@@ -18,18 +18,18 @@ get_pubkey(pubkey_holder, pid)
 enc(filename, pubkey_holder, pid, pubkey = NULL)
 }
 \arguments{
-\item{filename}{string with fully qualified path to a file}
+\item{filename}{Character string with fully qualified path to a file.}
 
-\item{pubkey_holder}{string defining the provider of the public key used for
-encryption of the symmetric key. Currently, 'github' is the only valid
-pubkey holder. If a local pubkey is to be used (see parameter \code{pubkey},
-\code{pubkey_holder} may be set to NULL or some other value.}
+\item{pubkey_holder}{Character string defining the provider of the public key
+used for encryption of the symmetric key. Currently, 'github' is the only
+valid pubkey holder. If a local pubkey is to be used (see parameter
+\code{pubkey}, \code{pubkey_holder} may be set to NULL or some other value.}
 
-\item{pid}{string uniquely defining the user at 'pubkey_holder' who is also
-the owner of the  public key}
+\item{pid}{Character string uniquely defining the user at
+\code{pubkey_holder} who is also the owner of the  public key.}
 
-\item{pubkey}{String representing a valid public key. Default is NULL in
-which case the key will be obtained as per \code{pubkey_holder}.}
+\item{pubkey}{Character string representing a valid public key. Default is
+NULL in which case the key will be obtained as per \code{pubkey_holder}.}
 }
 \value{
 Character string providing a filename or a key
@@ -68,20 +68,23 @@ openssl aes-256-cbc -d -in data.csv.enc -out data.csv \
 }
 }
 \examples{
-# Define temporary working directory and a secret file name
+# Please note that these examples will write files to a local temporary
+# directory.
+
+## Define temporary working directory and a secret file name
 wd <- tempdir()
 secret_file_name <- "secret.rds"
 
-# Add content to the secret file
+## Add content to the secret file
 saveRDS(iris, file = file.path(wd, secret_file_name), ascii = TRUE)
 
-# Make a private-public key pair named "id_rsa" and "id_rsa.pub"
-sship_keygen(directory = wd)
+## Make a private-public key pair named "id_rsa" and "id_rsa.pub"
+keygen(directory = wd, type = "rsa", overwrite_existing = TRUE)
 
-# Load public key
+## Load public key
 pubkey <- readLines(file.path(wd, "id_rsa.pub"))
 
-# Make a secured file (ready for shipment)
+## Make a secured file (ready for shipment)
 secure_secret_file <- enc(filename = file.path(wd, "secret.rds"),
                           pubkey_holder = NULL, pubkey = pubkey)
 }

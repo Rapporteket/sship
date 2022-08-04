@@ -36,7 +36,7 @@ key <- openssl::dsa_keygen()
 writeLines(openssl::write_ssh(key$pubkey), pubkey_filepath, sep = "")
 test_that("error is provided when none RSA key", {
   expect_error(enc(content_file, pubkey_holder = "local", pid = pid),
-               regexp = "ssh-rsa")
+               regexp = "No RSA public key found")
 })
 file.remove(pubkey_filepath)
 
