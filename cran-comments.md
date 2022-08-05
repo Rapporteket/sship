@@ -5,9 +5,9 @@
 * Ubuntu 18.04.6 LTS (on github actions), R version 3.6.3 (2020-02-29)
 * Ubuntu 18.04.6 LTS (on github actions), R version 4.1.3 (2022-03-10)
 * Ubuntu 20.04.4 LTS (on github actions), R version 4.2.1 (2022-06-23)
-* Ubuntu 20.04.4 LTS (on github actions), R Under development (unstable) (2022-07-26 r82626)
+* Ubuntu 20.04.4 LTS (on github actions), R Under development (unstable) (2022-08-04 r82676)
 * CRAN win-builder (x86_64-w64-mingw32), R version 4.2.1 (2022-06-23 ucrt)
-* CRAN win-builder (x86_64-w64-mingw32), R Under development (unstable) (2022-08-02 r82660 ucrt)
+* CRAN win-builder (x86_64-w64-mingw32), R Under development (unstable) (2022-08-04 r82676 ucrt)
 * aarch64-apple-darwin20 (64-bit), macOS 11.6 Big Sur (on R-hub builder), R version 4.1.3 (2022-03-10)
 
 ## R CMD check results
