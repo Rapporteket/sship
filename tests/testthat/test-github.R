@@ -40,3 +40,18 @@ with_mock_dir("gh_api_response_overrated", {
     expect_null(gh("repos/Rapporteket/sship/branches"))
   })
 })
+
+test_that("helper function handles GITHUB_PAT env var", {
+  with_envvar(
+    new = c("GITHUB_PAT" = ""), {
+      expect_null(env_pat(NULL))
+      expect_equal(env_pat("PAT"), "PAT")
+    }
+  )
+  with_envvar(
+    new = c("GITHUB_PAT" = "123"), {
+      expect_equal(env_pat(NULL), "123")
+      expect_equal(env_pat("PAT"), "PAT")
+    }
+  )
+})

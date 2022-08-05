@@ -8,14 +8,17 @@
 #'
 #' @param path Character string with path to the API resource.
 #' @param proxy_url Character string defining a network proxy in the form
-#' host:port. Default is NULL in which case the API call will not use a proxy.
-#'
+#'   host:port. Default is NULL in which case the API call will not use a proxy.
+#' @param token Character string holding a github personal access token (PAT)
+#'   to be used for requests that requires authorization. Default value is NULL
+#'   in which case the request will be unauthorized unless PAT can be obtained
+#'   from the environmental variable GITHUB_PAT.
 #' @return A list of class github_api containing the parsed content, API
-#' resource path and the response object. For \code{rate_limit()} the path is
-#' always "/rate_limit" and can hence be used to detect if the limit is exceeded
-#' (without being counted as a request itself). If the allowed API rate is
-#' exceeded \code{gh()} will return a message stating the fact and simple
-#' suggestions on how to remedy the problem.
+#'   resource path and the response object. For \code{rate_limit()} the path is
+#'   always "/rate_limit" and can hence be used to detect if the limit is
+#'   exceeded (without being counted as a request itself). If the allowed API
+#'   rate is exceeded \code{gh()} will return a message stating the fact and
+#'   simple suggestions on how to remedy the problem.
 #'
 #' @name github
 #' @aliases gh github_api rate_limit
@@ -32,26 +35,35 @@ NULL
 
 #' @rdname github
 #' @export
-gh <- function(path, proxy_url = NULL) {
+gh <- function(path, proxy_url = NULL, token = NULL) {
+
+  token <- env_pat(token)
 
   # simply end with NULL and an informative message if rate limit is exceeded
-  rl <- rate_limit(proxy_url = proxy_url)
+  rl <- rate_limit(proxy_url, token)
   if (rl$content$rate$remaining < 1) {
     reset <- as.POSIXct(rl$content$rate$reset, origin = "1970-01-01")
     message("API rate limit is exceeded! You may have to wait until your",
             " limit is reset at ", strftime(reset, "%H:%M:%S"), " GMT ",
-            "or set env var GITHUB_PAT to your github ",
+            "or set env var GITHUB_PAT (or the token argument) to your github ",
             "personal access token to increase your limit.")
     return(NULL)
   }
 
-  github_api(path, proxy_url)
+  github_api(path, proxy_url, token)
 }
 
 #' @rdname github
 #' @export
-github_api <- function(path, proxy_url = NULL) {
+github_api <- function(path, proxy_url = NULL, token = NULL) {
 
+  token <- env_pat(token)
+
+  if (is.null(token)) {
+    head <- NULL
+  } else {
+    head <- c(Authorization = paste("token", token))
+  }
   url <- httr::modify_url("https://api.github.com", path = path)
   user_agent <- httr::user_agent("https://github.com/Rapporteket/sship")
 
@@ -59,7 +71,7 @@ github_api <- function(path, proxy_url = NULL) {
     httr::set_config(httr::use_proxy(url = proxy_url))
   }
 
-  resp <- httr::GET(url, user_agent)
+  resp <- httr::GET(url, user_agent, httr::add_headers(.headers = head))
   if (httr::http_type(resp) != "application/json") {
     stop("API did not return json", call. = FALSE)
   }
@@ -91,7 +103,21 @@ github_api <- function(path, proxy_url = NULL) {
 
 #' @rdname github
 #' @export
-rate_limit <- function(proxy_url = NULL) {
+rate_limit <- function(proxy_url = NULL, token = NULL) {
 
-  github_api("/rate_limit", proxy_url)
+  token <- env_pat(token)
+
+  github_api("/rate_limit", proxy_url, token)
+}
+
+#' @rdname github
+#' @noRd
+#' @keywords internal
+env_pat <- function(token) {
+
+  if (is.null(token) && Sys.getenv("GITHUB_PAT") != "") {
+    token <- Sys.getenv("GITHUB_PAT")
+  }
+
+  token
 }

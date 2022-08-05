@@ -28,7 +28,8 @@ Suggests:
     httptest,
     httpuv,
     rmarkdown,
-    testthat (>= 2.1.0)
+    testthat (>= 2.1.0),
+    withr
 RoxygenNote: 7.1.2
 URL: https://github.com/Rapporteket/sship
 BugReports: https://github.com/Rapporteket/sship/issues
