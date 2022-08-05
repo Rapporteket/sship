@@ -1,1 +1,1 @@
-Anything added dilutes everything else.
+Non-blocking is better than blocking.

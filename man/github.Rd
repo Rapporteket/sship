@@ -7,25 +7,30 @@
 \alias{rate_limit}
 \title{Make calls to the github API}
 \usage{
-gh(path, proxy_url = NULL)
+gh(path, proxy_url = NULL, token = NULL)
 
-github_api(path, proxy_url = NULL)
+github_api(path, proxy_url = NULL, token = NULL)
 
-rate_limit(proxy_url = NULL)
+rate_limit(proxy_url = NULL, token = NULL)
 }
 \arguments{
 \item{path}{Character string with path to the API resource.}
 
 \item{proxy_url}{Character string defining a network proxy in the form
 host:port. Default is NULL in which case the API call will not use a proxy.}
+
+\item{token}{Character string holding a github personal access token (PAT)
+to be used for requests that requires authorization. Default value is NULL
+in which case the request will be unauthorized unless PAT can be obtained
+from the environmental variable GITHUB_PAT.}
 }
 \value{
 A list of class github_api containing the parsed content, API
-resource path and the response object. For \code{rate_limit()} the path is
-always "/rate_limit" and can hence be used to detect if the limit is exceeded
-(without being counted as a request itself). If the allowed API rate is
-exceeded \code{gh()} will return a message stating the fact and simple
-suggestions on how to remedy the problem.
+  resource path and the response object. For \code{rate_limit()} the path is
+  always "/rate_limit" and can hence be used to detect if the limit is
+  exceeded (without being counted as a request itself). If the allowed API
+  rate is exceeded \code{gh()} will return a message stating the fact and
+  simple suggestions on how to remedy the problem.
 }
 \description{
 Provides a structured list of the specified resource from the the github API.
