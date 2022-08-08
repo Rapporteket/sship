@@ -1,3 +1,7 @@
+# sship 0.8.0.9000
+
+
+
 # sship 0.8.0
 
 * allow authorized requests to the github api opening for re-use of functions in [rapbase](https://github.com/Rapporteket/rapbase) ([#37](https://github.com/Rapporteket/sship/pull/37)) 
