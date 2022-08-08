@@ -18,7 +18,7 @@ the conventions used there."><meta property="og:image" content="/logo.svg"><meta
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.7.4.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -71,28 +71,35 @@ the conventions used there.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dec</span><span class="op">(</span><span class="va">tarfile</span>, keyfile <span class="op">=</span> <span class="st">"~/.ssh/id_rsa"</span>, target_dir <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dec</span><span class="op">(</span><span class="va">tarfile</span>, keyfile <span class="op">=</span> <span class="st">"~/.ssh/id_rsa"</span>, target_dir <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>tarfile</dt>
 <dd><p>Character string providing full path to the gzip-compressed
-tarball holding the shipment payload, including encrypted files</p></dd>
+tarball holding the shipment payload, including encrypted files.</p></dd>
+
+
 <dt>keyfile</dt>
 <dd><p>Character string providing the full path to the private RSA
 key to be used for decryption of the encrypted key that is part of the
 shipment. Default value is set to <code>~/.ssh/id_rsa</code> which is the usual
 path for unix type operating systems.</p></dd>
+
+
 <dt>target_dir</dt>
 <dd><p>Character string providing the full path to where the
 decrypted file is to be written. Defaults to the current directory
 <code>"."</code>, <em>e.g.</em> where this function is being called from.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Invisibly a character string providing the file path of the
-decrypted file.</p>
+    
+
+<p>Invisibly a character string providing the file path of the
+  decrypted file.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -107,28 +114,31 @@ systems running R. Possible caveats may be the availability of the
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Make temporary workspace</span></span>
-<span class="r-in"><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Make a private-public key pair named "id_rsa" and "id_rsa.pub"</span></span>
-<span class="r-in"><span class="fu"><a href="sship_keygen.html">sship_keygen</a></span><span class="op">(</span>directory <span class="op">=</span> <span class="va">wd</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> sship: Key pair written to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpWq5mFJ</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Make a secured (encrypted) file</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">iris</span>, file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">wd</span>, <span class="st">"secret.rds"</span><span class="op">)</span>, ascii <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">pubkey</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">wd</span>, <span class="st">"id_rsa.pub"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">secure_secret_file</span> <span class="op">&lt;-</span></span>
-<span class="r-in">  <span class="fu"><a href="enc.html">enc</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">wd</span>, <span class="st">"secret.rds"</span><span class="op">)</span>,</span>
-<span class="r-in">      pubkey_holder <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span class="r-in">      pubkey <span class="op">=</span> <span class="va">pubkey</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> sship: Content encrypted and ready for shipment: /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpWq5mFJ/secret.rds__20220513_082557.tar.gz</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Decrypt secured file using the private key</span></span>
-<span class="r-in"><span class="va">secret_file</span> <span class="op">&lt;-</span></span>
-<span class="r-in">  <span class="fu">dec</span><span class="op">(</span>tarfile <span class="op">=</span> <span class="va">secure_secret_file</span>,</span>
-<span class="r-in">      keyfile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">wd</span>, <span class="st">"id_rsa"</span><span class="op">)</span>,</span>
-<span class="r-in">      target_dir <span class="op">=</span> <span class="va">wd</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> sship: Decrypted file written to /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpWq5mFJ/secret.rds</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Please note that these examples will write files to a local temporary</span></span></span>
+<span class="r-in"><span><span class="co"># directory.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Make temporary workspace</span></span></span>
+<span class="r-in"><span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Make a private-public key pair named "id_rsa" and "id_rsa.pub"</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="keygen.html">keygen</a></span><span class="op">(</span>directory <span class="op">=</span> <span class="va">wd</span>, type <span class="op">=</span> <span class="st">"rsa"</span>, overwrite_existing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> sship: Key pair written to /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpf9pntm</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Make a secured (encrypted) file</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">iris</span>, file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">wd</span>, <span class="st">"secret.rds"</span><span class="op">)</span>, ascii <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">pubkey</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">wd</span>, <span class="st">"id_rsa.pub"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">secure_secret_file</span> <span class="op">&lt;-</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="enc.html">enc</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">wd</span>, <span class="st">"secret.rds"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      pubkey_holder <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>      pubkey <span class="op">=</span> <span class="va">pubkey</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> sship: Content encrypted and ready for shipment: /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpf9pntm/secret.rds__20220808_075812.tar.gz</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Decrypt secured file using the private key</span></span></span>
+<span class="r-in"><span><span class="va">secret_file</span> <span class="op">&lt;-</span></span></span>
+<span class="r-in"><span>  <span class="fu">dec</span><span class="op">(</span>tarfile <span class="op">=</span> <span class="va">secure_secret_file</span>,</span></span>
+<span class="r-in"><span>      keyfile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">wd</span>, <span class="st">"id_rsa"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      target_dir <span class="op">=</span> <span class="va">wd</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> sship: Decrypted file written to /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpf9pntm/secret.rds</span>
 </code></pre></div>
     </div>
   </div>
@@ -143,7 +153,7 @@ systems running R. Possible caveats may be the availability of the
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

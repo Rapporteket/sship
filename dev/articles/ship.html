@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.7.4.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -118,10 +118,10 @@
 </h3>
 <p>Both encryption and shipment can be obtained in one operation with the R function <code><a href="../reference/ship.html">sship()</a></code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/ship.html">sship</a></span><span class="op">(</span><span class="va">content</span>, <span class="va">recipient</span>, <span class="va">pubkey_holder</span>, <span class="va">vessel</span>, <span class="va">declaration</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/ship.html">sship</a></span><span class="op">(</span><span class="va">content</span>, <span class="va">recipient</span>, <span class="va">pubkey_holder</span>, <span class="va">vessel</span>, <span class="va">declaration</span><span class="op">)</span></span></code></pre></div>
 <p>where <code>content</code> is the path to the file to be encrypted, <code>recipient</code> is the unique user id of the recipient at the public key provider, <code>pubkey_holder</code> is a reference to a known public key provider (see <a href="#conf">Configure <em>sship</em></a> below), <code>vessel</code> is a reference to the transportation method (see also <a href="#conf">Configure <em>sship</em></a> below) and <code>declaration</code> is an optional “freight paper rubber stamp” to be associated with the shipment. A practical example may look something like this:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/ship.html">sship</a></span><span class="op">(</span><span class="st">"secret_data.csv"</span>, <span class="st">"myfriend"</span>, <span class="st">"github"</span>, <span class="st">"ftp"</span>, <span class="st">"pickable"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/ship.html">sship</a></span><span class="op">(</span><span class="st">"secret_data.csv"</span>, <span class="st">"myfriend"</span>, <span class="st">"github"</span>, <span class="st">"ftp"</span>, <span class="st">"pickable"</span><span class="op">)</span></span></code></pre></div>
 <p>which will collect <em>myfriend</em>’s public key from <em>github</em> and use it in the encryption process of <em>secret_data.csv</em> before shipping it with <em>ftp</em>. Immediately after an empty file named <em>pickable</em> is shipped using the same route. <em>myfriend</em> can now check if the shipment has arrived by polling for a file named <em>pickable</em> and collect the shipment before starting the <a href="https://rapporteket.github.io/sship/articles/extract.html" class="external-link">process of unwrapping and decryption</a>.</p>
 </div>
 <div class="section level3">
@@ -169,7 +169,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.7.4.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -121,18 +121,18 @@
 </h2>
 <p>Install the latest version of the <em>sship</em> packages from the R command prompt:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Rapporteket/sship"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Rapporteket/sship"</span><span class="op">)</span></span></code></pre></div>
 <p>and load it into the R session:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/Rapporteket/sship" class="external-link">"sship"</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/Rapporteket/sship" class="external-link">"sship"</a></span><span class="op">)</span></span></code></pre></div>
 <p>Use the <code><a href="../reference/dec.html">dec()</a></code>-function to extract and decrypt the content:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/dec.html">dec</a></span><span class="op">(</span>tarfile <span class="op">=</span> <span class="st">"data.csv__20200101_081500.tar.gz"</span>,
-    keyfile <span class="op">=</span> <span class="st">"~/.ssh/id_rsa"</span>,
-    target_dir <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/dec.html">dec</a></span><span class="op">(</span>tarfile <span class="op">=</span> <span class="st">"data.csv__20200101_081500.tar.gz"</span>,</span>
+<span>    keyfile <span class="op">=</span> <span class="st">"~/.ssh/id_rsa"</span>,</span>
+<span>    target_dir <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span></code></pre></div>
 <p>From the example above the file <code>data.csv</code> will be written to the current working directory. Please use</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">?</span><span class="va">dec</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">dec</span></span></code></pre></div>
 <p>at the R prompt for more information.</p>
 </div>
 <div class="section level2">
@@ -185,7 +185,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.7.4.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -69,29 +69,41 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">gh</span><span class="op">(</span><span class="va">path</span>, proxy_url <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-
-<span class="fu">github_api</span><span class="op">(</span><span class="va">path</span>, proxy_url <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-
-<span class="fu">rate_limit</span><span class="op">(</span>proxy_url <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gh</span><span class="op">(</span><span class="va">path</span>, proxy_url <span class="op">=</span> <span class="cn">NULL</span>, token <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">github_api</span><span class="op">(</span><span class="va">path</span>, proxy_url <span class="op">=</span> <span class="cn">NULL</span>, token <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">rate_limit</span><span class="op">(</span>proxy_url <span class="op">=</span> <span class="cn">NULL</span>, token <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>path</dt>
 <dd><p>Character string with path to the API resource.</p></dd>
+
+
 <dt>proxy_url</dt>
 <dd><p>Character string defining a network proxy in the form
 host:port. Default is NULL in which case the API call will not use a proxy.</p></dd>
+
+
+<dt>token</dt>
+<dd><p>Character string holding a github personal access token (PAT)
+to be used for requests that requires authorization. Default value is NULL
+in which case the request will be unauthorized unless PAT can be obtained
+from the environmental variable GITHUB_PAT.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of class github_api containing the parsed content, API
-resource path and the response object. For <code>rate_limit()</code> the path is
-always "/rate_limit" and can hence be used to detect if the limit is exceeded
-(without being counted as a request itself). If the allowed API rate is
-exceeded <code>gh()</code> will return a message stating the fact and simple
-suggestions on how to remedy the problem.</p>
+    
+
+<p>A list of class github_api containing the parsed content, API
+  resource path and the response object. For <code>rate_limit()</code> the path is
+  always "/rate_limit" and can hence be used to detect if the limit is
+  exceeded (without being counted as a request itself). If the allowed API
+  rate is exceeded <code>gh()</code> will return a message stating the fact and
+  simple suggestions on how to remedy the problem.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -102,122 +114,189 @@ API rate limits.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## Get all branches of a repository. If the api rate limit is exceeded this</span></span>
-<span class="r-in"><span class="co">## function will return NULL and an informative message</span></span>
-<span class="r-in"><span class="fu">gh</span><span class="op">(</span><span class="st">"repos/Rapporteket/sship/branches"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Get all branches of a repository. If the api rate limit is exceeded this</span></span></span>
+<span class="r-in"><span><span class="co">## function will return NULL and an informative message</span></span></span>
+<span class="r-in"><span><span class="fu">gh</span><span class="op">(</span><span class="st">"repos/Rapporteket/sship/branches"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       name                               commit.sha</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 gh-pages 8e5f38bd4da419dbe1568a6d00424b9082f70a74</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     main 2830f1913046d0f28b28529a85daba9f41e9a518</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 gh-pages 06d13550afa3d6392834f087ab1c862472a8c623</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     main ed1377b7b19b5b0a2fa3f423adeba5424aeb4f2e</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                        commit.url</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 https://api.github.com/repos/Rapporteket/sship/commits/8e5f38bd4da419dbe1568a6d00424b9082f70a74</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 https://api.github.com/repos/Rapporteket/sship/commits/2830f1913046d0f28b28529a85daba9f41e9a518</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   protected</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 https://api.github.com/repos/Rapporteket/sship/commits/06d13550afa3d6392834f087ab1c862472a8c623</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 https://api.github.com/repos/Rapporteket/sship/commits/ed1377b7b19b5b0a2fa3f423adeba5424aeb4f2e</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   protected protection.enabled</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     FALSE              FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      TRUE               TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   protection.required_status_checks.enforcement_level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                 off</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                          non_admins</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                 protection.required_status_checks.contexts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 macOS-latest (release), ubuntu-20.04 (release), windows-latest (release)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                               protection.required_status_checks.checks</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                                 NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 macOS-latest (release), ubuntu-20.04 (release), windows-latest (release), NA, NA, NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                protection_url</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 https://api.github.com/repos/Rapporteket/sship/branches/gh-pages/protection</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     https://api.github.com/repos/Rapporteket/sship/branches/main/protection</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $path</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "repos/Rapporteket/sship/branches"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $response</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Response [https://api.github.com/repos/Rapporteket/sship/branches]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Date: 2022-05-13 08:25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Date: 2022-08-08 07:58</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Status: 200</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Content-Type: application/json; charset=utf-8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Size: 400 B</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Size: 1.04 kB</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "github_api"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## helper functions that will normally not be used</span></span>
-<span class="r-in"><span class="fu">github_api</span><span class="op">(</span><span class="st">"/rate_limit"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## helper functions that will normally not be used</span></span></span>
+<span class="r-in"><span><span class="fu">github_api</span><span class="op">(</span><span class="st">"/rate_limit"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$limit</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$remaining</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1652433769</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$used</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$resource</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "core"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4998</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659947984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659945554</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$limit</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$remaining</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1652433958</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$used</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$resource</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "graphql"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659949094</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$limit</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$remaining</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1652433958</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659949094</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$source_import</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$source_import$limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$source_import$used</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$resource</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "integration_manifest"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$source_import$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$source_import$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659945554</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$limit</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$code_scanning_upload</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$code_scanning_upload$limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$remaining</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1652430418</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$code_scanning_upload$used</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$resource</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "search"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$code_scanning_upload$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$code_scanning_upload$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659949094</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$actions_runner_registration</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$actions_runner_registration$limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$actions_runner_registration$used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$actions_runner_registration$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$actions_runner_registration$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659949094</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$scim</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$scim$limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 15000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$scim$used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$scim$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 15000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$scim$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659949094</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$dependency_snapshots</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$dependency_snapshots$limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$dependency_snapshots$used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$dependency_snapshots$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$dependency_snapshots$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659945554</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$limit</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$remaining</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1652433769</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$used</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$resource</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "core"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4998</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659947984</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -226,101 +305,156 @@ API rate limits.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $response</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Response [https://api.github.com/rate_limit]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Date: 2022-05-13 08:25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Date: 2022-08-08 07:58</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Status: 200</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Content-Type: application/json; charset=utf-8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Size: 465 B</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"resources":{"core":{"limit":60,"remaining":57,"reset":1652433769,"used":3,"...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Size: 766 B</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "github_api"</span>
-<span class="r-in"><span class="fu">rate_limit</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">rate_limit</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$limit</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$remaining</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1652433769</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$used</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$resource</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "core"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4998</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$core$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659947984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659945554</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$limit</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$remaining</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1652433958</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$used</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$resource</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "graphql"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$graphql$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659949094</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$limit</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$remaining</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1652433958</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659949094</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$source_import</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$source_import$limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$source_import$used</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$integration_manifest$resource</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "integration_manifest"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$source_import$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$source_import$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659945554</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$limit</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$code_scanning_upload</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$code_scanning_upload$limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$remaining</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1652430418</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$code_scanning_upload$used</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$search$resource</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "search"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$code_scanning_upload$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$code_scanning_upload$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659949094</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$actions_runner_registration</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$actions_runner_registration$limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$actions_runner_registration$used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$actions_runner_registration$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$actions_runner_registration$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659949094</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$scim</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$scim$limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 15000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$scim$used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$scim$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 15000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$scim$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659949094</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$dependency_snapshots</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$dependency_snapshots$limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$dependency_snapshots$used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$dependency_snapshots$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$resources$dependency_snapshots$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659945554</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$limit</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$remaining</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$reset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1652433769</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$used</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$resource</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "core"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$remaining</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4998</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $content$rate$reset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1659947984</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -329,11 +463,11 @@ API rate limits.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $response</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Response [https://api.github.com/rate_limit]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Date: 2022-05-13 08:25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Date: 2022-08-08 07:58</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Status: 200</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Content-Type: application/json; charset=utf-8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Size: 465 B</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"resources":{"core":{"limit":60,"remaining":57,"reset":1652433769,"used":3,"...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Size: 766 B</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "github_api"</span>
@@ -351,7 +485,7 @@ API rate limits.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
