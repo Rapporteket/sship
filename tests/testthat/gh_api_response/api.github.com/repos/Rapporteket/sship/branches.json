@@ -2,17 +2,25 @@
     {
         "name": "gh-pages",
         "commit": {
-            "sha": "8590e9c8d6679ce994d3a5b628b6551409812867",
-            "url": "https://api.github.com/repos/Rapporteket/sship/commits/8590e9c8d6679ce994d3a5b628b6551409812867"
+            "sha": "25d73de8fd04f6eb18ccef9e798ca645890fb331",
+            "url": "https://api.github.com/repos/Rapporteket/sship/commits/25d73de8fd04f6eb18ccef9e798ca645890fb331"
         },
         "protected": false
     },
     {
         "name": "main",
         "commit": {
-            "sha": "45fb1ee274b1472cdc3287e58d7b8207736c3ff4",
-            "url": "https://api.github.com/repos/Rapporteket/sship/commits/45fb1ee274b1472cdc3287e58d7b8207736c3ff4"
+            "sha": "ed1377b7b19b5b0a2fa3f423adeba5424aeb4f2e",
+            "url": "https://api.github.com/repos/Rapporteket/sship/commits/ed1377b7b19b5b0a2fa3f423adeba5424aeb4f2e"
         },
         "protected": true
+    },
+    {
+        "name": "sym-enc-funs",
+        "commit": {
+            "sha": "3cd048be36b524681f0e5a5367d2e4121570a51c",
+            "url": "https://api.github.com/repos/Rapporteket/sship/commits/3cd048be36b524681f0e5a5367d2e4121570a51c"
+        },
+        "protected": false
     }
 ]
