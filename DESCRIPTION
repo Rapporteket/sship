@@ -1,6 +1,6 @@
 Package: sship
 Title: Tool for Secure Shipment of Content
-Version: 0.8.0.9000
+Version: 0.9.0
 Authors@R: 
     person(given = "Are",
            family = "Edvardsen",
