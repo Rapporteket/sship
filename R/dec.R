@@ -86,3 +86,22 @@ dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
   invisible(target_file)
 
 }
+
+
+#' Standard sship symmetric decryption
+#'
+#' @param data raw vector or path to file with data to encrypt or decrypt
+#' @param key raw vector of length 16, 24 or 32, e.g. the hash of a shared
+#'   secret
+#' @param iv raw vector of length 16 (aes block size) or NULL. The
+#'   initialization vector is not secret but should be random
+#'
+#' @return A raw vector of decrypted \code{data}.
+#' @keywords internal
+#' @export
+
+sym_dec <- function(data, key, iv = attr(data, "iv")) {
+
+  openssl::aes_cbc_decrypt(data, key, iv)
+}
+

@@ -173,3 +173,21 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
   invisible(f$tarfile)
 
 }
+
+
+#' Standard sship symmetric encryption
+#'
+#' @param data raw vector or path to file with data to encrypt or decrypt
+#' @param key raw vector of length 16, 24 or 32, e.g. the hash of a shared
+#'   secret
+#' @param iv raw vector of length 16 (aes block size) or NULL. The
+#'   initialization vector is not secret but should be random
+#'
+#' @return A raw vector of encrypted \code{data}.
+#' @keywords internal
+#' @export
+
+sym_enc <- function(data, key, iv = openssl::rand_bytes(16)) {
+
+  openssl::aes_cbc_encrypt(data, key, iv)
+}

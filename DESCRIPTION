@@ -30,6 +30,6 @@ Suggests:
     rmarkdown,
     testthat (>= 2.1.0),
     withr
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 URL: https://github.com/Rapporteket/sship
 BugReports: https://github.com/Rapporteket/sship/issues
