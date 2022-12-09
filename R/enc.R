@@ -134,7 +134,7 @@ enc <- function(filename, pubkey_holder, pid, pubkey = NULL) {
     pubkey <- openssl::read_pubkey(get_pubkey(pubkey_holder, pid))
   }
 
-  blob <- openssl::aes_cbc_encrypt(data = filename, key = key, iv = iv)
+  blob <- sym_enc(data = filename, key = key, iv = iv)
   attr(blob, "iv") <- NULL
   ciphertext <- openssl::rsa_encrypt(data = key, pubkey = pubkey)
 

@@ -73,7 +73,7 @@ dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
   enc_msg <- readBin(source_file, raw(), file.info(source_file)$size)
 
   key <- openssl::rsa_decrypt(enc_key, prikey)
-  msg <- openssl::aes_cbc_decrypt(enc_msg, key, iv)
+  msg <- sym_dec(enc_msg, key, iv)
 
   writeBin(msg, basename(target_file))
 
