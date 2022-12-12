@@ -51,4 +51,10 @@
   <url>
     <loc>/reference/ship.html</loc>
   </url>
+  <url>
+    <loc>/reference/sym_dec.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sym_enc.html</loc>
+  </url>
 </urlset>
