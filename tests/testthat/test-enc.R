@@ -19,7 +19,16 @@ pubkey_filepath <- file.path(dir, "www", pubkey_filename)
 pubkey_url <- paste0(conf$url, "/", pubkey_filename)
 write.csv(iris, file = file.path(dir, "content.csv"))
 content_file <- normalizePath(file.path(dir, "content.csv"))
+d0 <- openssl::rand_bytes(32)
+key <- openssl::rand_bytes(16)
 
+test_that("simple encryption and decryption can be performed", {
+  expect_true(inherits(sym_enc(d0, key), "raw"))
+  dc <- sym_enc(d0, key)
+  expect_true(inherits(sym_dec(dc, key), "raw"))
+  dd <- sym_dec(dc, key)
+  expect_identical(d0, dd)
+})
 
 test_that("a filename for the encrypted file can be provided", {
   expect_equal(enc_filename("test"),

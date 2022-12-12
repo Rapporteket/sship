@@ -2,29 +2,29 @@
     "resources": {
         "core": {
             "limit": 60,
-            "remaining": 55,
-            "reset": 1659690414,
-            "used": 5,
+            "remaining": 54,
+            "reset": 1670592787,
+            "used": 6,
             "resource": "core"
         },
         "graphql": {
             "limit": 0,
             "remaining": 0,
-            "reset": 1659690486,
+            "reset": 1670595370,
             "used": 0,
             "resource": "graphql"
         },
         "integration_manifest": {
             "limit": 5000,
             "remaining": 5000,
-            "reset": 1659690486,
+            "reset": 1670595370,
             "used": 0,
             "resource": "integration_manifest"
         },
         "search": {
             "limit": 10,
             "remaining": 10,
-            "reset": 1659686946,
+            "reset": 1670591830,
             "used": 0,
             "resource": "search"
         }
@@ -32,8 +32,8 @@
     "rate": {
         "limit": 60,
         "remaining": 0,
-        "reset": 1659690414,
-        "used": 5,
+        "reset": 1670592787,
+        "used": 6,
         "resource": "core"
     }
 }
