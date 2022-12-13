@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="sship">
 <title>Make a secure shipment • sship</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -12,12 +13,11 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Make a secure shipment">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Make a secure shipment">
 <meta property="og:description" content="sship">
 <meta property="og:image" content="/logo.svg">
 <meta name="robots" content="noindex">
@@ -26,78 +26,66 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">sship</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.8.0.9000</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">sship</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../reference/index.html">Reference</a>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9000</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/overview.html">An overwiev of sship</a>
-    </li>
-    <li>
-      <a href="../articles/ship.html">Make a secure shipment</a>
-    </li>
-    <li>
-      <a href="../articles/extract.html">Extract cargo from a secure shipment</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/Rapporteket/sship/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/overview.html">An overwiev of sship</a>
+    <a class="dropdown-item" href="../articles/ship.html">Make a secure shipment</a>
+    <a class="dropdown-item" href="../articles/extract.html">Extract cargo from a secure shipment</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/Rapporteket/sship/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
+    
+  </div>
+</nav><div class="container template-article">
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Make a secure shipment</h1>
+
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="../logo.svg" class="logo" alt=""><h1>Make a secure shipment</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/Rapporteket/sship/blob/HEAD/vignettes/ship.Rmd" class="external-link"><code>vignettes/ship.Rmd</code></a></small>
-      <div class="hidden name"><code>ship.Rmd</code></div>
-
+      <div class="d-none name"><code>ship.Rmd</code></div>
     </div>
 
     
@@ -105,33 +93,91 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>This documents describes how to make secure shipments with the R package <em>sship</em>. While <em>sship</em> provides technical means of very strong protections through encryption of digital content all still depends on proper and knowledgeable use. Therefore, please take a moment and study the next paragraph very carefully.</p>
-<p><em>sship</em> <strong><em>makes sure that a secret will only be available to the recipient by applying the recipient’s public key. When</em></strong> <em>sship</em> <strong><em>is to be used for sending a secret to a recipient one must be absolutely sure that the public key used by</em></strong> <em>sship</em> <strong><em>belongs to the intended recipient. The authenticity of the public key should be established by a combination of technical and social means. Technically, the public key should be managed (by its owner, the recipient) through a key provider that enforces multi-factor authentication of its users. Socially, the two parties to share a secret should know of each other (personally, professionally or similar) and establish trust both between themselves and the technology to be used to ensure authenticity of the public key.</em></strong></p>
-<p>Following is an example of how the authenticity of a public key may be sufficiently established. Person or entity X needs to send a secret data file to person or entity Y and therefor need Y’s public key. A public key provider exists (<em>e.g.</em> GitHub) and at this provider X has made a dedicated group (or organization in GitHub-terms) that enforces multi-factor authentication of its members. X asks Y to apply for a membership of this group at the public key provider. X now expects a member request from Y and grants it as it arrives. Since multi-factor authentication is enforced it is unlikely that anyone else but Y may add, alter or delete Y’s public key at the provider. X can thereafter collect Y’s public key from the provider at any time and be sufficiently sure that it will be authentic.</p>
+<p>This documents describes how to make secure shipments with the R
+package <em>sship</em>. While <em>sship</em> provides technical means of
+very strong protections through encryption of digital content all still
+depends on proper and knowledgeable use. Therefore, please take a moment
+and study the next paragraph very carefully.</p>
+<p><em>sship</em> <strong><em>makes sure that a secret will only be
+available to the recipient by applying the recipient’s public key.
+When</em></strong> <em>sship</em> <strong><em>is to be used for sending
+a secret to a recipient one must be absolutely sure that the public key
+used by</em></strong> <em>sship</em> <strong><em>belongs to the intended
+recipient. The authenticity of the public key should be established by a
+combination of technical and social means. Technically, the public key
+should be managed (by its owner, the recipient) through a key provider
+that enforces multi-factor authentication of its users. Socially, the
+two parties to share a secret should know of each other (personally,
+professionally or similar) and establish trust both between themselves
+and the technology to be used to ensure authenticity of the public
+key.</em></strong></p>
+<p>Following is an example of how the authenticity of a public key may
+be sufficiently established. Person or entity X needs to send a secret
+data file to person or entity Y and therefor need Y’s public key. A
+public key provider exists (<em>e.g.</em> GitHub) and at this provider X
+has made a dedicated group (or organization in GitHub-terms) that
+enforces multi-factor authentication of its members. X asks Y to apply
+for a membership of this group at the public key provider. X now expects
+a member request from Y and grants it as it arrives. Since multi-factor
+authentication is enforced it is unlikely that anyone else but Y may
+add, alter or delete Y’s public key at the provider. X can thereafter
+collect Y’s public key from the provider at any time and be sufficiently
+sure that it will be authentic.</p>
 </div>
 <div class="section level2">
 <h2 id="how-to">How to<a class="anchor" aria-label="anchor" href="#how-to"></a>
 </h2>
-<p>Basically, <em>sship</em> can be used for three things: encrypt files, send encrypted files and decrypt files. The latter is described in the article <a href="https://rapporteket.github.io/sship/articles/extract.html" class="external-link">Extract cargo from a secure shipment</a>. Encryption and sending (shipment) of files will be the subjects for the remaining part of this article.</p>
+<p>Basically, <em>sship</em> can be used for three things: encrypt
+files, send encrypted files and decrypt files. The latter is described
+in the article <a href="https://rapporteket.github.io/sship/articles/extract.html" class="external-link">Extract
+cargo from a secure shipment</a>. Encryption and sending (shipment) of
+files will be the subjects for the remaining part of this article.</p>
 <div class="section level3">
 <h3 id="encrypt-secure-a-file-and-send-ship-it">Encrypt (secure) a file and send (ship) it<a class="anchor" aria-label="anchor" href="#encrypt-secure-a-file-and-send-ship-it"></a>
 </h3>
-<p>Both encryption and shipment can be obtained in one operation with the R function <code><a href="../reference/ship.html">sship()</a></code>:</p>
+<p>Both encryption and shipment can be obtained in one operation with
+the R function <code><a href="../reference/ship.html">sship()</a></code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ship.html">sship</a></span><span class="op">(</span><span class="va">content</span>, <span class="va">recipient</span>, <span class="va">pubkey_holder</span>, <span class="va">vessel</span>, <span class="va">declaration</span><span class="op">)</span></span></code></pre></div>
-<p>where <code>content</code> is the path to the file to be encrypted, <code>recipient</code> is the unique user id of the recipient at the public key provider, <code>pubkey_holder</code> is a reference to a known public key provider (see <a href="#conf">Configure <em>sship</em></a> below), <code>vessel</code> is a reference to the transportation method (see also <a href="#conf">Configure <em>sship</em></a> below) and <code>declaration</code> is an optional “freight paper rubber stamp” to be associated with the shipment. A practical example may look something like this:</p>
+<p>where <code>content</code> is the path to the file to be encrypted,
+<code>recipient</code> is the unique user id of the recipient at the
+public key provider, <code>pubkey_holder</code> is a reference to a
+known public key provider (see <a href="#conf">Configure
+<em>sship</em></a> below), <code>vessel</code> is a reference to the
+transportation method (see also <a href="#conf">Configure
+<em>sship</em></a> below) and <code>declaration</code> is an optional
+“freight paper rubber stamp” to be associated with the shipment. A
+practical example may look something like this:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ship.html">sship</a></span><span class="op">(</span><span class="st">"secret_data.csv"</span>, <span class="st">"myfriend"</span>, <span class="st">"github"</span>, <span class="st">"ftp"</span>, <span class="st">"pickable"</span><span class="op">)</span></span></code></pre></div>
-<p>which will collect <em>myfriend</em>’s public key from <em>github</em> and use it in the encryption process of <em>secret_data.csv</em> before shipping it with <em>ftp</em>. Immediately after an empty file named <em>pickable</em> is shipped using the same route. <em>myfriend</em> can now check if the shipment has arrived by polling for a file named <em>pickable</em> and collect the shipment before starting the <a href="https://rapporteket.github.io/sship/articles/extract.html" class="external-link">process of unwrapping and decryption</a>.</p>
+<p>which will collect <em>myfriend</em>’s public key from
+<em>github</em> and use it in the encryption process of
+<em>secret_data.csv</em> before shipping it with <em>ftp</em>.
+Immediately after an empty file named <em>pickable</em> is shipped using
+the same route. <em>myfriend</em> can now check if the shipment has
+arrived by polling for a file named <em>pickable</em> and collect the
+shipment before starting the <a href="https://rapporteket.github.io/sship/articles/extract.html" class="external-link">process
+of unwrapping and decryption</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="configure-sship">
 <a name="conf"></a>Configure <em>sship</em><a class="anchor" aria-label="anchor" href="#configure-sship"></a>
 </h3>
-<p>Some of the above arguments to <code><a href="../reference/ship.html">sship()</a></code> are just references to the actual values that are stored in a configuration file. <em>sship</em> comes with a default configuration but most likely this will not be sufficient. A local config can be made by calling the <code><a href="../reference/config.html">create_config()</a></code> R function found in <em>sship</em> (output also shown):</p>
+<p>Some of the above arguments to <code><a href="../reference/ship.html">sship()</a></code> are just
+references to the actual values that are stored in a configuration file.
+<em>sship</em> comes with a default configuration but most likely this
+will not be sufficient. A local config can be made by calling the
+<code><a href="../reference/config.html">create_config()</a></code> R function found in <em>sship</em> (output
+also shown):</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">create_config</span>()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"./_sship.yml file created: fill it in"</span></span></code></pre></div>
-<p>In the above example of the R function <code><a href="../reference/ship.html">sship()</a></code> the references <em>github</em> and <em>ftp</em> depends on configuration for the function to obtain proper values. The reference <em>github</em> already has a working setup in the default configuration, but <em>ftp</em> has not. To accomplish this open the file <em>_sship.yml</em>, find the appropriate section and edit accordingly:</p>
+<p>In the above example of the R function <code><a href="../reference/ship.html">sship()</a></code> the
+references <em>github</em> and <em>ftp</em> depends on configuration for
+the function to obtain proper values. The reference <em>github</em>
+already has a working setup in the default configuration, but
+<em>ftp</em> has not. To accomplish this open the file
+<em>_sship.yml</em>, find the appropriate section and edit
+accordingly:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">...</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">recipient:</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">  bob:</span></span>
@@ -142,41 +188,48 @@
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">      user: myfriend</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">      pass: myfriendspassword</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">...</span></span></code></pre></div>
-<p>A recipients may require multiple ways of transportation and the configuration allows for this by making additional entries for each method of transportation.</p>
+<p>A recipients may require multiple ways of transportation and the
+configuration allows for this by making additional entries for each
+method of transportation.</p>
 <div class="section level4">
 <h4 id="server-mode">Server mode<a class="anchor" aria-label="anchor" href="#server-mode"></a>
 </h4>
-<p><em>ship</em> can also be applied as a tool in a centralized or server-like environment where requirements for management and configuration may differ from a local instance running R. Every time <em>sship</em> needs information from configuration setting it looks for it in several places. For a server setup the place to look for <em>sship</em>’s configuration can be provided by setting the environmental variable <em>R_SSHIP_CONFIG_PATH</em> to the directory where the configuration is to be found. Making <em>R_SSHIP_CONFIG_PATH</em> accessible in an R session, <em>sship</em> will abide by its value. However, if a local file named <code>_sship.yml</code> exists in the current working directory it it will take precedence over the one defined by <em>R_SSHIP_CONFIG_PATH</em>.</p>
+<p><em>ship</em> can also be applied as a tool in a centralized or
+server-like environment where requirements for management and
+configuration may differ from a local instance running R. Every time
+<em>sship</em> needs information from configuration setting it looks for
+it in several places. For a server setup the place to look for
+<em>sship</em>’s configuration can be provided by setting the
+environmental variable <em>R_SSHIP_CONFIG_PATH</em> to the directory
+where the configuration is to be found. Making
+<em>R_SSHIP_CONFIG_PATH</em> accessible in an R session, <em>sship</em>
+will abide by its value. However, if a local file named
+<code>_sship.yml</code> exists in the current working directory it it
+will take precedence over the one defined by
+<em>R_SSHIP_CONFIG_PATH</em>.</p>
 </div>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
+    <footer><div class="pkgdown-footer-left">
   <p></p>
 <p>Developed by Are Edvardsen.</p>
 </div>
 
-<div class="pkgdown">
+<div class="pkgdown-footer-right">
   <p></p>
 <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 
