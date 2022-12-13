@@ -165,7 +165,7 @@ openssl aes-256-cbc -d -in data.csv.enc -out data.csv \
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Make a private-public key pair named "id_rsa" and "id_rsa.pub"</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="keygen.html">keygen</a></span><span class="op">(</span>directory <span class="op">=</span> <span class="va">wd</span>, type <span class="op">=</span> <span class="st">"rsa"</span>, overwrite_existing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> sship: Key pair written to /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpAMUOcW</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> sship: Key pair written to /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpt0SYTP</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Load public key</span></span></span>
 <span class="r-in"><span><span class="va">pubkey</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">wd</span>, <span class="st">"id_rsa.pub"</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -173,7 +173,7 @@ openssl aes-256-cbc -d -in data.csv.enc -out data.csv \
 <span class="r-in"><span><span class="co">## Make a secured file (ready for shipment)</span></span></span>
 <span class="r-in"><span><span class="va">secure_secret_file</span> <span class="op">&lt;-</span> <span class="fu">enc</span><span class="op">(</span>filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">wd</span>, <span class="st">"secret.rds"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                          pubkey_holder <span class="op">=</span> <span class="cn">NULL</span>, pubkey <span class="op">=</span> <span class="va">pubkey</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> sship: Content encrypted and ready for shipment: /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpAMUOcW/secret.rds__20221212_115039.tar.gz</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> sship: Content encrypted and ready for shipment: /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpt0SYTP/secret.rds__20221213_141800.tar.gz</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
