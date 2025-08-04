@@ -1,57 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/dev/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/dev/articles/extract.html</loc>
-  </url>
-  <url>
-    <loc>/dev/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/dev/articles/overview.html</loc>
-  </url>
-  <url>
-    <loc>/dev/articles/ship.html</loc>
-  </url>
-  <url>
-    <loc>/dev/authors.html</loc>
-  </url>
-  <url>
-    <loc>/dev/index.html</loc>
-  </url>
-  <url>
-    <loc>/dev/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/config.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/dec.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/enc.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/github.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/keygen.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/pubkey_filter.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/ship.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/sym_dec.html</loc>
-  </url>
-  <url>
-    <loc>/dev/reference/sym_enc.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/dev/LICENSE.html</loc></url>
+<url><loc>/dev/articles/extract.html</loc></url>
+<url><loc>/dev/articles/index.html</loc></url>
+<url><loc>/dev/articles/overview.html</loc></url>
+<url><loc>/dev/articles/ship.html</loc></url>
+<url><loc>/dev/authors.html</loc></url>
+<url><loc>/dev/index.html</loc></url>
+<url><loc>/dev/news/index.html</loc></url>
+<url><loc>/dev/reference/config.html</loc></url>
+<url><loc>/dev/reference/dec.html</loc></url>
+<url><loc>/dev/reference/enc.html</loc></url>
+<url><loc>/dev/reference/github.html</loc></url>
+<url><loc>/dev/reference/index.html</loc></url>
+<url><loc>/dev/reference/keygen.html</loc></url>
+<url><loc>/dev/reference/pubkey_filter.html</loc></url>
+<url><loc>/dev/reference/ship.html</loc></url>
+<url><loc>/dev/reference/sym_dec.html</loc></url>
+<url><loc>/dev/reference/sym_enc.html</loc></url>
 </urlset>
+
