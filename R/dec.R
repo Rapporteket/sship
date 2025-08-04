@@ -104,4 +104,3 @@ sym_dec <- function(data, key, iv = attr(data, "iv")) {
 
   openssl::aes_cbc_decrypt(data, key, iv)
 }
-

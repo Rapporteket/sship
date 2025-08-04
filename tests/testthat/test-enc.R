@@ -56,14 +56,16 @@ writeLines(openssl::write_ssh(key$pubkey), pubkey_filepath, sep = "")
 test_that("a message is returned", {
   file.copy(content_file, file.path(dir, "tmp/content.csv"))
   expect_message(
-    enc(file.path(dir, "tmp/content.csv"), pubkey_holder = "local", pid = pid))
+    enc(file.path(dir, "tmp/content.csv"), pubkey_holder = "local", pid = pid)
+  )
   unlink(file.path(dir, "tmp/*"))
 })
 
 test_that("function returns invisibly", {
   file.copy(content_file, file.path(dir, "tmp/content.csv"))
   expect_invisible(
-    enc(file.path(dir, "tmp/content.csv"), pubkey_holder = "local", pid = pid))
+    enc(file.path(dir, "tmp/content.csv"), pubkey_holder = "local", pid = pid)
+  )
   unlink(file.path(dir, "tmp/*"))
 })
 
@@ -81,7 +83,8 @@ writeLines(c(pk, pk), pubkey_filepath, sep = "\n")
 test_that("function provide warning when multiple pubkeys", {
   file.copy(content_file, file.path(dir, "tmp/content.csv"))
   expect_warning(
-    enc(file.path(dir, "tmp/content.csv"), pubkey_holder = "local", pid = pid))
+    enc(file.path(dir, "tmp/content.csv"), pubkey_holder = "local", pid = pid)
+  )
   unlink(file.path(dir, "tmp/*"))
 })
 
