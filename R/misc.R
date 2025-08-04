@@ -24,7 +24,7 @@
 #' keygen(directory = tempdir(), overwrite_existing = TRUE)
 
 keygen <- function(directory = "~/.ssh", type = "rsa",
-                         password = NULL, overwrite_existing = FALSE) {
+                   password = NULL, overwrite_existing = FALSE) {
 
   directory <- normalizePath(directory)
 
