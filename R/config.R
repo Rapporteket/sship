@@ -51,7 +51,7 @@ get_config <- function(dir = ".") {
   if (!file.exists(config_file)) {
     config_path <- Sys.getenv("R_SSHIP_CONFIG_PATH")
     config_file <- file.path(config_path, "sship.yml")
-    if (config_path == "" | !file.exists(config_file)) {
+    if (config_path == "" || !file.exists(config_file)) {
       config_file <- system.file("sship.yml", package = "sship")
     }
   }
@@ -64,7 +64,9 @@ get_config <- function(dir = ".") {
 #' @rdname config
 #' @export
 check_config <- function(config) {
-  if (!inherits(config, "list") || (!("pubkey" %in% attributes(config)$names))) {
+  if (
+    !inherits(config, "list") || (!("pubkey" %in% attributes(config)$names))
+  ) {
     stop("Complete the config file: _sship.yml")
   }
   invisible()

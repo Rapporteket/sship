@@ -97,7 +97,7 @@ dispatchable <- function(recipient, vessel) {
 
   if (!vessel %in% names(conf$recipient[[recipient]])) {
     warning(paste0("The requested transport method is not available for '",
-                  recipient, "'. Check config."))
+                   recipient, "'. Check config."))
     return(FALSE)
   }
 
@@ -106,7 +106,7 @@ dispatchable <- function(recipient, vessel) {
     return(FALSE)
   }
 
-  return(TRUE)
+  TRUE
 
 }
 
@@ -132,12 +132,14 @@ make_url <- function(recipient, vessel) {
   }
 
   if (vessel == "sftp") {
-    url <- paste0("sftp://",
-           conf$recipient[[recipient]]$sftp$host,
-           ":",
-           conf$recipient[[recipient]]$sftp$port,
-           "/",
-           conf$recipient[[recipient]]$sftp$path)
+    url <- paste0(
+      "sftp://",
+      conf$recipient[[recipient]]$sftp$host,
+      ":",
+      conf$recipient[[recipient]]$sftp$port,
+      "/",
+      conf$recipient[[recipient]]$sftp$path
+    )
   }
 
   url
