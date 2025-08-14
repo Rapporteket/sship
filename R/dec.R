@@ -47,8 +47,7 @@
 #'       target_dir = wd)
 
 dec <- function(tarfile, keyfile = "~/.ssh/id_rsa",
-                target_dir = sub("/[^/]*$", "",
-                                 normalizePath(tarfile, winslash = "/"))) {
+                target_dir = dirname(tarfile)) {
 
   tarfile <- normalizePath(tarfile)
   keyfile <- normalizePath(keyfile)
