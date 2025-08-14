@@ -4,7 +4,7 @@
 \alias{dec}
 \title{Unpack shipment and decrypt content}
 \usage{
-dec(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".")
+dec(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = "default")
 }
 \arguments{
 \item{tarfile}{Character string providing full path to the gzip-compressed
@@ -17,7 +17,7 @@ path for unix type operating systems.}
 
 \item{target_dir}{Character string providing the full path to where the
 decrypted file is to be written. Defaults to the current directory
-\code{"."}, \emph{e.g.} where this function is being called from.}
+where the tarfile is stored.}
 }
 \value{
 Invisibly a character string providing the file path of the

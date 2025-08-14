@@ -15,7 +15,7 @@
 #'   path for unix type operating systems.
 #' @param target_dir Character string providing the full path to where the
 #'   decrypted file is to be written. Defaults to the current directory
-#'   \code{"."}, \emph{e.g.} where this function is being called from.
+#'   where the tarfile is stored.
 #'
 #' @return Invisibly a character string providing the file path of the
 #'   decrypted file.
