@@ -46,10 +46,13 @@
 #'       keyfile = file.path(wd, "id_rsa"),
 #'       target_dir = wd)
 
-dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
+dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = "default") {
 
-  tarfile <- normalizePath(tarfile)
   keyfile <- normalizePath(keyfile)
+  if (target_dir == "default") {
+    target_dir <- sub("/[^/]*$", "", tarfile)
+  }
+  tarfile <- normalizePath(tarfile)
   target_dir <- normalizePath(target_dir)
 
   prikey <- openssl::read_key(keyfile)
