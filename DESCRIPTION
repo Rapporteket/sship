@@ -2,6 +2,11 @@ Package: sship
 Title: Tool for Secure Shipment of Content
 Version: 1.0.0
 Authors@R: c(
+    person(given = "Arnfinn Hykkerud",
+           family = "Steindal",
+           role = c("aut"),
+           email = "arnfinn.steindal@gmail.com",
+           comment = c(ORCID = "0000-0002-4088-7860")),
     person(given = "Are",
            family = "Edvardsen",
            role = c("aut", "cre"),
@@ -10,12 +15,7 @@ Authors@R: c(
     person(given = "Kevin Otto",
            family = "Thon",
            role = c("aut"),
-           email = "kevin.thon@helse-nord.no"),
-    person(given = "Arnfinn Hykkerud",
-           family = "Steindal",
-           role = c("aut"),
-           email = "arnfinn.steindal@gmail.com",
-           comment = c(ORCID = "0000-0002-4088-7860")))
+           email = "kevin.thon@helse-nord.no"))
 Maintainer: Arnfinn Hykkerud Steindal <arnfinn.steindal@gmail.com>
 Description: Convenient tools for exchanging files securely from within R. By
     encrypting the content safe passage of files (shipment) can be provided by
