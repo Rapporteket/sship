@@ -4,7 +4,7 @@
 \alias{dec}
 \title{Unpack shipment and decrypt content}
 \usage{
-dec(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = "default")
+dec(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = dirname(tarfile))
 }
 \arguments{
 \item{tarfile}{Character string providing full path to the gzip-compressed
