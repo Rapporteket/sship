@@ -30,7 +30,7 @@ test_that("decryptions errors when private key is not type rsa", {
 })
 
 test_that("decryption function returns invisible", {
-  expect_invisible(dec(tarfile, keyfile))
+  expect_invisible(dec(tarfile, keyfile, target_dir = "."))
 })
 
 test_that("archive contains expected files", {

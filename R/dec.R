@@ -15,7 +15,7 @@
 #'   path for unix type operating systems.
 #' @param target_dir Character string providing the full path to where the
 #'   decrypted file is to be written. Defaults to the current directory
-#'   \code{"."}, \emph{e.g.} where this function is being called from.
+#'   where the tarfile is stored.
 #'
 #' @return Invisibly a character string providing the file path of the
 #'   decrypted file.
@@ -46,7 +46,8 @@
 #'       keyfile = file.path(wd, "id_rsa"),
 #'       target_dir = wd)
 
-dec <- function(tarfile, keyfile = "~/.ssh/id_rsa", target_dir = ".") {
+dec <- function(tarfile, keyfile = "~/.ssh/id_rsa",
+                target_dir = dirname(tarfile)) {
 
   tarfile <- normalizePath(tarfile)
   keyfile <- normalizePath(keyfile)
