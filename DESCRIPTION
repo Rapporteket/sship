@@ -27,6 +27,8 @@ Description: Convenient tools for exchanging files securely from within R. By
     services such as ftp and email servers are available.
 License: GPL-3
 Encoding: UTF-8
+Depends:
+    R (>= 4.1.0)
 Imports: 
     httr,
     jsonlite,
