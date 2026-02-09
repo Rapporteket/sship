@@ -67,7 +67,7 @@ sship <- function(content, recipient, pubkey_holder, vessel,
 #' @export
 dispatch <- function(recipient, vessel, cargo) {
 
-  for (i in seq_len(length(cargo))) {
+  for (i in seq_along(cargo)) {
     message(
       paste("sship: Shipping", cargo[i], "to", recipient, "using", vessel)
     )
