@@ -1,0 +1,111 @@
+# Extract cargo from a secure shipment
+
+Content as provided by *sship* has to be extracted and decrypted in
+order for the recipient to gain access the actual content. The
+prerequisite is that the recipient holds the private key associated with
+the public key used for encryption. This key pair must have been
+generated using the RSA crypto system and should use 2048 bits key size,
+or more. The recipient may use tools within *sship* to establish the
+associated content or any other tool that handle the [cryptographic
+algorithms applied by
+*sship*](https://rapporteket.github.io/sship/articles/overview.html).
+
+## Conventions
+
+The following conventions and assumptions are used:
+
+- cargo of shipment is found within a compressed file named
+  `[filename]__[datestamp]_[timestamp].tar.gz` where `[filename]` is the
+  name of the file that was encrypted prior to shipment, `[datestamp]`
+  is the date of shipment formatted as *YYYYMMDD* and `[timestamp]` is
+  the time of shipment formatted as *HHMMSS*
+- for the below examples the filename `data.csv__20200101_081500.tar.gz`
+  will be used
+- the above file exists in the current working directory
+- the private key is represented by the file `~/.ssh/id_rsa`
+
+## Extract and decrypt content in R
+
+Install the latest version of the *sship* packages from the R command
+prompt:
+
+``` r
+remotes::install_github("Rapporteket/sship")
+```
+
+and load it into the R session:
+
+``` r
+library("sship")
+```
+
+Use the [`dec()`](../reference/dec.md)-function to extract and decrypt
+the content:
+
+``` r
+dec(tarfile = "data.csv__20200101_081500.tar.gz",
+    keyfile = "~/.ssh/id_rsa",
+    target_dir = ".")
+```
+
+From the example above the file `data.csv` will be written to the
+current working directory. Please use
+
+``` r
+?dec
+```
+
+at the R prompt for more information.
+
+## Extract and decrypt content outside R
+
+Extraction and decryption of content that was encrypted and packed by
+*sship* (in R) is perfectly possible also outside R. In the above
+R-function a few things is taken care of “under the hood” and to aid a
+better understanding more information should be added to the above list
+of “conventions”:
+
+- when encrypting content *sship* uses the AES block cipher in CBC mode
+  applying a key of 256 random bits (32 bytes long)
+- when encryption content *sship* uses an initialization vector of 128
+  random bits (16 bytes long)
+- the shipment, *i.e.* the compressed tar archive file, consists of
+  three files that will be named (according to the current example):
+  - `data.csv.enc`: the encrypted data of the shipment
+  - `key.enc`: the encrypted key
+  - `iv`: the initialization vector used for encryption and decryption
+- just for the record then, names of encrypted files ends with `.enc`
+- the filename of the original content (data) is represented by the
+  first part of the archive filename (shipment) up until the double
+  underscore (*\_\_*), *e.g.* given the archive filename
+  `data.csv__20200101_081500.tar.gz` the decrypted content will be
+  established in the file `data.csv`
+
+Below is an example of how `data.csv__20200101_081500.tar.gz` can be
+processed from a Bash shell (unix) command prompt. First, extract the
+archive:
+
+``` bash
+tar -xvzf data.csv__20200101_081500.tar.gz
+```
+
+Then, decrypt the key by using the private key:
+
+``` bash
+openssl rsautl -decrypt -inkey ~/.ssh/id_rsa -in key.enc -out key
+```
+
+Finally, decrypt the content to the file `data.csv`:
+
+``` bash
+openssl aes-256-cbc -d -in data.csv.enc -out data.csv \
+-K $(hexdump -e '32/1 "%02x"' key) -iv $(hexdump -e '16/1 "%02x"' iv)
+```
+
+In the above example both the `key` and `iv` files are binary. When
+using OpenSSL for decryption these have to be provided as strings of
+hexadecimal digits as can be seen by the use of inline *hexdump*
+conversion in the last command. Methods for conversion from binary to
+hex may vary between systems. It might also be worth noting that here
+AES uses a key directly and not a (hash of some) passphrase that often
+will be the case elsewhere.

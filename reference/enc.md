@@ -1,0 +1,102 @@
+# Encryption of shipment content
+
+Various functions and helper functions to establish encrypted files. To
+secure the content (any file) the Advanced Encryption Standard (AES) is
+applied with an ephemeral key consisting of 256 random bits. This key is
+only used once for encryption (and then one more time during decryption
+at a later stage). A random 128 bit initialization vector (iv) is also
+applied during encryption. There is no extra security gain in this since
+the key will never be re-used for encryption/decryption. So, just for
+good measures then :-) After the content has been encrypted the key
+itself is encrypted by applying a public key offered by the recipient.
+This key is obtained from a public provider. Currently, GitHub is the
+only option. The three files: encrypted content, the encrypted key and
+the (cleartext) iv is then bundled into a tarball ready for shipment.
+
+## Usage
+
+``` r
+enc_filename(filename)
+
+make_pubkey_url(pubkey_holder = "github", pid)
+
+get_pubkey(pubkey_holder, pid)
+
+enc(filename, pubkey_holder, pid, pubkey = NULL)
+```
+
+## Arguments
+
+- filename:
+
+  Character string with fully qualified path to a file.
+
+- pubkey_holder:
+
+  Character string defining the provider of the public key used for
+  encryption of the symmetric key. Currently, 'github' is the only valid
+  pubkey holder. If a local pubkey is to be used (see parameter
+  `pubkey`, `pubkey_holder` may be set to NULL or some other value.
+
+- pid:
+
+  Character string uniquely defining the user at `pubkey_holder` who is
+  also the owner of the public key.
+
+- pubkey:
+
+  Character string representing a valid public key. Default is NULL in
+  which case the key will be obtained as per `pubkey_holder`.
+
+## Value
+
+Character string providing a filename or a key
+
+## Details
+
+Encrypted files can be decrypted outside R using the OpenSSL library.
+Both the key and the initialization vector (iv) are binary and this
+method uses the key directly (and not a \[hashed\] passphrase). OpenSSL
+decryption need to be fed the key (and iv) as a string of hex digits.
+Methods for conversion from binary to hex may vary between systems.
+Below, a bash shell (unix) example is given
+
+Step 1: decrypt symmetric key (open envelope) using a private key
+
+    openssl rsautl -decrypt -inkey ~/.ssh/id_rsa -in key.enc -out key
+
+Step 2: decrypt content by key obtained in step 1, also converting key
+and iv to strings of hexadecimal digits
+
+    openssl aes-256-cbc -d -in data.csv.enc -out data.csv \
+    -K $(hexdump -e '32/1 "%02x"' key) -iv $(hexdump -e '16/1 "%02x"' iv)
+
+## See also
+
+[dec](dec.md)
+
+## Examples
+
+``` r
+# Please note that these examples will write files to a local temporary
+# directory.
+
+## Define temporary working directory and a secret file name
+wd <- tempdir()
+secret_file_name <- "secret.rds"
+
+## Add content to the secret file
+saveRDS(iris, file = file.path(wd, secret_file_name), ascii = TRUE)
+
+## Make a private-public key pair named "id_rsa" and "id_rsa.pub"
+keygen(directory = wd, type = "rsa", overwrite_existing = TRUE)
+#> sship: Key pair written to /tmp/RtmpZ4yHuw
+
+## Load public key
+pubkey <- readLines(file.path(wd, "id_rsa.pub"))
+
+## Make a secured file (ready for shipment)
+secure_secret_file <- enc(filename = file.path(wd, "secret.rds"),
+                          pubkey_holder = NULL, pubkey = pubkey)
+#> sship: Content encrypted and ready for shipment: /tmp/RtmpZ4yHuw/secret.rds__20260302_100247.tar.gz
+```
