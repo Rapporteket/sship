@@ -90,7 +90,7 @@ saveRDS(iris, file = file.path(wd, secret_file_name), ascii = TRUE)
 
 ## Make a private-public key pair named "id_rsa" and "id_rsa.pub"
 keygen(directory = wd, type = "rsa", overwrite_existing = TRUE)
-#> sship: Key pair written to /tmp/RtmpGtuGgT
+#> sship: Key pair written to /tmp/RtmptvEk6N
 
 ## Load public key
 pubkey <- readLines(file.path(wd, "id_rsa.pub"))
@@ -98,5 +98,5 @@ pubkey <- readLines(file.path(wd, "id_rsa.pub"))
 ## Make a secured file (ready for shipment)
 secure_secret_file <- enc(filename = file.path(wd, "secret.rds"),
                           pubkey_holder = NULL, pubkey = pubkey)
-#> sship: Content encrypted and ready for shipment: /tmp/RtmpGtuGgT/secret.rds__20260302_101007.tar.gz
+#> sship: Content encrypted and ready for shipment: /tmp/RtmptvEk6N/secret.rds__20260302_112922.tar.gz
 ```

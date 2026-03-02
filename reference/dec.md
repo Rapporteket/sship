@@ -55,7 +55,7 @@ wd <- tempdir()
 
 ## Make a private-public key pair named "id_rsa" and "id_rsa.pub"
 keygen(directory = wd, type = "rsa", overwrite_existing = TRUE)
-#> sship: Key pair written to /tmp/RtmpGtuGgT
+#> sship: Key pair written to /tmp/RtmptvEk6N
 
 ## Make a secured (encrypted) file
 saveRDS(iris, file = file.path(wd, "secret.rds"), ascii = TRUE)
@@ -64,12 +64,12 @@ secure_secret_file <-
   enc(filename = file.path(wd, "secret.rds"),
       pubkey_holder = NULL,
       pubkey = pubkey)
-#> sship: Content encrypted and ready for shipment: /tmp/RtmpGtuGgT/secret.rds__20260302_101007.tar.gz
+#> sship: Content encrypted and ready for shipment: /tmp/RtmptvEk6N/secret.rds__20260302_112921.tar.gz
 
 ## Decrypt secured file using the private key
 secret_file <-
   dec(tarfile = secure_secret_file,
       keyfile = file.path(wd, "id_rsa"),
       target_dir = wd)
-#> sship: Decrypted file written to /tmp/RtmpGtuGgT/secret.rds
+#> sship: Decrypted file written to /tmp/RtmptvEk6N/secret.rds
 ```

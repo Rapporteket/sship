@@ -49,5 +49,5 @@ the directory where the keys were written is provided
 
 ``` r
 keygen(directory = tempdir(), overwrite_existing = TRUE)
-#> sship: Key pair written to /tmp/RtmpGtuGgT
+#> sship: Key pair written to /tmp/RtmptvEk6N
 ```

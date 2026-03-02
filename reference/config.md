@@ -37,7 +37,7 @@ A status message or list of config
 ``` r
 # Create a new config file from package default
 create_config(dir = tempdir())
-#> [1] "/tmp/RtmpGtuGgT/_sship.yml file created: fill it in"
+#> [1] "/tmp/RtmptvEk6N/_sship.yml file created: fill it in"
 
 # Get config
 config <- get_config(system.file("sship.yml", package = "sship"))

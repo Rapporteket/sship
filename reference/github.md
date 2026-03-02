@@ -53,32 +53,25 @@ rate limits.
 ## function will return NULL and an informative message
 gh("repos/Rapporteket/sship/branches")
 #> $content
-#>                                     name
-#> 1                               gh-pages
-#> 2                                   main
-#> 3 renovate/major-github-artifact-actions
-#>                                 commit.sha
-#> 1 f667da367c93837a608df4e83df670b900929353
-#> 2 44d99d48ba4f430c3a997729ab70839c85787ed7
-#> 3 6782be7b3469f346f31153734dd685a915c7aacc
+#>       name                               commit.sha
+#> 1 gh-pages dfc401c69c5d38b599eab6a77aa608e576ebb5e8
+#> 2     main e62906bd19d4f89fd647e66b5dc6c0597c86ccba
 #>                                                                                        commit.url
-#> 1 https://api.github.com/repos/Rapporteket/sship/commits/f667da367c93837a608df4e83df670b900929353
-#> 2 https://api.github.com/repos/Rapporteket/sship/commits/44d99d48ba4f430c3a997729ab70839c85787ed7
-#> 3 https://api.github.com/repos/Rapporteket/sship/commits/6782be7b3469f346f31153734dd685a915c7aacc
+#> 1 https://api.github.com/repos/Rapporteket/sship/commits/dfc401c69c5d38b599eab6a77aa608e576ebb5e8
+#> 2 https://api.github.com/repos/Rapporteket/sship/commits/e62906bd19d4f89fd647e66b5dc6c0597c86ccba
 #>   protected
 #> 1     FALSE
 #> 2      TRUE
-#> 3     FALSE
 #> 
 #> $path
 #> [1] "repos/Rapporteket/sship/branches"
 #> 
 #> $response
 #> Response [https://api.github.com/repos/Rapporteket/sship/branches]
-#>   Date: 2026-03-02 10:10
+#>   Date: 2026-03-02 11:29
 #>   Status: 200
 #>   Content-Type: application/json; charset=utf-8
-#>   Size: 632 B
+#>   Size: 400 B
 #> 
 #> 
 #> attr(,"class")
@@ -93,13 +86,13 @@ github_api("/rate_limit")
 #> [1] 5000
 #> 
 #> $content$resources$core$used
-#> [1] 10
+#> [1] 2
 #> 
 #> $content$resources$core$remaining
-#> [1] 4990
+#> [1] 4998
 #> 
 #> $content$resources$core$reset
-#> [1] 1772448561
+#> [1] 1772453384
 #> 
 #> 
 #> $content$resources$search
@@ -113,7 +106,7 @@ github_api("/rate_limit")
 #> [1] 30
 #> 
 #> $content$resources$search$reset
-#> [1] 1772446268
+#> [1] 1772451022
 #> 
 #> 
 #> $content$resources$graphql
@@ -127,7 +120,7 @@ github_api("/rate_limit")
 #> [1] 5000
 #> 
 #> $content$resources$graphql$reset
-#> [1] 1772449808
+#> [1] 1772454562
 #> 
 #> 
 #> $content$resources$integration_manifest
@@ -141,7 +134,7 @@ github_api("/rate_limit")
 #> [1] 5000
 #> 
 #> $content$resources$integration_manifest$reset
-#> [1] 1772449808
+#> [1] 1772454562
 #> 
 #> 
 #> $content$resources$source_import
@@ -155,7 +148,7 @@ github_api("/rate_limit")
 #> [1] 100
 #> 
 #> $content$resources$source_import$reset
-#> [1] 1772446268
+#> [1] 1772451022
 #> 
 #> 
 #> $content$resources$code_scanning_upload
@@ -163,13 +156,13 @@ github_api("/rate_limit")
 #> [1] 5000
 #> 
 #> $content$resources$code_scanning_upload$used
-#> [1] 10
+#> [1] 2
 #> 
 #> $content$resources$code_scanning_upload$remaining
-#> [1] 4990
+#> [1] 4998
 #> 
 #> $content$resources$code_scanning_upload$reset
-#> [1] 1772448561
+#> [1] 1772453384
 #> 
 #> 
 #> $content$resources$code_scanning_autofix
@@ -183,7 +176,7 @@ github_api("/rate_limit")
 #> [1] 10
 #> 
 #> $content$resources$code_scanning_autofix$reset
-#> [1] 1772446268
+#> [1] 1772451022
 #> 
 #> 
 #> $content$resources$actions_runner_registration
@@ -197,7 +190,7 @@ github_api("/rate_limit")
 #> [1] 10000
 #> 
 #> $content$resources$actions_runner_registration$reset
-#> [1] 1772449808
+#> [1] 1772454562
 #> 
 #> 
 #> $content$resources$scim
@@ -211,7 +204,7 @@ github_api("/rate_limit")
 #> [1] 15000
 #> 
 #> $content$resources$scim$reset
-#> [1] 1772449808
+#> [1] 1772454562
 #> 
 #> 
 #> $content$resources$dependency_snapshots
@@ -225,7 +218,7 @@ github_api("/rate_limit")
 #> [1] 100
 #> 
 #> $content$resources$dependency_snapshots$reset
-#> [1] 1772446268
+#> [1] 1772451022
 #> 
 #> 
 #> $content$resources$dependency_sbom
@@ -239,7 +232,7 @@ github_api("/rate_limit")
 #> [1] 100
 #> 
 #> $content$resources$dependency_sbom$reset
-#> [1] 1772446268
+#> [1] 1772451022
 #> 
 #> 
 #> $content$resources$audit_log
@@ -253,7 +246,7 @@ github_api("/rate_limit")
 #> [1] 1750
 #> 
 #> $content$resources$audit_log$reset
-#> [1] 1772449808
+#> [1] 1772454562
 #> 
 #> 
 #> $content$resources$audit_log_streaming
@@ -267,7 +260,7 @@ github_api("/rate_limit")
 #> [1] 15
 #> 
 #> $content$resources$audit_log_streaming$reset
-#> [1] 1772449808
+#> [1] 1772454562
 #> 
 #> 
 #> $content$resources$code_search
@@ -281,7 +274,7 @@ github_api("/rate_limit")
 #> [1] 10
 #> 
 #> $content$resources$code_search$reset
-#> [1] 1772446268
+#> [1] 1772451022
 #> 
 #> 
 #> 
@@ -290,13 +283,13 @@ github_api("/rate_limit")
 #> [1] 5000
 #> 
 #> $content$rate$used
-#> [1] 10
+#> [1] 2
 #> 
 #> $content$rate$remaining
-#> [1] 4990
+#> [1] 4998
 #> 
 #> $content$rate$reset
-#> [1] 1772448561
+#> [1] 1772453384
 #> 
 #> 
 #> 
@@ -305,7 +298,7 @@ github_api("/rate_limit")
 #> 
 #> $response
 #> Response [https://api.github.com/rate_limit]
-#>   Date: 2026-03-02 10:10
+#>   Date: 2026-03-02 11:29
 #>   Status: 200
 #>   Content-Type: application/json; charset=utf-8
 #>   Size: 1.14 kB
@@ -321,13 +314,13 @@ rate_limit()
 #> [1] 5000
 #> 
 #> $content$resources$core$used
-#> [1] 10
+#> [1] 2
 #> 
 #> $content$resources$core$remaining
-#> [1] 4990
+#> [1] 4998
 #> 
 #> $content$resources$core$reset
-#> [1] 1772448561
+#> [1] 1772453384
 #> 
 #> 
 #> $content$resources$search
@@ -341,7 +334,7 @@ rate_limit()
 #> [1] 30
 #> 
 #> $content$resources$search$reset
-#> [1] 1772446268
+#> [1] 1772451023
 #> 
 #> 
 #> $content$resources$graphql
@@ -355,7 +348,7 @@ rate_limit()
 #> [1] 5000
 #> 
 #> $content$resources$graphql$reset
-#> [1] 1772449808
+#> [1] 1772454563
 #> 
 #> 
 #> $content$resources$integration_manifest
@@ -369,7 +362,7 @@ rate_limit()
 #> [1] 5000
 #> 
 #> $content$resources$integration_manifest$reset
-#> [1] 1772449808
+#> [1] 1772454563
 #> 
 #> 
 #> $content$resources$source_import
@@ -383,7 +376,7 @@ rate_limit()
 #> [1] 100
 #> 
 #> $content$resources$source_import$reset
-#> [1] 1772446268
+#> [1] 1772451023
 #> 
 #> 
 #> $content$resources$code_scanning_upload
@@ -391,13 +384,13 @@ rate_limit()
 #> [1] 5000
 #> 
 #> $content$resources$code_scanning_upload$used
-#> [1] 10
+#> [1] 2
 #> 
 #> $content$resources$code_scanning_upload$remaining
-#> [1] 4990
+#> [1] 4998
 #> 
 #> $content$resources$code_scanning_upload$reset
-#> [1] 1772448561
+#> [1] 1772453384
 #> 
 #> 
 #> $content$resources$code_scanning_autofix
@@ -411,7 +404,7 @@ rate_limit()
 #> [1] 10
 #> 
 #> $content$resources$code_scanning_autofix$reset
-#> [1] 1772446268
+#> [1] 1772451023
 #> 
 #> 
 #> $content$resources$actions_runner_registration
@@ -425,7 +418,7 @@ rate_limit()
 #> [1] 10000
 #> 
 #> $content$resources$actions_runner_registration$reset
-#> [1] 1772449808
+#> [1] 1772454563
 #> 
 #> 
 #> $content$resources$scim
@@ -439,7 +432,7 @@ rate_limit()
 #> [1] 15000
 #> 
 #> $content$resources$scim$reset
-#> [1] 1772449808
+#> [1] 1772454563
 #> 
 #> 
 #> $content$resources$dependency_snapshots
@@ -453,7 +446,7 @@ rate_limit()
 #> [1] 100
 #> 
 #> $content$resources$dependency_snapshots$reset
-#> [1] 1772446268
+#> [1] 1772451023
 #> 
 #> 
 #> $content$resources$dependency_sbom
@@ -467,7 +460,7 @@ rate_limit()
 #> [1] 100
 #> 
 #> $content$resources$dependency_sbom$reset
-#> [1] 1772446268
+#> [1] 1772451023
 #> 
 #> 
 #> $content$resources$audit_log
@@ -481,7 +474,7 @@ rate_limit()
 #> [1] 1750
 #> 
 #> $content$resources$audit_log$reset
-#> [1] 1772449808
+#> [1] 1772454563
 #> 
 #> 
 #> $content$resources$audit_log_streaming
@@ -495,7 +488,7 @@ rate_limit()
 #> [1] 15
 #> 
 #> $content$resources$audit_log_streaming$reset
-#> [1] 1772449808
+#> [1] 1772454563
 #> 
 #> 
 #> $content$resources$code_search
@@ -509,7 +502,7 @@ rate_limit()
 #> [1] 10
 #> 
 #> $content$resources$code_search$reset
-#> [1] 1772446268
+#> [1] 1772451023
 #> 
 #> 
 #> 
@@ -518,13 +511,13 @@ rate_limit()
 #> [1] 5000
 #> 
 #> $content$rate$used
-#> [1] 10
+#> [1] 2
 #> 
 #> $content$rate$remaining
-#> [1] 4990
+#> [1] 4998
 #> 
 #> $content$rate$reset
-#> [1] 1772448561
+#> [1] 1772453384
 #> 
 #> 
 #> 
@@ -533,7 +526,7 @@ rate_limit()
 #> 
 #> $response
 #> Response [https://api.github.com/rate_limit]
-#>   Date: 2026-03-02 10:10
+#>   Date: 2026-03-02 11:29
 #>   Status: 200
 #>   Content-Type: application/json; charset=utf-8
 #>   Size: 1.14 kB
