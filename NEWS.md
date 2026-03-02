@@ -1,3 +1,7 @@
+# sship 1.0.0
+
+* Changed the default target directory for encryption from working directory (`"."`) to the current directory where the tarfile is stored.
+
 # sship 0.9.0
 
 * new internal functions for standard symmetric encryption and decryption

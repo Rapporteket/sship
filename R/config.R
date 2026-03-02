@@ -29,9 +29,9 @@ create_config <- function(dir = ".") {
   new_file <- paste(dir, "_sship.yml", sep = "/")
   if (!file.exists(new_file)) {
     file.copy(ref_file, to = new_file)
-    return(paste0(new_file, " file created: fill it in"))
+    paste0(new_file, " file created: fill it in")
   } else {
-    return(paste0("Cannot create ", new_file, " config file: already exists"))
+    paste0("Cannot create ", new_file, " config file: already exists")
   }
 }
 
@@ -57,7 +57,7 @@ get_config <- function(dir = ".") {
   }
   config <- yaml::read_yaml(config_file)
   check_config(config)
-  return(config)
+  config
 }
 
 
