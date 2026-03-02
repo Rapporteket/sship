@@ -12,7 +12,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/Rapporteket/sship/blob/v1.0.0/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/Rapporteket/sship/blob/main/DESCRIPTION)
 
 Edvardsen A, Thon K, Steindal A (2026). *sship: Tool for Secure Shipment
 of Content*. R package version 1.0.0,
