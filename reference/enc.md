@@ -63,10 +63,12 @@ Below, a bash shell (unix) example is given
 
 Step 1: decrypt symmetric key (open envelope) using a private key
 
+
     openssl rsautl -decrypt -inkey ~/.ssh/id_rsa -in key.enc -out key
 
 Step 2: decrypt content by key obtained in step 1, also converting key
 and iv to strings of hexadecimal digits
+
 
     openssl aes-256-cbc -d -in data.csv.enc -out data.csv \
     -K $(hexdump -e '32/1 "%02x"' key) -iv $(hexdump -e '16/1 "%02x"' iv)
@@ -90,7 +92,7 @@ saveRDS(iris, file = file.path(wd, secret_file_name), ascii = TRUE)
 
 ## Make a private-public key pair named "id_rsa" and "id_rsa.pub"
 keygen(directory = wd, type = "rsa", overwrite_existing = TRUE)
-#> sship: Key pair written to /tmp/RtmptvEk6N
+#> sship: Key pair written to /tmp/RtmpzlnNvy
 
 ## Load public key
 pubkey <- readLines(file.path(wd, "id_rsa.pub"))
@@ -98,5 +100,5 @@ pubkey <- readLines(file.path(wd, "id_rsa.pub"))
 ## Make a secured file (ready for shipment)
 secure_secret_file <- enc(filename = file.path(wd, "secret.rds"),
                           pubkey_holder = NULL, pubkey = pubkey)
-#> sship: Content encrypted and ready for shipment: /tmp/RtmptvEk6N/secret.rds__20260302_112922.tar.gz
+#> sship: Content encrypted and ready for shipment: /tmp/RtmpzlnNvy/secret.rds__20260617_105644.tar.gz
 ```

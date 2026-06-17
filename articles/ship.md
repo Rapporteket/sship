@@ -49,6 +49,7 @@ Both encryption and shipment can be obtained in one operation with the R
 function [`sship()`](../reference/ship.md):
 
 ``` r
+
 sship(content, recipient, pubkey_holder, vessel, declaration)
 ```
 
@@ -62,6 +63,7 @@ associated with the shipment. A practical example may look something
 like this:
 
 ``` r
+
 sship("secret_data.csv", "myfriend", "github", "ftp", "pickable")
 ```
 

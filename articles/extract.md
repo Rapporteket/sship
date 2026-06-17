@@ -30,12 +30,14 @@ Install the latest version of the *sship* packages from the R command
 prompt:
 
 ``` r
+
 remotes::install_github("Rapporteket/sship")
 ```
 
 and load it into the R session:
 
 ``` r
+
 library("sship")
 ```
 
@@ -43,6 +45,7 @@ Use the [`dec()`](../reference/dec.md)-function to extract and decrypt
 the content:
 
 ``` r
+
 dec(tarfile = "data.csv__20200101_081500.tar.gz",
     keyfile = "~/.ssh/id_rsa",
     target_dir = ".")
@@ -52,6 +55,7 @@ From the example above the file `data.csv` will be written to the
 current working directory. Please use
 
 ``` r
+
 ?dec
 ```
 
