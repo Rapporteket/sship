@@ -53,31 +53,25 @@ rate limits.
 ## function will return NULL and an informative message
 gh("repos/Rapporteket/sship/branches")
 #> $content
-#>                                  name                               commit.sha
-#> 1                            gh-pages f2f6093f337425ae355ed39c772a3af6f6032e77
-#> 2                                main bb42a31854b9596d020bd797ae8f71688e3080b1
-#> 3 renovate/actions-add-to-project-2.x 109e048d8dd1e1faa34412d67d0562123d01a700
-#> 4       renovate/actions-checkout-6.x 4cbf54da3682ccd8a9baffc3d93d3b1f1e30301c
+#>       name                               commit.sha
+#> 1 gh-pages f7c7ae3960a49fd2080418216d8d20d33e1af4a4
+#> 2     main d8a6299d4b522f7d3fa4871f7c9fcdbba4c2c6e6
 #>                                                                                        commit.url
-#> 1 https://api.github.com/repos/Rapporteket/sship/commits/f2f6093f337425ae355ed39c772a3af6f6032e77
-#> 2 https://api.github.com/repos/Rapporteket/sship/commits/bb42a31854b9596d020bd797ae8f71688e3080b1
-#> 3 https://api.github.com/repos/Rapporteket/sship/commits/109e048d8dd1e1faa34412d67d0562123d01a700
-#> 4 https://api.github.com/repos/Rapporteket/sship/commits/4cbf54da3682ccd8a9baffc3d93d3b1f1e30301c
+#> 1 https://api.github.com/repos/Rapporteket/sship/commits/f7c7ae3960a49fd2080418216d8d20d33e1af4a4
+#> 2 https://api.github.com/repos/Rapporteket/sship/commits/d8a6299d4b522f7d3fa4871f7c9fcdbba4c2c6e6
 #>   protected
 #> 1     FALSE
 #> 2      TRUE
-#> 3     FALSE
-#> 4     FALSE
 #> 
 #> $path
 #> [1] "repos/Rapporteket/sship/branches"
 #> 
 #> $response
 #> Response [https://api.github.com/repos/Rapporteket/sship/branches]
-#>   Date: 2026-06-17 10:56
+#>   Date: 2026-08-28 13:00
 #>   Status: 200
 #>   Content-Type: application/json; charset=utf-8
-#>   Size: 852 B
+#>   Size: 400 B
 #> 
 #> 
 #> attr(,"class")
@@ -98,7 +92,7 @@ github_api("/rate_limit")
 #> [1] 15000
 #> 
 #> $content$resources$core$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> $content$resources$search
@@ -112,21 +106,21 @@ github_api("/rate_limit")
 #> [1] 30
 #> 
 #> $content$resources$search$reset
-#> [1] 1781693865
+#> [1] 1787922117
 #> 
 #> 
 #> $content$resources$graphql
 #> $content$resources$graphql$limit
-#> [1] 5000
+#> [1] 10000
 #> 
 #> $content$resources$graphql$used
 #> [1] 0
 #> 
 #> $content$resources$graphql$remaining
-#> [1] 5000
+#> [1] 10000
 #> 
 #> $content$resources$graphql$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> $content$resources$integration_manifest
@@ -140,7 +134,7 @@ github_api("/rate_limit")
 #> [1] 5000
 #> 
 #> $content$resources$integration_manifest$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> $content$resources$source_import
@@ -154,21 +148,7 @@ github_api("/rate_limit")
 #> [1] 100
 #> 
 #> $content$resources$source_import$reset
-#> [1] 1781693865
-#> 
-#> 
-#> $content$resources$code_scanning_upload
-#> $content$resources$code_scanning_upload$limit
-#> [1] 15000
-#> 
-#> $content$resources$code_scanning_upload$used
-#> [1] 0
-#> 
-#> $content$resources$code_scanning_upload$remaining
-#> [1] 15000
-#> 
-#> $content$resources$code_scanning_upload$reset
-#> [1] 1781697405
+#> [1] 1787922117
 #> 
 #> 
 #> $content$resources$code_scanning_autofix
@@ -182,7 +162,7 @@ github_api("/rate_limit")
 #> [1] 10
 #> 
 #> $content$resources$code_scanning_autofix$reset
-#> [1] 1781693865
+#> [1] 1787922117
 #> 
 #> 
 #> $content$resources$actions_runner_registration
@@ -196,7 +176,7 @@ github_api("/rate_limit")
 #> [1] 10000
 #> 
 #> $content$resources$actions_runner_registration$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> $content$resources$scim
@@ -210,7 +190,7 @@ github_api("/rate_limit")
 #> [1] 15000
 #> 
 #> $content$resources$scim$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> $content$resources$dependency_snapshots
@@ -224,21 +204,21 @@ github_api("/rate_limit")
 #> [1] 100
 #> 
 #> $content$resources$dependency_snapshots$reset
-#> [1] 1781693865
+#> [1] 1787922117
 #> 
 #> 
 #> $content$resources$dependency_sbom
 #> $content$resources$dependency_sbom$limit
-#> [1] 100
+#> [1] 200
 #> 
 #> $content$resources$dependency_sbom$used
 #> [1] 0
 #> 
 #> $content$resources$dependency_sbom$remaining
-#> [1] 100
+#> [1] 200
 #> 
 #> $content$resources$dependency_sbom$reset
-#> [1] 1781693865
+#> [1] 1787922117
 #> 
 #> 
 #> $content$resources$audit_log
@@ -252,7 +232,7 @@ github_api("/rate_limit")
 #> [1] 1750
 #> 
 #> $content$resources$audit_log$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> $content$resources$audit_log_streaming
@@ -266,7 +246,7 @@ github_api("/rate_limit")
 #> [1] 15
 #> 
 #> $content$resources$audit_log_streaming$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> $content$resources$code_search
@@ -280,7 +260,7 @@ github_api("/rate_limit")
 #> [1] 10
 #> 
 #> $content$resources$code_search$reset
-#> [1] 1781693865
+#> [1] 1787922117
 #> 
 #> 
 #> $content$resources$copilot_usage_records
@@ -294,7 +274,21 @@ github_api("/rate_limit")
 #> [1] 1750
 #> 
 #> $content$resources$copilot_usage_records$reset
-#> [1] 1781697405
+#> [1] 1787925657
+#> 
+#> 
+#> $content$resources$enterprise_token_inventory
+#> $content$resources$enterprise_token_inventory$limit
+#> [1] 1750
+#> 
+#> $content$resources$enterprise_token_inventory$used
+#> [1] 0
+#> 
+#> $content$resources$enterprise_token_inventory$remaining
+#> [1] 1750
+#> 
+#> $content$resources$enterprise_token_inventory$reset
+#> [1] 1787925657
 #> 
 #> 
 #> 
@@ -309,7 +303,7 @@ github_api("/rate_limit")
 #> [1] 15000
 #> 
 #> $content$rate$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> 
@@ -318,10 +312,10 @@ github_api("/rate_limit")
 #> 
 #> $response
 #> Response [https://api.github.com/rate_limit]
-#>   Date: 2026-06-17 10:56
+#>   Date: 2026-08-28 13:00
 #>   Status: 200
 #>   Content-Type: application/json; charset=utf-8
-#>   Size: 1.23 kB
+#>   Size: 1.24 kB
 #> 
 #> 
 #> attr(,"class")
@@ -340,7 +334,7 @@ rate_limit()
 #> [1] 15000
 #> 
 #> $content$resources$core$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> $content$resources$search
@@ -354,21 +348,21 @@ rate_limit()
 #> [1] 30
 #> 
 #> $content$resources$search$reset
-#> [1] 1781693865
+#> [1] 1787922117
 #> 
 #> 
 #> $content$resources$graphql
 #> $content$resources$graphql$limit
-#> [1] 5000
+#> [1] 10000
 #> 
 #> $content$resources$graphql$used
 #> [1] 0
 #> 
 #> $content$resources$graphql$remaining
-#> [1] 5000
+#> [1] 10000
 #> 
 #> $content$resources$graphql$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> $content$resources$integration_manifest
@@ -382,7 +376,7 @@ rate_limit()
 #> [1] 5000
 #> 
 #> $content$resources$integration_manifest$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> $content$resources$source_import
@@ -396,21 +390,7 @@ rate_limit()
 #> [1] 100
 #> 
 #> $content$resources$source_import$reset
-#> [1] 1781693865
-#> 
-#> 
-#> $content$resources$code_scanning_upload
-#> $content$resources$code_scanning_upload$limit
-#> [1] 15000
-#> 
-#> $content$resources$code_scanning_upload$used
-#> [1] 0
-#> 
-#> $content$resources$code_scanning_upload$remaining
-#> [1] 15000
-#> 
-#> $content$resources$code_scanning_upload$reset
-#> [1] 1781697405
+#> [1] 1787922117
 #> 
 #> 
 #> $content$resources$code_scanning_autofix
@@ -424,7 +404,7 @@ rate_limit()
 #> [1] 10
 #> 
 #> $content$resources$code_scanning_autofix$reset
-#> [1] 1781693865
+#> [1] 1787922117
 #> 
 #> 
 #> $content$resources$actions_runner_registration
@@ -438,7 +418,7 @@ rate_limit()
 #> [1] 10000
 #> 
 #> $content$resources$actions_runner_registration$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> $content$resources$scim
@@ -452,7 +432,7 @@ rate_limit()
 #> [1] 15000
 #> 
 #> $content$resources$scim$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> $content$resources$dependency_snapshots
@@ -466,21 +446,21 @@ rate_limit()
 #> [1] 100
 #> 
 #> $content$resources$dependency_snapshots$reset
-#> [1] 1781693865
+#> [1] 1787922117
 #> 
 #> 
 #> $content$resources$dependency_sbom
 #> $content$resources$dependency_sbom$limit
-#> [1] 100
+#> [1] 200
 #> 
 #> $content$resources$dependency_sbom$used
 #> [1] 0
 #> 
 #> $content$resources$dependency_sbom$remaining
-#> [1] 100
+#> [1] 200
 #> 
 #> $content$resources$dependency_sbom$reset
-#> [1] 1781693865
+#> [1] 1787922117
 #> 
 #> 
 #> $content$resources$audit_log
@@ -494,7 +474,7 @@ rate_limit()
 #> [1] 1750
 #> 
 #> $content$resources$audit_log$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> $content$resources$audit_log_streaming
@@ -508,7 +488,7 @@ rate_limit()
 #> [1] 15
 #> 
 #> $content$resources$audit_log_streaming$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> $content$resources$code_search
@@ -522,7 +502,7 @@ rate_limit()
 #> [1] 10
 #> 
 #> $content$resources$code_search$reset
-#> [1] 1781693865
+#> [1] 1787922117
 #> 
 #> 
 #> $content$resources$copilot_usage_records
@@ -536,7 +516,21 @@ rate_limit()
 #> [1] 1750
 #> 
 #> $content$resources$copilot_usage_records$reset
-#> [1] 1781697405
+#> [1] 1787925657
+#> 
+#> 
+#> $content$resources$enterprise_token_inventory
+#> $content$resources$enterprise_token_inventory$limit
+#> [1] 1750
+#> 
+#> $content$resources$enterprise_token_inventory$used
+#> [1] 0
+#> 
+#> $content$resources$enterprise_token_inventory$remaining
+#> [1] 1750
+#> 
+#> $content$resources$enterprise_token_inventory$reset
+#> [1] 1787925657
 #> 
 #> 
 #> 
@@ -551,7 +545,7 @@ rate_limit()
 #> [1] 15000
 #> 
 #> $content$rate$reset
-#> [1] 1781697405
+#> [1] 1787925657
 #> 
 #> 
 #> 
@@ -560,10 +554,10 @@ rate_limit()
 #> 
 #> $response
 #> Response [https://api.github.com/rate_limit]
-#>   Date: 2026-06-17 10:56
+#>   Date: 2026-08-28 13:00
 #>   Status: 200
 #>   Content-Type: application/json; charset=utf-8
-#>   Size: 1.23 kB
+#>   Size: 1.24 kB
 #> 
 #> 
 #> attr(,"class")
